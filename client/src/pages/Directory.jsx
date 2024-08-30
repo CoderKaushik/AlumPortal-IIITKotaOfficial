@@ -27,7 +27,8 @@ const Directory = () => {
 
 			const fetchAlumni = async () => {
 				try {
-					const response = await axios.get("http://localhost:5000/api/alumni");
+					// const response = await axios.get("http://localhost:5000/api/alumni");
+					const response = await axios.get("https://alumportal-iiitkotaofficial.onrender.com/api/alumni");
 					console.log("Fetched Alumni Data:", response.data); // Log data
 					setAlumni(response.data);
 					setFilteredAlumni(response.data); // Set initial filtered list

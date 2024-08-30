@@ -13,7 +13,14 @@ const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI; // MongoDB URI from .env
 
 app.use(express.json());
-app.use(cors()); // Enable CORS for external access
+const corsOptions = {
+	origin: "https://alum-portal-iiit-kota-official.vercel.app", // Frontend URL
+	// origin: "http://localhost:5173",
+	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+	credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI, {

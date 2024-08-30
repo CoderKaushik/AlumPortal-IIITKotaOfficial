@@ -18,7 +18,8 @@ router.post("/forgot-password", async (req, res) => {
     user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
     await user.save();
 
-    const resetUrl = `http://localhost:5000/reset-password/${token}`;
+    // const resetUrl = `http://localhost:5000/reset-password/${token}`;
+    const resetUrl = `https://alumportal-iiitkotaofficial.onrender.com/reset-password/${token}`;
 
     const message = `
       <h1>You have requested a password reset</h1>

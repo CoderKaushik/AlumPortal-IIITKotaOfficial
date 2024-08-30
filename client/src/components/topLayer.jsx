@@ -22,7 +22,8 @@ const TopLayer = () => {
       setIsLoggedIn(true);
       const fetchUser = async () => {
         try {
-          const response = await axios.get("http://localhost:5000/api/profile/me", {
+          // const response = await axios.get("http://localhost:5000/api/profile/me", {
+          const response = await axios.get("https://alumportal-iiitkotaofficial.onrender.com/api/profile/me", {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUser(response.data);
