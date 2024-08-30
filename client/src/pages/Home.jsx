@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import CountUp from "countup";
 import "intersection-observer"; // Polyfill for older browsers
 
-import Navbar from "../components/Navbar";
-import CarouselHome from "../components/carouselHome";
-import InfiniteText from "../components/infiniteText";
-import NewsArticlesHome from "../components/NewsArticlesHome";
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar.jsx";
+import CarouselHome from "../components/carouselHome.jsx";
+import InfiniteText from "../components/infiniteText.jsx";
+import NewsArticlesHome from "../components/NewsArticlesHome.jsx";
+import Footer from "../components/Footer.jsx";
 
 import CollectionsIcon from "@mui/icons-material/Collections";
 
