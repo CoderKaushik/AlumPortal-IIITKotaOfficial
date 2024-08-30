@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar.jsx";
+import Navbar from "../components/navbar.jsx";
 import Footer from "../components/Footer";
 import AlumniCard from "../components/AlumniCard.jsx";
 import SignInPrompt from "./SignInPrompt"; // Import the SignInPrompt component

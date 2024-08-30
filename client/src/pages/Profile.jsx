@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode"; // Make sure to install this package
 import SignInPrompt from "./SignInPrompt.jsx";
-import Navbar from "../components/Navbar.jsx";
+import Navbar from "../components/navbar.jsx";
 import Footer from "../components/Footer.jsx";
 
 const Profile = () => {
