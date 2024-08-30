@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CountUp from "countup";
 import "intersection-observer"; // Polyfill for older browsers
 
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 import CarouselHome from "../components/carouselHome";
 import InfiniteText from "../components/infiniteText";
 import NewsArticlesHome from "../components/NewsArticlesHome";

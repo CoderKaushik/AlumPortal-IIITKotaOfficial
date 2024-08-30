@@ -20,7 +20,7 @@ const Navbar = () => {
               className="text-[12px] max-w-980:text-[9px] max-w-492:text-[7px] text-[#19194D] max-w-1464:hidden max-w-980:block"
               style={{ fontWeight: "700" }}
             >
-              Alumni Association
+              Alumni Cell
             </h6>
             <h6
               className="text-[12px] max-w-980:text-[9px] max-w-492:text-[7px] font-bold text-[#19194D] max-w-1464:hidden max-w-980:block"

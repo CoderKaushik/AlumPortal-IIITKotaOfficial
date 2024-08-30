@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Directory from './pages/Directory';
 import Profile from './pages/Profile';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/directory" element={<Directory />} />
             <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
           </Routes>
         </div>
       </AuthProvider>

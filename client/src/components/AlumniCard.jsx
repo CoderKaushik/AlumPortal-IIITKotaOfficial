@@ -30,7 +30,7 @@ const Modal = ({ isOpen, onClose, imageSrc }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div
         ref={modalRef}
-        className="relative w-96 h-96 bg-white rounded-lg shadow-lg overflow-hidden"
+        className="relative w-80 h-80 md:w-96 md:h-96 bg-white rounded-lg shadow-lg overflow-hidden"
       >
         <img src={imageSrc} alt="Full size" className="w-full h-full object-cover" />
         <button
@@ -81,14 +81,14 @@ const AlumniCard = ({ alumniData }) => {
           <div className='w-24 h-24 border border-teal-500 rounded-full overflow-hidden flex items-center justify-center cursor-pointer shadow-md' onClick={() => openModal(alumniData.profilePicture)}>
             <img src={alumniData.profilePicture} alt="Profile" className='w-full h-full object-cover' />
           </div>
-          <div className='mt-4 flex w-full'>
+          <div className='mt-4 flex w-full gap-1'>
             <a href={alumniData.linkedin} target="_blank" rel="noopener noreferrer" className='w-1/2 flex justify-center'>
-              <button className='flex items-center justify-center w-full h-10 bg-teal-600 hover:bg-teal-500 text-white'>
+              <button className='flex items-center justify-center w-full rounded-lg h-10 bg-blue-600 hover:bg-blue-500 text-white'>
                 <LinkedInIcon />
               </button>
             </a>
             <a href={`/profile/${alumniData._id}`} target="_blank" rel="noopener noreferrer" className='w-1/2 flex justify-center'>
-              <button className='flex items-center justify-center w-full h-10 bg-blue-600 hover:bg-blue-500 text-white'>
+              <button className='flex items-center justify-center w-full rounded-lg h-10 bg-teal-600 hover:bg-teal-500  text-white'>
                 <PersonIcon />
               </button>
             </a>

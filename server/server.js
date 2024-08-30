@@ -6,6 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const alumniRoutes = require('./routes/alumni');
 const profileRoute = require('./routes/profileRoute'); // Ensure this is the correct path
+const passwordRoutes = require('./routes/passwordRoutes'); // Import the password routes
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,7 +27,8 @@ mongoose.connect(MONGODB_URI, {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/alumni', alumniRoutes);
-app.use('/api/profile', profileRoute); // Ensure profileRoute handles profile fetching
+app.use('/api/profile', profileRoute);
+app.use('/api/password', passwordRoutes); // Add the password routes
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
