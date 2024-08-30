@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer";
-import AlumniCard from "../components/AlumniCard";
+import AlumniCard from "../components/AlumniCard.jsx";
 import SignInPrompt from "./SignInPrompt"; // Import the SignInPrompt component
 
 const H = "calc(100vh - 6.825rem)";
