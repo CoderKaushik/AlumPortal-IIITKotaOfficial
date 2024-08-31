@@ -17,6 +17,8 @@ const UserSchema = new mongoose.Schema({
   achievements: { type: String },
   password: { type: String, required: true },
   profilePicture: { type: String },
+  resetPasswordToken: { type: String },
+  resetPasswordExpires: { type: Date },
 });
 
 module.exports = mongoose.model('User', UserSchema);

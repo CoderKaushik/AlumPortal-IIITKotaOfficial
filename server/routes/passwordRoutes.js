@@ -48,7 +48,7 @@ router.post("/reset-password/:token", async (req, res) => {
         return res.status(400).json({ message: "Invalid or expired token" });
       }
   
-      user.password = req.body.password; // Hash before saving
+      user.password = req.body.password; 
       user.resetPasswordToken = undefined;
       user.resetPasswordExpires = undefined;
   
