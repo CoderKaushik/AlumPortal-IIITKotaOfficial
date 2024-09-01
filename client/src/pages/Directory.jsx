@@ -24,27 +24,26 @@ const Directory = () => {
 	const [token, setToken] = useState(localStorage.getItem("token")); // Get JWT token
 
 	useEffect(() => {
+		const fetchAlumni = async () => {
+			try {
+				// const response = await axios.get("http://localhost:5000/api/alumni");
+				const response = await axios.get("https://alumportal-iiitkotaofficial.onrender.com/api/alumni");
+				console.log("Fetched Alumni Data:", response.data); // Log data
+				setAlumni(response.data);
+				setFilteredAlumni(response.data); // Set initial filtered list
 
-			const fetchAlumni = async () => {
-				try {
-					// const response = await axios.get("http://localhost:5000/api/alumni");
-					const response = await axios.get("https://alumportal-iiitkotaofficial.onrender.com/api/alumni");
-					console.log("Fetched Alumni Data:", response.data); // Log data
-					setAlumni(response.data);
-					setFilteredAlumni(response.data); // Set initial filtered list
+				// Extract unique graduation years and sort them
+				const years = [
+					...new Set(response.data.map((alumnus) => alumnus.graduationYear)),
+				];
+				years.sort((a, b) => a - b); // Sort years in ascending order
+				setGraduationYears(years);
+			} catch (error) {
+				console.error("Error fetching alumni data:", error);
+			}
+		};
 
-					// Extract unique graduation years and sort them
-					const years = [
-						...new Set(response.data.map((alumnus) => alumnus.graduationYear)),
-					];
-					years.sort((a, b) => a - b); // Sort years in ascending order
-					setGraduationYears(years);
-				} catch (error) {
-					console.error("Error fetching alumni data:", error);
-				}
-			};
-
-			fetchAlumni();
+		fetchAlumni();
 	}, [token]);
 
 	const handleFilterChange = (e) => {

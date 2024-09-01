@@ -14,16 +14,26 @@ const TopLayer = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [greeting, setGreeting] = useState("Hey");
+
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const currentHour = new Date().getHours();
+    if (currentHour < 12) {
+      setGreeting("Good morning");
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting("Good afternoon");
+    } else {
+      setGreeting("Good evening");
+    }
+
     if (token) {
       setIsLoggedIn(true);
       const fetchUser = async () => {
         try {
           // const response = await axios.get("http://localhost:5000/api/profile/me", {
-          const response = await axios.get("https://alumportal-iiitkotaofficial.onrender.com/api/profile/me", {
+            const response = await axios.get("https://alumportal-iiitkotaofficial.onrender.com/api/profile/me", {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUser(response.data);
@@ -35,16 +45,15 @@ const TopLayer = () => {
     } else {
       setIsLoggedIn(false);
     }
-  }, []);
+  }, [token]);
 
   const handleLogout = (e) => {
     e.preventDefault();
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
     setUser(null);
     window.location.reload(); // Refresh the page or redirect if needed
   };
-
 
   return (
     <div className="relative w-full h-[1.5rem] bg-[#1A1C4E] flex px-16 max-w-980:hidden">
@@ -72,7 +81,7 @@ const TopLayer = () => {
                 )}
               </div>
               <p className="text-white text-sm cursor-pointer">
-                Hey, {user.name}
+                {greeting}, {user.name}
               </p>
             </div>
 
@@ -99,7 +108,8 @@ const TopLayer = () => {
             <p className="text-white text-sm">
               <a href="/signin">
                 <span className="hover:underline hover:cursor-pointer">Login</span>
-              </a> /{" "}
+              </a>{" "}
+              /{" "}
               <a href="https://alumni-form-one.vercel.app/">
                 <span className="hover:underline hover:cursor-pointer">Register</span>
               </a>

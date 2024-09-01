@@ -87,7 +87,7 @@ const AlumniCard = ({ alumniData }) => {
                 <LinkedInIcon />
               </button>
             </a>
-            <a href={`/profile/${alumniData._id}`} target="_blank" rel="noopener noreferrer" className='w-1/2 flex justify-center'>
+            <a href={`/profile/${alumniData._id}`} rel="noopener noreferrer" className='w-1/2 flex justify-center'>
               <button className='flex items-center justify-center w-full rounded-lg h-10 bg-teal-600 hover:bg-teal-500  text-white'>
                 <PersonIcon />
               </button>
