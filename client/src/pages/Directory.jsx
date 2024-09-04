@@ -135,7 +135,7 @@ const Directory = () => {
 								placeholder="Name"
 								value={filters.name}
 								onChange={handleFilterChange}
-								className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12  px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 							/>
 							<input
 								type="text"
@@ -143,13 +143,13 @@ const Directory = () => {
 								placeholder="Institute ID"
 								value={filters.instituteId}
 								onChange={handleFilterChange}
-								className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12  px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 							/>
 							<select
 								name="graduationYear"
 								value={filters.graduationYear}
 								onChange={handleFilterChange}
-								className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12  px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 							>
 								<option value="">Select Graduation Year</option>
 								{graduationYears.map((year) => (
@@ -164,7 +164,7 @@ const Directory = () => {
 								placeholder="Company"
 								value={filters.company}
 								onChange={handleFilterChange}
-								className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12  px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 							/>
 							<input
 								type="text"
@@ -172,7 +172,7 @@ const Directory = () => {
 								placeholder="Role"
 								value={filters.role}
 								onChange={handleFilterChange}
-								className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12  px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 							/>
 							<input
 								type="text"
@@ -180,7 +180,7 @@ const Directory = () => {
 								placeholder="Branch"
 								value={filters.branch}
 								onChange={handleFilterChange}
-								className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12  px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 							/>
 							<input
 								type="text"
@@ -188,26 +188,26 @@ const Directory = () => {
 								placeholder="City"
 								value={filters.city}
 								onChange={handleFilterChange}
-								className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12  px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 							/>
 							<div className="flex gap-2">
 								<button
 									type="button"
 									onClick={handleReset}
-									className="w-1/2 h-12 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300"
+									className="w-1/2 h-12  bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300"
 								>
 									Reset
 								</button>
 								<button
 									type="submit"
-									className="w-1/2 h-12 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-500"
+									className="w-1/2 h-12  bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-500"
 								>
 									Submit
 								</button>
 							</div>
 						</form>
 					</div>
-					<div className="xl:w-[80%] w-full h-[35.5rem] flex flex-col gap-4">
+					<div className="xl:w-[80%] w-full flex flex-col gap-4 flex-grow min-h-screen">
 						<div className="w-full h-auto bg-white p-4 shadow-md rounded-lg flex justify-between items-center">
 							<p className="text-lg font-semibold text-gray-800">
 								Found {filteredAlumni.length} alumni
@@ -219,14 +219,13 @@ const Directory = () => {
 								Toggle Filters
 							</button>
 						</div>
+
 						{showFilterModal && (
 							<div className="fixed inset-0 z-50 flex items-center justify-center">
-								{/* Background overlay with blur */}
 								<div
 									className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
 									onClick={toggleFilterModal}
 								></div>
-								{/* Modal content */}
 								<div className="bg-white p-6 rounded-lg shadow-lg z-10 w-11/12 max-w-md relative">
 									<button
 										onClick={toggleFilterModal}
@@ -318,7 +317,8 @@ const Directory = () => {
 								</div>
 							</div>
 						)}
-						<div className="w-full h-full bg-white p-4 overflow-y-scroll custom-scrollbar">
+
+						<div className="w-full flex-grow bg-white p-4 overflow-y-auto custom-scrollbar h-0 md:pb-40 pb-16">
 							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 								{filteredAlumni.map((alumnus) => (
 									<AlumniCard key={alumnus._id} alumniData={alumnus} />

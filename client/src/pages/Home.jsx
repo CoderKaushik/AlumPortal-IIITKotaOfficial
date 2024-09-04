@@ -37,7 +37,7 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div className="w-full h-full overflow-x-hidden custom-scrollbar">
+		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
 			<Navbar />
 			<CarouselHome />
 			<InfiniteText />

@@ -122,7 +122,7 @@ const Profile = () => {
 	}
 
 	return (
-		<div className="w-full h-full overflow-x-hidden custom-scrollbar">
+		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
 			<Navbar />
 
 			{/* Modal */}
@@ -276,7 +276,7 @@ const Profile = () => {
 						</div>
 					)}
 					<div className="w-full h-[70%] flex justify-center items-center">
-						<div className="md:w-40 md:h-40 w-32 h-32 rounded-full shadow-xl overflow-hidden">
+						<div className="md:w-40 md:h-40 w-32 h-32 rounded-full border border-gray-100 shadow-2xl overflow-hidden">
 							<img
 								src={user.profilePicture}
 								className="w-full h-full object-cover"
@@ -357,7 +357,7 @@ const Profile = () => {
 						<div className="h-[2rem] w-full flex gap-2">
 							<BusinessIcon />
 							<p>
-								Currently working as{" "}
+								Currently a {" "}
 								<span className="font-semibold">{user.role}</span> at{" "}
 								<span className="font-semibold">{user.currentCompany}</span>
 							</p>

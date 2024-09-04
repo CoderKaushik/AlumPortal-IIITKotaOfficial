@@ -1,4 +1,3 @@
-// routes/profileRoute.js
 const express = require('express');
 const router = express.Router();
 const Profile = require('../models/User.js'); // Adjust the path to your Profile model
@@ -7,7 +6,7 @@ const authMiddleware = require('../middlewares/authMiddleware'); // Ensure you h
 // Get the currently logged-in user's profile
 router.get('/me', authMiddleware, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ instituteId: req.user.instituteId });
+    const profile = await Profile.findOne({ instituteId: req.user.instituteId }).select('-password');
     if (!profile) {
       return res.status(404).json({ message: 'Profile not found' });
     }
@@ -17,14 +16,14 @@ router.get('/me', authMiddleware, async (req, res) => {
   }
 });
 
-//edit profile
+// Edit profile
 router.put('/me', authMiddleware, async (req, res) => {
   try {
     const updatedProfile = await Profile.findOneAndUpdate(
       { instituteId: req.user.instituteId },
       { $set: req.body },
       { new: true }
-    );
+    ).select('-password');
 
     if (!updatedProfile) {
       return res.status(404).json({ message: 'Profile not found' });
@@ -39,7 +38,7 @@ router.put('/me', authMiddleware, async (req, res) => {
 // Get a specific profile by ID
 router.get('/:id', async (req, res) => {
   try {
-    const profile = await Profile.findById(req.params.id);
+    const profile = await Profile.findById(req.params.id).select('-password');
     if (!profile) {
       return res.status(404).json({ message: 'Profile not found' });
     }
