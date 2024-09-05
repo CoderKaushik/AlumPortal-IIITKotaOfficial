@@ -17,7 +17,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="w-full h-auto fixed top-0 left-0 z-[10] shadow-md">
+		<div className="w-full h-auto fixed top-0 left-0 z-[20] shadow-md">
 			<TopLayer />
 			<div className="w-full h-[6.875rem] max-w-980:h-[90px] max-w-492:h-[70px] bg-white flex p-4">
 				<div className="w-1/3 max-w-1464:w-[10%] max-w-980:w-[80%] h-full flex gap-2 items-center pl-2">
