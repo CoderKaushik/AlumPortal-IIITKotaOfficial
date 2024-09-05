@@ -104,7 +104,7 @@ const TopLayer = () => {
 						</div>
 
 						{/* Dropdown Modal */}
-						<div className="absolute top-full right-0 mt-2 w-32 bg-white rounded shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 group-hover:visible transition-all duration-300 ease-in-out">
+						<div className="absolute top-full right-0 mt-2 w-32 bg-white rounded shadow-lg opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 group-hover:visible transition-all duration-300 ease-in-out z-10">
 							<a
 								href="/profile/me"
 								className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
