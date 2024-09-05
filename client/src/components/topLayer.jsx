@@ -13,20 +13,10 @@ const TopLayer = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [greeting, setGreeting] = useState("Hey");
 
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const currentHour = new Date().getHours();
-    if (currentHour < 12) {
-      setGreeting("Good morning");
-    } else if (currentHour >= 12 && currentHour < 18) {
-      setGreeting("Good afternoon");
-    } else {
-      setGreeting("Good evening");
-    }
-
     if (token) {
       setIsLoggedIn(true);
       const fetchUser = async () => {
@@ -81,7 +71,6 @@ const TopLayer = () => {
               )}
             </div>
             <p className="text-white text-sm">
-              {greeting}, 
               <a href="/profile/me" className="hover:underline">
                 {user.name}
               </a>
