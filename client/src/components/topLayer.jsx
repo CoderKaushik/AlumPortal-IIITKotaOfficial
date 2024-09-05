@@ -81,8 +81,9 @@ const TopLayer = () => {
               )}
             </div>
             <p className="text-white text-sm">
+              {greeting}, 
               <a href="/profile/me" className="hover:underline">
-                {greeting}, {user.name}
+                {user.name}
               </a>
             </p>
             <a
