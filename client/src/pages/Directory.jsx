@@ -21,13 +21,16 @@ const Directory = () => {
 	const [filteredAlumni, setFilteredAlumni] = useState([]);
 	const [graduationYears, setGraduationYears] = useState([]);
 	const [showFilterModal, setShowFilterModal] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const [token, setToken] = useState(localStorage.getItem("token")); // Get JWT token
 
 	useEffect(() => {
 		const fetchAlumni = async () => {
 			try {
 				// const response = await axios.get("http://localhost:5000/api/alumni");
-				const response = await axios.get("https://alumportal-iiitkotaofficial.onrender.com/api/alumni");
+				const response = await axios.get(
+					"https://alumportal-iiitkotaofficial.onrender.com/api/alumni"
+				);
 				console.log("Fetched Alumni Data:", response.data); // Log data
 				setAlumni(response.data);
 				setFilteredAlumni(response.data); // Set initial filtered list
@@ -40,7 +43,9 @@ const Directory = () => {
 				setGraduationYears(years);
 			} catch (error) {
 				console.error("Error fetching alumni data:", error);
-			}
+			} finally {
+				setLoading(false);
+			  }
 		};
 
 		fetchAlumni();
@@ -319,11 +324,20 @@ const Directory = () => {
 						)}
 
 						<div className="w-full flex-grow bg-white p-4 overflow-y-auto custom-scrollbar h-0 md:pb-40 pb-16">
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-								{filteredAlumni.map((alumnus) => (
-									<AlumniCard key={alumnus._id} alumniData={alumnus} />
-								))}
-							</div>
+							{loading ? (
+								<div className="h-full w-full flex justify-center items-center bg-white">
+									<div className="flex flex-col items-center">
+										<div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+										<p className="text-gray-700 mt-4">Loading...</p>
+									</div>
+								</div>
+							) : (
+								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+									{filteredAlumni.map((alumnus) => (
+										<AlumniCard key={alumnus._id} alumniData={alumnus} />
+									))}
+								</div>
+							)}
 						</div>
 					</div>
 				</div>
