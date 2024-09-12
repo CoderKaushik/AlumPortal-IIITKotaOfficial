@@ -127,57 +127,67 @@ const Profile = () => {
 
 			{/* Modal */}
 			{isModalOpen && (
-				<div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50 transition-opacity duration-200 ease-in-out">
-					<div className="bg-white p-8 rounded-lg md:w-[40rem] md:h-[40rem] h-[30rem] w-[22rem] overflow-y-scroll scrollbar-hide shadow-2xl relative">
+				<div className="fixed inset-0 z-50 flex items-center justify-center">
+					<div
+						className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+						onClick={closeModal}
+					></div>
+					<div className="bg-white p-6 rounded-lg md:w-[40rem] md:h-[40rem] h-[35rem] w-[22rem] shadow-lg z-10 max-w-md relative overflow-y-scroll scrollbar-hide">
+						<button
+							onClick={closeModal}
+							className="absolute top-2 right-2 text-4xl text-gray-600 hover:text-gray-800"
+						>
+							&times;
+						</button>
 						<h2 className="text-2xl font-bold mb-4 text-blue-900">
 							Edit Profile
 						</h2>
-						<form onSubmit={handleSubmit}>
-							<div className="mb-4">
+						<form onSubmit={handleSubmit} className="flex flex-col gap-4">
+							<div>
 								<label className="block text-gray-700">Name</label>
 								<input
 									type="text"
 									name="name"
 									value={user.name}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-10 border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300"
+									className="w-full h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 							</div>
-							<div className="mb-4">
+							<div>
 								<label className="block text-gray-700">Branch</label>
 								<input
 									type="text"
 									name="branch"
 									value={user.branch}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-10 border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300"
+									className="w-full h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 							</div>
-							<div className="mb-4">
+							<div>
 								<label className="block text-gray-700">Location</label>
 								<input
 									type="text"
 									name="city"
 									value={user.city}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-10 border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300"
+									className="w-full h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 								<input
 									type="text"
 									name="state"
 									value={user.state}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-10 border border-gray-300 rounded-md p-2 mt-2 focus:ring focus:ring-blue-300"
+									className="w-full h-12 px-4 mt-2 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 								<input
 									type="text"
 									name="country"
 									value={user.country}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-10 border border-gray-300 rounded-md p-2 mt-2 focus:ring focus:ring-blue-300"
+									className="w-full h-12 px-4 mt-2 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 							</div>
-							<div className="mb-4">
+							<div>
 								<label className="block text-gray-700">
 									Past Companies / Institutes
 								</label>
@@ -186,10 +196,10 @@ const Profile = () => {
 									name="pastCompanies"
 									value={user.pastCompanies}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-10 border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300"
+									className="w-full h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 							</div>
-							<div className="mb-4">
+							<div>
 								<label className="block text-gray-700">
 									Current Company / Institute
 								</label>
@@ -198,75 +208,69 @@ const Profile = () => {
 									name="currentCompany"
 									value={user.currentCompany}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-10 border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300"
+									className="w-full h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 							</div>
-							<div className="mb-4">
+							<div>
 								<label className="block text-gray-700">Email ID</label>
 								<input
 									type="text"
 									name="personalEmail"
 									value={user.personalEmail}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-10 border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300"
+									className="w-full h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 							</div>
-							<div className="mb-4">
+							<div>
 								<label className="block text-gray-700">Graduation Year</label>
 								<input
 									type="text"
 									name="graduationYear"
 									value={user.graduationYear}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-10 border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300"
+									className="w-full h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 							</div>
-							<div className="mb-4">
+							<div>
 								<label className="block text-gray-700">LinkedIn</label>
 								<input
 									type="text"
 									name="linkedin"
 									value={user.linkedin}
 									onChange={handleChange}
-									className="w-full bg-gray-200 h-16 border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300"
+									className="w-full h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 							</div>
-							<div className="mb-4">
+							<div>
 								<label className="block text-gray-700">Achievements</label>
 								<textarea
 									name="achievements"
 									value={user.achievements}
 									onChange={handleChange}
-									className="w-full h-36 bg-gray-200 rounded-md border border-gray-300 p-2 focus:ring focus:ring-blue-300"
+									className="w-full h-36 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
 								/>
 							</div>
-							<div className="flex justify-end">
+							<div className="flex gap-2">
 								<button
 									type="button"
 									onClick={closeModal}
-									className="bg-gray-500 text-white font-bold py-2 px-4 rounded-md mr-2 hover:bg-gray-600 transition-colors duration-200 ease-in-out"
+									className="w-1/2 h-12 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300"
 								>
 									Cancel
 								</button>
 								<button
 									type="submit"
-									className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-200 ease-in-out"
+									className="w-1/2 h-12 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-500"
 								>
 									Save Changes
 								</button>
 							</div>
 						</form>
-						<button
-							className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition-colors duration-200 ease-in-out"
-							onClick={closeModal}
-						>
-							&times;
-						</button>
 					</div>
 				</div>
 			)}
 			<div className="w-full h-[35rem] md:h-72 mt-28 md:mt-36 lg:mt-36 px-6 md:px-20 flex flex-col md:flex-row gap-4">
-				<div className="md:w-1/3 md:h-full h-1/2 w-full rounded-lg shadow-xl bg-gradient-to-r from-blue-600 to-blue-800 flex flex-col gap-2 relative">
+				<div className="md:w-1/3 md:h-full h-1/2 w-full rounded-lg shadow-xl bg-white flex flex-col gap-2 relative">
 					{id === "me" && (
 						<div
 							className="w-8 h-8 rounded-full shadow-xl absolute top-2 left-2 hover:cursor-pointer hover:rotate-90 transition-transform duration-300 ease-in-out flex justify-center items-center text-white bg-blue-900"
@@ -287,12 +291,12 @@ const Profile = () => {
 
 					<div className="w-full h-[30%] flex flex-col overflow-scroll scrollbar-hide">
 						<div className="w-full h-1/2">
-							<p className="w-full h-full flex justify-center items-center text-center text-md md:text-xl text-white">
+							<p className="w-full h-full flex justify-center items-center text-center text-md md:text-xl text-blue-950">
 								{user.name} • {user.instituteId}
 							</p>
 						</div>
 						<div className="w-full h-1/2">
-							<p className="w-full h-full flex justify-center items-center text-sm md:text-md text-white">
+							<p className="w-full h-full flex justify-center items-center text-sm md:text-md text-blue-950">
 								Batch of {user.graduationYear} • {user.branch}
 							</p>
 						</div>
@@ -357,9 +361,8 @@ const Profile = () => {
 						<div className="h-[2rem] w-full flex gap-2">
 							<BusinessIcon />
 							<p>
-								Currently a {" "}
-								<span className="font-semibold">{user.role}</span> at{" "}
-								<span className="font-semibold">{user.currentCompany}</span>
+								Currently a <span className="font-semibold">{user.role}</span>{" "}
+								at <span className="font-semibold">{user.currentCompany}</span>
 							</p>
 						</div>
 						<div className="h-[2rem] w-full gap-2 flex justify-start items-center">

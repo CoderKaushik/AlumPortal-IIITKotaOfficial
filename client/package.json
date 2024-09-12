@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.0",
+    "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@material-tailwind/react": "^2.1.9",
     "@mui/icons-material": "^5.16.7",
@@ -27,9 +27,11 @@
     "react-headroom": "^3.2.1",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.26.1",
+    "react-slick": "^0.30.2",
     "react-toastify": "^10.0.5",
     "react-tooltip": "^5.28.0",
-    "reactstrap": "^9.2.2"
+    "reactstrap": "^9.2.2",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

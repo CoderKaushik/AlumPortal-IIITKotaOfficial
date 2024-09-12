@@ -71,28 +71,28 @@ const Home = () => {
         </div>
 			</div>
 			{/* Stats Component */}
-			<div className="w-full h-[15rem] bg-[#19194D] lg:p-4 p-2">
-				<div className="w-full h-full lg:flex lg:flex-row flex-col">
+			<div className="w-full h-[10rem] lg:h-[15rem] bg-[#19194D] lg:p-4">
+				<div className="w-full h-full flex flex-row gap-2">
 					<div
-						className="counter w-full lg:w-1/3 lg:h-full h-1/3 flex lg:flex-col gap-4 justify-center items-center text-white text-xl lg:text-3xl"
+						className="counter w-1/3 h-full flex flex-col gap-4 justify-center items-center text-white text-xl lg:text-3xl"
 						data-target="3500"
 					>
 						<p className="count">0</p>
-						<p>Alumni Registered</p>
+						<p className="text-center text-[18px] lg:text-2xl">Alumni Registered</p>
 					</div>
 					<div
-						className="counter w-full lg:w-1/3 lg:h-full h-1/3 flex lg:flex-col gap-4 justify-center items-center text-white text-xl lg:text-3xl"
+						className="counter w-1/3 h-full flex flex-col gap-4 justify-center items-center text-white text-xl lg:text-3xl"
 						data-target="5800"
 					>
 						<p className="count">0</p>
-						<p>Alumni Registered</p>
+						<p className="text-center text-[18px] lg:text-2xl">Alumni Registered</p>
 					</div>
 					<div
-						className="counter w-full lg:w-1/3 lg:h-full h-1/3 flex lg:flex-col gap-4 justify-center items-center text-white text-xl lg:text-3xl"
+						className="counter w-1/3 h-full flex flex-col gap-4 justify-center items-center text-white text-xl lg:text-3xl"
 						data-target="72000"
 					>
 						<p className="count">0</p>
-						<p>Alumni Registered</p>
+						<p className="text-center text-[18px] lg:text-2xl">Alumni Registered</p>
 					</div>
 				</div>
 			</div>
@@ -179,6 +179,7 @@ const Home = () => {
 			{/* News and articles home component */}
 			<NewsArticlesHome />
 			{/* Footer */}
+			
 			<Footer />
 		</div>
 	);

@@ -4,6 +4,7 @@ import Navbar from "../components/navbar.jsx";
 import Footer from "../components/Footer";
 import AlumniCard from "../components/AlumniCard.jsx";
 import SignInPrompt from "./SignInPrompt"; // Import the SignInPrompt component
+// import Footer from "../components/Footer";
 
 const H = "calc(100vh - 6.825rem)";
 
@@ -30,6 +31,7 @@ const Directory = () => {
 				// const response = await axios.get("http://localhost:5000/api/alumni");
 				const response = await axios.get(
 					"https://alumportal-iiitkotaofficial.onrender.com/api/alumni"
+					// "http://localhost:5000/api/alumni"
 				);
 				console.log("Fetched Alumni Data:", response.data); // Log data
 				setAlumni(response.data);
@@ -330,6 +332,10 @@ const Directory = () => {
 										<div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
 										<p className="text-gray-700 mt-4">Loading...</p>
 									</div>
+								</div>
+							) : filteredAlumni.length == 0 ? (
+								<div className="w-full h-full flex justify-center items-center">
+									<p>No alumni found</p>
 								</div>
 							) : (
 								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

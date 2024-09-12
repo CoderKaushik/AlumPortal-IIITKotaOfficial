@@ -55,10 +55,10 @@ const Navbar = () => {
 					className={`w-2/3 max-w-1464:w-[90%] max-w-980:w-[20%] h-full flex ${
 						window.innerWidth <= 980
 							? "justify-center items-center"
-							: "pl-16 max-w-1464:pl-0"
+							: "justify-end items-center pr-4"
 					}`}
 				>
-					<div className="w-1/6 h-full flex relative group items-center text-[#19194D] max-w-980:hidden max-w-1464:ml-44">
+					<div className="w-auto px-6 h-full flex relative group items-center text-[#19194D] max-w-980:hidden max-w-1464:ml-44">
 						<p
 							className="text-[0.9rem] font-sans hover:cursor-pointer"
 							style={{ fontWeight: "400" }}
@@ -83,7 +83,7 @@ const Navbar = () => {
 						</div>
 					</div>
 
-					<div className="w-1/6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
 						<p
 							className="text-[0.9rem] font-sans hover:cursor-pointer"
 							style={{ fontWeight: "400" }}
@@ -102,7 +102,7 @@ const Navbar = () => {
 						</div>
 					</div>
 
-					<div className="w-1/6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
 						<a href="/directory">
 							<p
 								className="text-[0.9rem] font-sans hover:cursor-pointer"
@@ -113,7 +113,7 @@ const Navbar = () => {
 						</a>
 					</div>
 
-					<div className="w-1/6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
 						<p
 							className="text-[0.9rem] font-sans hover:cursor-pointer"
 							style={{ fontWeight: "400" }}
@@ -132,7 +132,7 @@ const Navbar = () => {
 						</div>
 					</div>
 
-					<div className="w-1/6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
 						<p
 							className="text-[0.9rem] font-sans hover:cursor-pointer"
 							style={{ fontWeight: "400" }}
@@ -148,7 +148,7 @@ const Navbar = () => {
 						</div>
 					</div>
 
-					<div className="w-1/6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
 						<p
 							className="text-[0.9rem] font-sans hover:cursor-pointer"
 							style={{ fontWeight: "400" }}
@@ -255,6 +255,12 @@ const Navbar = () => {
 							</li>
 							<li className="py-2 border-b border-gray-200">
 								<a href="/placements">Placements</a>
+							</li>
+							<li className="py-2 border-b border-gray-200">
+								<a href="/signin">SignIn</a>
+							</li>
+							<li className="py-2 border-b border-gray-200">
+								<a href="/profile/me">Profile</a>
 							</li>
 						</ul>
 					</div>

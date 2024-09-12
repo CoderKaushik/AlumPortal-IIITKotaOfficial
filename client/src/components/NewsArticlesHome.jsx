@@ -132,10 +132,10 @@ const NewsArticlesHome = () => {
 	return (
 		<div className="w-full lg:h-[37rem] h-[73rem] flex flex-col px-2 lg:px-8 py-4">
 			<div className="w-full lg:h-[3rem] h-[3rem] flex">
-				<div className="lg:w-[70%] w-[75%] h-full flex justify-start gap-4">
+				<div className="lg:w-[70%] w-[75%] h-full flex justify-start gap-2 lg:gap-4">
 					<button
 						onClick={() => handleTabChange("announcements")}
-						className={`w-2/5 h-full shadow-xl rounded-md text-center text-sm lg:text-lg ${
+						className={`lg:w-2/5 w-1/2 h-full shadow-xl rounded-md text-center text-sm lg:text-lg ${
 							activeTab === "announcements"
 								? "bg-[#0E407C] text-white"
 								: "text-[#19194D]"
@@ -145,7 +145,7 @@ const NewsArticlesHome = () => {
 					</button>
 					<button
 						onClick={() => handleTabChange("news")}
-						className={`w-2/5 h-full shadow-xl rounded-md text-center text-sm lg:text-lg ${
+						className={`lg:w-2/5 w-[40%] h-full shadow-xl rounded-md text-center text-sm lg:text-lg ${
 							activeTab === "news"
 								? "bg-[#0E407C] text-white"
 								: "text-[#19194D]"
@@ -154,7 +154,7 @@ const NewsArticlesHome = () => {
 						News
 					</button>
 				</div>
-				<div className="lg:w-[30%] w-[25%] h-full flex justify-end gap-2">
+				<div className="lg:w-[30%] w-[25%] h-full flex justify-end lg:gap-2 gap-1">
 					<button
 						onClick={handlePrev}
 						className="w-[5rem] h-full bg-[#19194D] text-white rounded-md shadow-xl hover:bg-[#0b0b26] transition-all duration-300 ease-in-out"
