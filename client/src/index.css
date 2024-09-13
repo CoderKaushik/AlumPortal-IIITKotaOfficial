@@ -4,7 +4,7 @@
 
 /* Custom scrollbar styles */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 7px; /* Set the width of the scrollbar */
+    width: 0px; /* Set the width of the scrollbar */
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb {
