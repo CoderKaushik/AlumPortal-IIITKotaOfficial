@@ -312,13 +312,24 @@ const Directory = () => {
               </div>
             )}
             <div className="w-full h-full p-4 flex flex-wrap gap-4 justify-center">
-              {loading ? (
-                <p className="text-xl text-gray-600">Loading...</p>
-              ) : (
-                filteredAlumni.map((alumnus) => (
-                  <AlumniCard key={alumnus._id} alumnus={alumnus} />
-                ))
-              )}
+			{loading ? (
+								<div className="h-full w-full flex justify-center items-center bg-white">
+									<div className="flex flex-col items-center">
+										<div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+										<p className="text-gray-700 mt-4">Loading...</p>
+									</div>
+								</div>
+							) : filteredAlumni.length == 0 ? (
+								<div className="w-full h-full flex justify-center items-center">
+									<p>No alumni found</p>
+								</div>
+							) : (
+								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+									{filteredAlumni.map((alumnus) => (
+										<AlumniCard key={alumnus._id} alumniData={alumnus} />
+									))}
+								</div>
+							)}
             </div>
           </div>
         </div>
