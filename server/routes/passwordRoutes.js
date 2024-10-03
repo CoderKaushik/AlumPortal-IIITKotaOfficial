@@ -19,8 +19,8 @@ router.post("/forgot-password", async (req, res) => {
     await user.save();
 
     // const resetUrl = `http://localhost:5000/reset-password/${token}`;
-    // const resetUrl = `https://alum-portal-iiit-kota-official.vercel.app/reset-password/${token}`;
-    const resetUrl = `https://alumportal-iiitkotaofficial.onrender.com/api/password/reset-password/${token}`;
+    const resetUrl = `https://alum-portal-iiit-kota-official.vercel.app/reset-password/${token}`;
+    // const resetUrl = `https://alumportal-iiitkotaofficial.onrender.com/api/password/reset-password/${token}`;
 
     const message = `
       <h1>You have requested a password reset</h1>
