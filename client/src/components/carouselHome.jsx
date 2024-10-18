@@ -38,7 +38,8 @@ const carouselHome = () => {
 
   return (
     <div className="relative">
-      <div ref={sliderRef} className="keen-slider h-[35.5rem] max-w-980:h-[22rem] max-w-492:h-[16.1rem] mt-[8.375rem] max-w-980:mt-[90px] max-w-492:mt-[58px]">
+      {/* <div ref={sliderRef} className="keen-slider h-[35.5rem] max-w-980:h-[22rem] max-w-492:h-[16.1rem] mt-[8.375rem] max-w-980:mt-[90px] max-w-492:mt-[58px]"> */}
+      <div ref={sliderRef} className="keen-slider lg:h-[78vh] md:h-[65vh] sm:h-[55vh] h-[40vh] mt-[8.375rem] max-w-980:mt-[90px] max-w-492:mt-[58px]">
         <div className="keen-slider__slide flex justify-center items-center"><img src={C1} alt="" className='object-cover w-full h-full' /></div>
         <div className="keen-slider__slide flex justify-center items-center"><img src={C2} alt="" className='object-cover w-full h-full' /></div>
         <div className="keen-slider__slide flex justify-center items-center"><img src={C3} alt="" className='object-cover w-full h-full' /></div>

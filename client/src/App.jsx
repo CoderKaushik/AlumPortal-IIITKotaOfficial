@@ -8,6 +8,8 @@ import Directory from './pages/Directory';
 import Profile from './pages/Profile';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import About from './pages/About';
+import Gallery from './pages/Gallery';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </div>
       </AuthProvider>

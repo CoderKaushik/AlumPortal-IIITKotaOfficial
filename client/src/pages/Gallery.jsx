@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/navbar.jsx";
-import Footer from "../components/Footer";
-import AlumniCard from "../components/AlumniCard.jsx";
-import SignInPrompt from "./SignInPrompt"; // Import the SignInPrompt component
+import SearchIcon from '@mui/icons-material/Search';
 
 const Directory = () => {
 	const [alumni, setAlumni] = useState([]);
@@ -117,7 +115,7 @@ const Directory = () => {
 					<div className="xl:w-[20%] w-0 xl:h-[70vh] md:h-[85vh] lg:h-[70vh] flex flex-col gap-4 xl:mt-2">
 						<div className="mb-4 xl:mb-6 hidden xl:block">
 							<div className="text-2xl 3xl:text-4xl font-bold text-gray-800">
-								Add Filters
+								Events Gallery
 							</div>
 							<div className="border-b-2 border-teal-500 w-20 mt-1"></div>
 						</div>
@@ -125,14 +123,17 @@ const Directory = () => {
 							onSubmit={handleSubmit}
 							className="xl:flex hidden flex-col gap-4 3xl:gap-6"
 						>
-							<input
-								type="text"
-								name="name"
-								placeholder="Name"
-								value={filters.name}
-								onChange={handleFilterChange}
-								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
-							/>
+							<div className="w-auto h-auto flex justify-start items-center gap-2">
+								<SearchIcon className="text-gray-700" />
+								<input
+									type="text"
+									name="name"
+									placeholder="Search Events..."
+									value={filters.name}
+									onChange={handleFilterChange}
+									className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								/>
+							</div>
 							<input
 								type="text"
 								name="instituteId"
@@ -208,12 +209,6 @@ const Directory = () => {
 							<p className="text-lg font-semibold text-gray-800">
 								Found {filteredAlumni.length} alumni
 							</p>
-							<button
-								onClick={toggleFilterModal}
-								className="bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-500 xl:hidden"
-							>
-								Toggle Filters
-							</button>
 						</div>
 
 						{showFilterModal && (
@@ -327,9 +322,7 @@ const Directory = () => {
 								</div>
 							) : (
 								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-									{filteredAlumni.map((alumnus) => (
-										<AlumniCard key={alumnus._id} alumniData={alumnus} />
-									))}
+									
 								</div>
 							)}
 						</div>

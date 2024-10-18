@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CountUp from "countup";
 import "intersection-observer"; // Polyfill for older browsers
 
@@ -9,8 +9,39 @@ import NewsArticlesHome from "../components/NewsArticlesHome.jsx";
 import Footer from "../components/Footer.jsx";
 
 import CollectionsIcon from "@mui/icons-material/Collections";
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 const Home = () => {
+
+	const scrollableDivRef = useRef(null); // Create a ref for the scrollable div
+
+	const [showButton, setShowButton] = useState(false); // State to track button visibility
+
+    const scrollToTop = () => {
+        if (scrollableDivRef.current) {
+            scrollableDivRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+    const handleScroll = () => {
+        if (scrollableDivRef.current) {
+            const isScrolled = scrollableDivRef.current.scrollTop > 100; // Change 100 to your desired threshold
+            setShowButton(isScrolled);
+        }
+    };
+
+	useEffect(() => {
+        const div = scrollableDivRef.current;
+        if (div) {
+            div.addEventListener("scroll", handleScroll);
+        }
+        return () => {
+            if (div) {
+                div.removeEventListener("scroll", handleScroll);
+            }
+        };
+    }, []);
+
 	useEffect(() => {
 		const counters = document.querySelectorAll(".counter");
 
@@ -37,7 +68,7 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
+		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100" ref={scrollableDivRef}>
 			<Navbar />
 			<CarouselHome />
 			<InfiniteText />
@@ -52,23 +83,25 @@ const Home = () => {
 					omnis facere expedita temporibus nam quos? Facere, et quidem
 					reprehenderit asperiores ut eaque nesciunt amet harum velit odio cum
 					impedit maxime incidunt animi aliquam numquam odit, perferendis
-					eligendi ipsam vero doloribus beatae. <br /> <br /> Lorem ipsum dolor sit amet
-					consectetur adipisicing elit. Neque quae libero id ratione magnam
-					dolorum aspernatur maiores omnis sint officiis, laboriosam eos aliquid
-					minima animi impedit, adipisci eaque nulla earum. Nostrum aut quidem
-					asperiores nesciunt, dolor veritatis. Saepe asperiores, perferendis
-					itaque beatae assumenda, laudantium natus delectus nam repellendus
-					voluptatem ullam?<br /> <br /> Lorem ipsum dolor sit amet
-					consectetur adipisicing elit. Neque quae libero id ratione magnam
-					dolorum aspernatur maiores omnis sint officiis, laboriosam eos aliquid
-					minima animi impedit, adipisci eaque nulla earum. Nostrum aut quidem
-					asperiores nesciunt, dolor veritatis. Saepe asperiores, perferendis
-					itaque beatae assumenda, laudantium natus delectus nam repellendus
-					voluptatem ullam?
+					eligendi ipsam vero doloribus beatae. <br /> <br /> Lorem ipsum dolor
+					sit amet consectetur adipisicing elit. Neque quae libero id ratione
+					magnam dolorum aspernatur maiores omnis sint officiis, laboriosam eos
+					aliquid minima animi impedit, adipisci eaque nulla earum. Nostrum aut
+					quidem asperiores nesciunt, dolor veritatis. Saepe asperiores,
+					perferendis itaque beatae assumenda, laudantium natus delectus nam
+					repellendus voluptatem ullam?
+					<br /> <br /> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					Neque quae libero id ratione magnam dolorum aspernatur maiores omnis
+					sint officiis, laboriosam eos aliquid minima animi impedit, adipisci
+					eaque nulla earum. Nostrum aut quidem asperiores nesciunt, dolor
+					veritatis. Saepe asperiores, perferendis itaque beatae assumenda,
+					laudantium natus delectus nam repellendus voluptatem ullam?
 				</p>
-        <div className="lg:w-[80%] w-[90%] h-auto flex justify-start">
-        <button className="lg:w-[7rem] h-[3rem] w-[6rem] bg-[#19194D] hover:bg-blue-600 rounded-md shadow-xl text-white flex justify-center items-center">Read More</button>
-        </div>
+				<div className="lg:w-[80%] w-[90%] h-auto flex justify-start">
+					<button className="lg:w-[7rem] h-[3rem] w-[6rem] bg-[#19194D] hover:bg-blue-600 rounded-md shadow-xl text-white flex justify-center items-center">
+						Read More
+					</button>
+				</div>
 			</div>
 			{/* Stats Component */}
 			<div className="w-full h-[10rem] lg:h-[15rem] bg-[#19194D] lg:p-4">
@@ -78,21 +111,27 @@ const Home = () => {
 						data-target="3500"
 					>
 						<p className="count">0</p>
-						<p className="text-center text-[18px] lg:text-2xl">Alumni Registered</p>
+						<p className="text-center text-[18px] lg:text-2xl">
+							Alumni Registered
+						</p>
 					</div>
 					<div
 						className="counter w-1/3 h-full flex flex-col gap-4 justify-center items-center text-white text-xl lg:text-3xl"
 						data-target="5800"
 					>
 						<p className="count">0</p>
-						<p className="text-center text-[18px] lg:text-2xl">Alumni Registered</p>
+						<p className="text-center text-[18px] lg:text-2xl">
+							Alumni Registered
+						</p>
 					</div>
 					<div
 						className="counter w-1/3 h-full flex flex-col gap-4 justify-center items-center text-white text-xl lg:text-3xl"
 						data-target="72000"
 					>
 						<p className="count">0</p>
-						<p className="text-center text-[18px] lg:text-2xl">Alumni Registered</p>
+						<p className="text-center text-[18px] lg:text-2xl">
+							Alumni Registered
+						</p>
 					</div>
 				</div>
 			</div>
@@ -179,8 +218,16 @@ const Home = () => {
 			{/* News and articles home component */}
 			<NewsArticlesHome />
 			{/* Footer */}
-			
+
 			<Footer />
+			{showButton && ( // Conditionally render the button
+                <div
+				className={`absolute bottom-20 right-4 h-12 w-12 rounded-full bg-[#38B6FF] z-20 flex justify-center items-center hover:cursor-pointer transition-opacity duration-300 ease-in-out transform ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                onClick={scrollToTop}
+                >
+                    <KeyboardArrowUpIcon style={{ height: '40px', width: '40px', color: 'white' }} />
+                </div>
+            )}
 		</div>
 	);
 };
