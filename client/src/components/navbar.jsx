@@ -122,7 +122,7 @@ const Navbar = () => {
 									<a href="/annual-reports">Annual Reports</a>
 								</li>
 								<li className="hover:bg-gray-100 p-2 w-full">
-									<a href="/statutes">Statutes and PPP Act</a>
+									<a href="/about/gallery">Gallery</a>
 								</li>
 							</ul>
 						</div>
@@ -258,7 +258,7 @@ const Navbar = () => {
 											<a href="/annual-reports">- Annual Reports</a>
 										</li>
 										<li className="py-2 text-[#172B4D]">
-											<a href="/statutes">- Statutes and PPP Act</a>
+											<a href="/about/gallery">- Gallery</a>
 										</li>
 									</ul>
 								)}

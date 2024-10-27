@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 //other components from mui
 import Modal from "@mui/material/Modal";
 
-const Directory = () => {
+const Gallery = () => {
     const [groups, setGroups] = useState([]);
     const [isCarouselOpen, setIsCarouselOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -211,4 +211,4 @@ const Directory = () => {
     );
 };
 
-export default Directory;
+export default Gallery;

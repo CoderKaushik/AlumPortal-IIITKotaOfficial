@@ -10,6 +10,8 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
+import NotFound from './pages/NotFound';
+import ContactUs from './pages/ContactUs';
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="/about" element={<About />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/about/gallery" element={<Gallery />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </AuthProvider>
