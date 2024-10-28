@@ -1,46 +1,58 @@
 // src/pages/ContactUs.jsx
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { TextField, Checkbox, Button, FormControlLabel } from "@mui/material";
+import emailjs from "@emailjs/browser";
+import { toast, Toaster } from "react-hot-toast"; 
 
 const ContactUs = () => {
-	const [formData, setFormData] = useState({
-		name: "",
-		batch: "",
-		graduationYear: "",
-		collegeId: "",
-		phoneNumber: "",
-		email: "",
-		message: "",
-		agree: false,
-	});
+	const form = useRef();
+	const [agree, setAgree] = useState(false);
 
 	const handleChange = (e) => {
-		const { name, value, type, checked } = e.target;
-		setFormData({
-			...formData,
-			[name]: type === "checkbox" ? checked : value,
-		});
+		setAgree(e.target.checked);
 	};
 
-	const handleSubmit = (e) => {
+	const sendEmail = (e) => {
 		e.preventDefault();
-		// Integrate with Nodemailer API here
-		console.log("Form data submitted:", formData);
+
+		if (!agree) {
+			toast.error("You must agree to share your information."); // Use toast for error
+			return;
+		}
+
+		emailjs
+			.sendForm(
+				"service_wey3wx7",
+				"template_346rsgh",
+				form.current,
+				"DXrpGBTFte2R1jdAq"
+			)
+			.then(
+				() => {
+					toast.success("Message Delivered!"); // Success toast
+					form.current.reset(); 
+				},
+				(error) => {
+					console.log("FAILED...", error.text);
+					toast.error("Email sending failed!"); // Error toast
+				}
+			);
 	};
 
 	return (
 		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
+			<Toaster /> 
 			<Navbar />
-			<div className="flex justify-center items-center w-full md:h-[80vh] mt-[9rem] md:px-2">
-				<div className="w-[95%] h-[95%] bg-white rounded-md shadow-lg flex p-2 group">
+			<div className="flex justify-center items-center w-full h-[150vh] md:h-[80vh] mt-[4rem] md:mt-[9rem] md:px-2">
+				<div className="w-[98%] h-[98%] bg-white rounded-md shadow-lg flex md:flex-row flex-col p-2 group">
 					{/* Left dark blue section with a large ring */}
-					<div className="w-[40%] h-full bg-gradient-to-tr from-blue-700 to-blue-900 rounded-xl relative overflow-hidden">
-						<div className="absolute -top-[22rem] -right-[22rem] w-[40rem] h-[40rem] border-[4rem] border-blue-700 rounded-full opacity-50 transition-hover duration-[2s] ease-out group-hover:-top-[20rem] group-hover:-right-[20rem]"></div>
+					<div className="md:w-[40%] w-full md:h-full h-[40%] bg-gradient-to-tr from-blue-700 to-blue-900 rounded-xl relative overflow-hidden">
+						<div className="absolute -top-[12rem] md:-top-[22rem] -right-[12rem] md:-right-[22rem] w-[20rem] h-[20rem] md:w-[40rem] md:h-[40rem] border-[2rem] md:border-[4rem] border-blue-700 rounded-full opacity-50 transition-hover duration-[2s] ease-out md:group-hover:-top-[20rem] group-hover:-top-[6rem] group-hover:-right-[6rem] md:group-hover:-right-[20rem]"></div>
 						<div className="absolute inset-0 w-full h-full text-white py-12 px-6 space-y-6">
 							<h2 className="text-4xl font-bold mb-8">How can we help you?</h2>
 							<div className="flex items-center text-xl mb-3">
@@ -59,40 +71,32 @@ const ContactUs = () => {
 					</div>
 
 					{/* Right side for form */}
-					<div className="w-[60%] h-full p-4 flex flex-col justify-center">
-						<form onSubmit={handleSubmit} className="space-y-4">
+					<div className="md:w-[60%] w-full md:h-full h-[60%] md:p-4 flex flex-col justify-center">
+						<form ref={form} onSubmit={sendEmail} className="space-y-4">
 							<div className="grid grid-cols-2 gap-4">
 								<TextField
 									label="Name"
-									name="name"
+									name="user_name" 
 									fullWidth
 									variant="outlined"
-									value={formData.name}
-									onChange={handleChange}
 								/>
 								<TextField
 									label="Batch"
-									name="batch"
+									name="batch" 
 									fullWidth
 									variant="outlined"
-									value={formData.batch}
-									onChange={handleChange}
 								/>
 								<TextField
 									label="Graduation Year"
 									name="graduationYear"
 									fullWidth
 									variant="outlined"
-									value={formData.graduationYear}
-									onChange={handleChange}
 								/>
 								<TextField
 									label="College ID"
 									name="collegeId"
 									fullWidth
 									variant="outlined"
-									value={formData.collegeId}
-									onChange={handleChange}
 								/>
 							</div>
 							<TextField
@@ -100,17 +104,13 @@ const ContactUs = () => {
 								name="phoneNumber"
 								fullWidth
 								variant="outlined"
-								value={formData.phoneNumber}
-								onChange={handleChange}
 							/>
 							<TextField
 								label="Email"
-								name="email"
+								name="user_email" 
 								type="email"
 								fullWidth
 								variant="outlined"
-								value={formData.email}
-								onChange={handleChange}
 							/>
 							<TextField
 								label="Message"
@@ -119,13 +119,11 @@ const ContactUs = () => {
 								multiline
 								rows={4}
 								variant="outlined"
-								value={formData.message}
-								onChange={handleChange}
 							/>
 							<FormControlLabel
 								control={
 									<Checkbox
-										checked={formData.agree}
+										checked={agree}
 										onChange={handleChange}
 										name="agree"
 										color="primary"
@@ -137,7 +135,7 @@ const ContactUs = () => {
 								type="submit"
 								variant="contained"
 								color="primary"
-								disabled={!formData.agree}
+								disabled={!agree}
 								fullWidth
 							>
 								Submit
