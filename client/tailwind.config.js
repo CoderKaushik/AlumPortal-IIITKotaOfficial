@@ -12,15 +12,14 @@ export default {
         'max-w-492' : {'max' : '492px'},
       },
       keyframes: {
-        scroll: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-100%)' },
+        popUp: {
+            '0%': { opacity: 0, transform: 'translateY(10px)' },
+            '100%': { opacity: 1, transform: 'translateY(0)' },
         },
-      },
-      animation: {
-        scroll: 'scroll 15s linear infinite',
-        pause: 'none', // Add this class for hover to stop
-      },
+    },
+    animation: {
+        'pop-up': 'popUp 0.5s ease-out forwards',
+    },
     },
   },
   plugins: [

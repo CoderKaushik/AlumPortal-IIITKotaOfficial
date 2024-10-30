@@ -138,7 +138,7 @@ const Navbar = () => {
 						<div className="rounded-md absolute top-12 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 bg-white drop-shadow-2xl py-2 mt-2 w-[12rem] transition-all duration-300 ease-in-out transform translate-y-2">
 							<ul className="w-full">
 								<li className="hover:bg-gray-100 p-2">
-									<a href="/alumni">Alumni</a>
+									<a href="/alumni/prominent-alumni">Prominent Alumni</a>
 								</li>
 								<li className="hover:bg-gray-100 p-2">
 									<a href="/support">Support</a>
@@ -277,7 +277,7 @@ const Navbar = () => {
 								{activeSubMenu === "alumni" && (
 									<ul className="pl-4 mt-2">
 										<li className="py-2 text-[#172B4D]">
-											<a href="/alumni">Alumni</a>
+											<a href="/alumni/prominent-alumni">Prominent Alumni</a>
 										</li>
 										<li className="py-2 text-[#172B4D]">
 											<a href="/support">Support</a>

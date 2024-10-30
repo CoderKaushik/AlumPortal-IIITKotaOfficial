@@ -10,6 +10,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
+import ProminentAlumni from './pages/ProminentAlumni';
 import NotFound from './pages/NotFound';
 import ContactUs from './pages/ContactUs';
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="/about" element={<About />} />
             <Route path="/about/gallery" element={<Gallery />} />
+            <Route path="/alumni/prominent-alumni" element={<ProminentAlumni />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
