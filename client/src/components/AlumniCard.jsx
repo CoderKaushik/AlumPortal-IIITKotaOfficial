@@ -32,7 +32,7 @@ const Modal = ({ isOpen, onClose, imageSrc }) => {
         ref={modalRef}
         className="relative w-80 h-80 md:w-96 md:h-96 bg-white rounded-lg shadow-lg overflow-hidden"
       >
-        <img src={imageSrc} alt="Full size" className="w-full h-full object-cover" />
+        <img src={imageSrc} alt="Full size" className="w-full h-full object-cover" loading="lazy" />
         <button
           onClick={onClose}
           className="absolute top-4 right-4 bg-gray-800 text-white p-2 rounded-full"

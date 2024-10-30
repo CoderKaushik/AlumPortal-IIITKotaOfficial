@@ -194,19 +194,20 @@ const Navbar = () => {
 					</div>
 
 					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-						<p
+						<a
 							className="text-[0.9rem] font-sans hover:cursor-pointer"
 							style={{ fontWeight: "400" }}
+							href="https://tpcell.iiitkota.ac.in/"
 						>
 							PLACEMENTS
-						</p>
-						<div className="rounded-md absolute top-12 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 bg-white drop-shadow-2xl py-2 mt-2 w-[8rem] transition-all duration-300 ease-in-out transform translate-y-2">
+						</a>
+						{/* <div className="rounded-md absolute top-12 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 bg-white drop-shadow-2xl py-2 mt-2 w-[8rem] transition-all duration-300 ease-in-out transform translate-y-2">
 							<ul className="w-full">
 								<li className="hover:bg-gray-100 p-2">
 									<a href="/placements">Placements</a>
 								</li>
 							</ul>
-						</div>
+						</div> */}
 					</div>
 
 					<div className="hidden w-full h-full text-[#19194D] max-w-980:flex max-w-980:justify-center max-w-980:items-center">
@@ -321,7 +322,7 @@ const Navbar = () => {
 								</a>
 							</li>
 							<li className="py-2">
-								<a href="/placements">
+								<a href="https://tpcell.iiitkota.ac.in/">
 									<div className="flex gap-3 justify-start items-center text-[#172B4D] font-semibold">
 										<WorkIcon />
 										PLACEMENTS

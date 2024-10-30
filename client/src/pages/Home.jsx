@@ -6,41 +6,41 @@ import Navbar from "../components/navbar.jsx";
 import CarouselHome from "../components/carouselHome.jsx";
 import InfiniteText from "../components/infiniteText.jsx";
 import NewsArticlesHome from "../components/NewsArticlesHome.jsx";
+import Testimonials from "../components/Testimonials.jsx";
 import Footer from "../components/Footer.jsx";
 
 import CollectionsIcon from "@mui/icons-material/Collections";
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 const Home = () => {
-
 	const scrollableDivRef = useRef(null); // Create a ref for the scrollable div
 
 	const [showButton, setShowButton] = useState(false); // State to track button visibility
 
-    const scrollToTop = () => {
-        if (scrollableDivRef.current) {
-            scrollableDivRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    };
+	const scrollToTop = () => {
+		if (scrollableDivRef.current) {
+			scrollableDivRef.current.scrollTo({ top: 0, behavior: "smooth" });
+		}
+	};
 
-    const handleScroll = () => {
-        if (scrollableDivRef.current) {
-            const isScrolled = scrollableDivRef.current.scrollTop > 100; // Change 100 to your desired threshold
-            setShowButton(isScrolled);
-        }
-    };
+	const handleScroll = () => {
+		if (scrollableDivRef.current) {
+			const isScrolled = scrollableDivRef.current.scrollTop > 100; // Change 100 to your desired threshold
+			setShowButton(isScrolled);
+		}
+	};
 
 	useEffect(() => {
-        const div = scrollableDivRef.current;
-        if (div) {
-            div.addEventListener("scroll", handleScroll);
-        }
-        return () => {
-            if (div) {
-                div.removeEventListener("scroll", handleScroll);
-            }
-        };
-    }, []);
+		const div = scrollableDivRef.current;
+		if (div) {
+			div.addEventListener("scroll", handleScroll);
+		}
+		return () => {
+			if (div) {
+				div.removeEventListener("scroll", handleScroll);
+			}
+		};
+	}, []);
 
 	useEffect(() => {
 		const counters = document.querySelectorAll(".counter");
@@ -68,7 +68,10 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100" ref={scrollableDivRef}>
+		<div
+			className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100"
+			ref={scrollableDivRef}
+		>
 			<Navbar />
 			<CarouselHome />
 			<InfiniteText />
@@ -135,7 +138,36 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			{/* Benifits Offered */}
+			{/* Director's message */}
+			<div className="w-full h-[140vh] md:h-[80vh] flex flex-col md:flex-row">
+				<div className="md:w-1/2 w-full md:h-full h-2/3 flex flex-col justify-center items-start px-4 space-y-4">
+					<div className="w-32 h-32 object-cover rounded-full mb-4 bg-gray-300"></div>
+					<h2 className="text-2xl font-semibold">Director's Message</h2>
+					<p className="text-gray-700 leading-relaxed">
+						Welcome to our institute! Here, we strive to foster a culture of
+						innovation and excellence. Our goal is to empower students with the
+						skills and knowledge necessary to succeed in today’s competitive
+						world. We look forward to guiding you on this journey. Welcome to
+						our institute! Here, we strive to foster a culture of innovation and
+						excellence. Our goal is to empower students with the skills and
+						knowledge necessary to succeed in today’s competitive world. We look
+						forward to guiding you on this journey.
+					</p>
+					<p className="text-gray-700 font-medium">- Director's Name</p>
+				</div>
+				<div className="md:w-1/2 w-full md:h-full h-1/3 flex justify-center items-center p-3">
+					<iframe
+						className="w-full h-full md:w-[80%] md:h-[80%] sm:w-[90%] sm:h-[90%] rounded-lg"
+						src="https://www.youtube.com/embed/kOySwv313q4?si=xZMrDiLw9omRI-5O"
+						title="YouTube video player"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						referrerPolicy="strict-origin-when-cross-origin"
+					></iframe>
+				</div>
+			</div>
+
+			{/* Testimonials */}
+			<Testimonials />
 			<div className="w-full h-auto">
 				<h1 className="text-center text-3xl font-semibold my-8 text-[#19194D]">
 					Benefits Offered
@@ -221,13 +253,17 @@ const Home = () => {
 
 			<Footer />
 			{showButton && ( // Conditionally render the button
-                <div
-				className={`absolute bottom-20 right-4 h-12 w-12 rounded-full bg-[#38B6FF] z-20 flex justify-center items-center hover:cursor-pointer transition-opacity duration-300 ease-in-out transform ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                onClick={scrollToTop}
-                >
-                    <KeyboardArrowUpIcon style={{ height: '40px', width: '40px', color: 'white' }} />
-                </div>
-            )}
+				<div
+					className={`absolute bottom-20 right-4 h-12 w-12 rounded-full bg-[#38B6FF] z-20 flex justify-center items-center hover:cursor-pointer transition-opacity duration-300 ease-in-out transform ${
+						showButton ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+					}`}
+					onClick={scrollToTop}
+				>
+					<KeyboardArrowUpIcon
+						style={{ height: "40px", width: "40px", color: "white" }}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };
