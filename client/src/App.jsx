@@ -11,8 +11,9 @@ import ResetPassword from './pages/ResetPassword';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
 import ProminentAlumni from './pages/ProminentAlumni';
-import NotFound from './pages/NotFound';
+import Events from './pages/Events';
 import ContactUs from './pages/ContactUs';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/about/gallery" element={<Gallery />} />
             <Route path="/alumni/prominent-alumni" element={<ProminentAlumni />} />
             <Route path="/contact" element={<ContactUs />} />
+            <Route path="/events" element={<Events />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
