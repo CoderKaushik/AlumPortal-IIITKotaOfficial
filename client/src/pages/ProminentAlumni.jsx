@@ -118,7 +118,7 @@ const ProminentAlumni = () => {
           Prominent Alumni
         </h1>
         <div className="w-full flex justify-center">
-          <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-6">
+          <div className="w-full max-w-7xl place-items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-6">
             {alumniData.map((alumni, index) => (
               <div
                 key={index}

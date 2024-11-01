@@ -47,6 +47,7 @@ const About = () => {
             src={iiitkotalogo}
             alt="IIIT Kota Logo"
             className="w-1/2 max-w-xs rounded-lg mb-4"
+            loading="eager"
           />
           <h1 className="text-2xl md:text-3xl font-bold">
             Alumni and Industry Outreach, IIIT Kota

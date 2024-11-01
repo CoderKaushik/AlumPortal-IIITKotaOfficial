@@ -1,7 +1,7 @@
 // src/App.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext'; // Import the AuthProvider
+import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Directory from './pages/Directory';
@@ -13,9 +13,25 @@ import Gallery from './pages/Gallery';
 import ProminentAlumni from './pages/ProminentAlumni';
 import Events from './pages/Events';
 import ContactUs from './pages/ContactUs';
+import Loading from './pages/Loading';
 import NotFound from './pages/NotFound';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate a loading delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Adjust delay as needed
+
+    return () => clearTimeout(timer); // Cleanup timer on unmount
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <Router>
       <AuthProvider>
@@ -28,9 +44,9 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="/about" element={<About />} />
-            <Route path="/about/gallery" element={<Gallery />} />
+            <Route path="/alumni/gallery" element={<Gallery />} />
             <Route path="/alumni/prominent-alumni" element={<ProminentAlumni />} />
-            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/alumni/contact" element={<ContactUs />} />
             <Route path="/events" element={<Events />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

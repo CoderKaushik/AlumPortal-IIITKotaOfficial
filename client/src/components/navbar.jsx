@@ -104,28 +104,13 @@ const Navbar = () => {
 					}`}
 				>
 					<div className="w-auto px-6 h-full flex relative group items-center text-[#19194D] max-w-980:hidden max-w-1464:ml-44">
-						<p
+						<a
 							className="text-[0.9rem] font-sans hover:cursor-pointer"
 							style={{ fontWeight: "400" }}
+							href="/about"
 						>
 							ABOUT US
-						</p>
-						<div className="rounded-md absolute top-12 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 bg-white drop-shadow-2xl py-2 mt-2 w-[14rem] transition-all duration-300 ease-in-out transform translate-y-2">
-							<ul className="w-full">
-								<li className="hover:bg-gray-100 p-2 w-full">
-									<a href="/about-institute">About Institute</a>
-								</li>
-								<li className="hover:bg-gray-100 p-2 w-full">
-									<a href="/partnership">Partnership</a>
-								</li>
-								<li className="hover:bg-gray-100 p-2 w-full">
-									<a href="/annual-reports">Annual Reports</a>
-								</li>
-								<li className="hover:bg-gray-100 p-2 w-full">
-									<a href="/about/gallery">Gallery</a>
-								</li>
-							</ul>
-						</div>
+						</a>
 					</div>
 
 					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
@@ -141,7 +126,10 @@ const Navbar = () => {
 									<a href="/alumni/prominent-alumni">Prominent Alumni</a>
 								</li>
 								<li className="hover:bg-gray-100 p-2">
-									<a href="/support">Support</a>
+									<a href="/alumni/gallery">Alumni Gallery</a>
+								</li>
+								<li className="hover:bg-gray-100 p-2">
+									<a href="/alumni/contact">Contact Us</a>
 								</li>
 							</ul>
 						</div>
@@ -239,30 +227,13 @@ const Navbar = () => {
 						<ul>
 							<li className="py-2">
 								<button
-									onClick={() => handleSubMenuToggle("about")}
 									className="w-full text-left text-[#172B4D]"
 								>
-									<div className="flex gap-3 justify-start items-center font-semibold">
+									<a className="flex gap-3 justify-start items-center font-semibold" href="/about" onClick={toggleMobileMenu}>
 										<InfoIcon />
 										ABOUT US
-									</div>
+									</a>
 								</button>
-								{activeSubMenu === "about" && (
-									<ul className="pl-4 mt-2">
-										<li className="py-2 text-[#172B4D]">
-											<a href="/about-institute">- About Institute</a>
-										</li>
-										<li className="py-2 text-[#172B4D]">
-											<a href="/partnership">- Partnership</a>
-										</li>
-										<li className="py-2 text-[#172B4D]">
-											<a href="/annual-reports">- Annual Reports</a>
-										</li>
-										<li className="py-2 text-[#172B4D]">
-											<a href="/about/gallery">- Gallery</a>
-										</li>
-									</ul>
-								)}
 							</li>
 							<li className="py-2">
 								<button
@@ -276,17 +247,20 @@ const Navbar = () => {
 								</button>
 								{activeSubMenu === "alumni" && (
 									<ul className="pl-4 mt-2">
-										<li className="py-2 text-[#172B4D]">
+										<li className="py-2 text-[#172B4D]" onClick={toggleMobileMenu}>
 											<a href="/alumni/prominent-alumni">Prominent Alumni</a>
 										</li>
-										<li className="py-2 text-[#172B4D]">
-											<a href="/support">Support</a>
+										<li className="py-2 text-[#172B4D]" onClick={toggleMobileMenu}>
+											<a href="/alumni/gallery">Alumni Gallery</a>
+										</li>
+										<li className="py-2 text-[#172B4D]" onClick={toggleMobileMenu}>
+											<a href="/alumni/contact">Contact Us</a>
 										</li>
 									</ul>
 								)}
 							</li>
 							<li className="py-2 text-[#172B4D]">
-								<a href="/directory">
+								<a href="/directory" onClick={toggleMobileMenu}>
 									<div className="flex gap-3 justify-start items-center font-semibold">
 										<FolderSharedIcon /> DIRECTORY
 									</div>
@@ -305,16 +279,16 @@ const Navbar = () => {
 								{activeSubMenu === "events" && (
 									<ul className="pl-4 mt-2">
 										<li className="py-2 border-b border-gray-200">
-											<a href="/events">Events</a>
+											<a href="/events" onClick={toggleMobileMenu}>Events</a>
 										</li>
 										<li className="py-2 border-b border-gray-200 font-semibold">
-											<a href="/newsletters">Newsletters</a>
+											<a href="/newsletters" onClick={toggleMobileMenu}>Newsletters</a>
 										</li>
 									</ul>
 								)}
 							</li>
 							<li className="py-2">
-								<a href="/newsletters">
+								<a href="/newsletters" onClick={toggleMobileMenu}>
 									<div className="flex gap-3 justify-start items-center text-[#172B4D] font-semibold">
 										<FeedIcon />
 										NEWSLETTERS
@@ -322,7 +296,7 @@ const Navbar = () => {
 								</a>
 							</li>
 							<li className="py-2">
-								<a href="https://tpcell.iiitkota.ac.in/">
+								<a href="https://tpcell.iiitkota.ac.in/" onClick={toggleMobileMenu}>
 									<div className="flex gap-3 justify-start items-center text-[#172B4D] font-semibold">
 										<WorkIcon />
 										PLACEMENTS
