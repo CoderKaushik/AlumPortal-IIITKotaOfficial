@@ -10,12 +10,14 @@ const profiles = [
     occupation: "3rd Year CSE",
     image: "https://via.placeholder.com/200",
     linkedin: "https://www.linkedin.com/in/hiteshwarkaushik/",
+    github: "https://www.github.com/coderkaushik",
   },
   {
     name: "Partik Malasi",
     occupation: "3rd Year CSE",
     image: "https://via.placeholder.com/200",
     linkedin: "https://www.linkedin.com/in/partik-malasi-736686249/",
+    github: "https://www.github.com/coderkaushik",
   },
   {
     name: "Kratin Aggrawal",
@@ -23,6 +25,7 @@ const profiles = [
     image: "https://via.placeholder.com/200",
 
     linkedin: "https://www.linkedin.com/in/kratin-aggarwal-691157257/",
+    github: "https://www.github.com/coderkaushik",
   },
 ];
 
