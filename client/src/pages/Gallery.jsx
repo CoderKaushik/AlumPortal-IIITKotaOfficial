@@ -59,7 +59,7 @@ const Gallery = () => {
 			<Navbar />
 			<div className="flex md:flex-row flex-col w-full md:h-[80vh] mt-[9rem] max-w-980:mt-[100px] max-w-492:mt-[75px] md:px-2">
 				{/* Mobile Header: Group Name and Navigation */}
-				<div className="flex h-12 md:hidden justify-between items-center bg-white shadow-xl px-1">
+				<div className="flex h-12 md:hidden justify-between items-center bg-white shadow-xl px-2">
 					<span
 						className="text-sm font-semibold text-gray-800 w-[80%] whitespace-nowrap overflow-hidden text-ellipsis"
 						style={{ maxWidth: "40ch" }} // Ensures the text length limit
@@ -68,7 +68,7 @@ const Gallery = () => {
 					</span>
 
 					<div
-						className="w-[20%] h-full flex justify-center items-center text-lg text-teal-600"
+						className="w-[25%] h-full flex justify-center items-center text-lg text-teal-600"
 						onClick={() => setIsModalOpen(true)}
 					>
 						<button className="bg-teal-600 text-white font-semibold py-2 px-2 w-full rounded-lg hover:bg-teal-500 xl:hidden">
