@@ -102,7 +102,7 @@ const Home = () => {
 					laudantium natus delectus nam repellendus voluptatem ullam?
 				</p>
 				<div className="lg:w-[80%] w-[90%] h-auto flex justify-start">
-					<a className="lg:w-[7rem] h-[3rem] w-[6rem] bg-[#19194D] hover:bg-blue-600 rounded-md shadow-xl text-white flex justify-center items-center"
+					<a className="lg:w-[7rem] h-[3rem] w-[6rem] bg-[#19194D] hover:bg-blue-600 transition-colors duration-300 ease-in-out rounded-md shadow-xl text-white flex justify-center items-center"
           href="/about">
 						Read More
 					</a>

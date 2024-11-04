@@ -1,196 +1,119 @@
-import React, { useState } from "react";
-import WestIcon from "@mui/icons-material/West";
-import EastIcon from "@mui/icons-material/East";
-
-const newsItems = [
-	{
-		id: 1,
-		heading: "News Heading 1",
-		content:
-			"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-20",
-		author: "Author 1",
-	},
-	{
-		id: 2,
-		heading: "News Heading 2",
-		content:
-			"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-19",
-		author: "Author 2",
-	},
-	{
-		id: 3,
-		heading: "News Heading 3",
-		content:
-			"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-18",
-		author: "Author 3",
-	},
-	{
-		id: 4,
-		heading: "News Heading 4",
-		content:
-			"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!4",
-		date: "2023-08-17",
-		author: "Author 4",
-	},
-	{
-		id: 5,
-		heading: "News Heading 5",
-		content:
-			"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-16",
-		author: "Author 5",
-	},
-	{
-		id: 6,
-		heading: "News Heading 6",
-		content:
-			"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-15",
-		author: "Author 6",
-	},
-	// More items...
-];
-
-const announcementItems = [
-	{
-		id: 1,
-		heading: "Announcement 1",
-		content:
-			"Announcement Content 1Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-20",
-		author: "Admin",
-	},
-	{
-		id: 2,
-		heading: "Announcement 2",
-		content:
-			"Announcement Content 2Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-19",
-		author: "Admin",
-	},
-	{
-		id: 3,
-		heading: "Announcement 3",
-		content:
-			"Announcement Content 3Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-18",
-		author: "Admin",
-	},
-	{
-		id: 4,
-		heading: "Announcement 4",
-		content:
-			"Announcement Content 4Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-17",
-		author: "Admin",
-	},
-	{
-		id: 5,
-		heading: "Announcement 5",
-		content:
-			"Announcement Content 5Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-16",
-		author: "Admin",
-	},
-	{
-		id: 6,
-		heading: "Announcement 6",
-		content:
-			"Announcement Content 6Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil doloremque qui nostrum! Consequatur sint architecto sunt atque, impedit ut quaerat quasi nesciunt similique maxime molestias ab omnis, dolores voluptas saepe!",
-		date: "2023-08-15",
-		author: "Admin",
-	},
-	// More items...
-];
+import React, { useEffect } from "react";
 
 const NewsArticlesHome = () => {
-	const [currentIndex, setCurrentIndex] = useState(0);
-	const [activeTab, setActiveTab] = useState("announcements");
-
-	const items = activeTab === "news" ? newsItems : announcementItems;
-
-	const handleNext = () => {
-		if (currentIndex + 3 < items.length) {
-			setCurrentIndex(currentIndex + 3);
+	useEffect(() => {
+		// Check if Twitter widgets script is already loaded; otherwise, load it
+		if (!window.twttr) {
+			const script = document.createElement("script");
+			script.src = "https://platform.twitter.com/widgets.js";
+			script.async = true;
+			document.body.appendChild(script);
+		} else {
+			window.twttr.widgets.load();
 		}
-	};
-
-	const handlePrev = () => {
-		if (currentIndex > 0) {
-			setCurrentIndex(currentIndex - 3);
-		}
-	};
-
-	const handleTabChange = (tab) => {
-		setActiveTab(tab);
-		setCurrentIndex(0);
-	};
+	}, []);
 
 	return (
-		<div className="w-full lg:h-[37rem] h-[73rem] flex flex-col px-2 lg:px-8 py-4">
-			<div className="w-full lg:h-[3rem] h-[3rem] flex">
-				<div className="lg:w-[70%] w-[75%] h-full flex justify-start gap-2 lg:gap-4">
-					<button
-						onClick={() => handleTabChange("announcements")}
-						className={`lg:w-2/5 w-1/2 h-full shadow-xl rounded-md text-center text-sm lg:text-lg ${
-							activeTab === "announcements"
-								? "bg-[#0E407C] text-white"
-								: "text-[#19194D]"
-						}`}
-					>
-						Announcements
-					</button>
-					<button
-						onClick={() => handleTabChange("news")}
-						className={`lg:w-2/5 w-[40%] h-full shadow-xl rounded-md text-center text-sm lg:text-lg ${
-							activeTab === "news"
-								? "bg-[#0E407C] text-white"
-								: "text-[#19194D]"
-						}`}
-					>
-						News
-					</button>
-				</div>
-				<div className="lg:w-[30%] w-[25%] h-full flex justify-end lg:gap-2 gap-1">
-					<button
-						onClick={handlePrev}
-						className="w-[5rem] h-full bg-[#19194D] text-white rounded-md shadow-xl hover:bg-[#0b0b26] transition-all duration-300 ease-in-out"
-						disabled={currentIndex === 0}
-					>
-						<WestIcon />
-					</button>
-					<button
-						onClick={handleNext}
-						className="w-[5rem] h-full bg-[#19194D] text-white rounded-md shadow-xl hover:bg-[#0b0b26] transition-all duration-300 ease-in-out"
-						disabled={currentIndex + 3 >= items.length}
-					>
-						<EastIcon />
-					</button>
-				</div>
+		<div className="w-full lg:h-[37rem] h-[100rem] flex lg:flex-row flex-col justify-between px-2 lg:px-8 py-4">
+			{/* Twitter Timeline */}
+			<div className="lg:h-full lg:w-[30%] h-1/3 w-full rounded-md shadow-2xl hover:mb-5 hover:cursor-pointer transition-all duration-500 ease-in-out p-4 flex flex-col justify-between group">
+				<a
+					className="twitter-timeline w-full h-full"
+					href="https://twitter.com/IIITKotaOffice?ref_src=twsrc%5Etfw"
+					// data-width="100%"
+					// data-height="100%"
+				>
+					Tweets by IIITKotaOffice
+				</a>
 			</div>
-			<div className="w-full lg:h-[34rem] h-[70rem] pt-4 flex lg:flex-row flex-col lg:justify-between justify-center lg:items-center items-stretch gap-4">
-				{items.slice(currentIndex, currentIndex + 3).map((item) => (
-					<div
-						key={item.id}
-						className="lg:h-[90%] lg:w-[30%] h-1/3 w-full rounded-md shadow-2xl hover:mb-5 hover:cursor-pointer transition-all duration-500 ease-in-out p-4 flex flex-col justify-between group"
-					>
-						<div className="font-bold text-lg group-hover:text-blue-500 transition-all duration-500 ease-in-out">
-							{item.heading}
+
+			{/* Events Section */}
+			<div className="lg:h-full lg:w-[30%] h-1/3 w-full rounded-md shadow-2xl hover:mb-5 transition-all duration-500 ease-in-out px-4 py-2 flex flex-col justify-between group">
+				<div className="w-full h-[3rem] flex border-b pb-1">
+					<h3 className="text-lg font-bold text-center flex justify-center items-center text-[#19194D]">
+						Events
+					</h3>
+					<button className="ml-auto bg-teal-600 text-white px-4 rounded-lg hover:bg-teal-500 transition-colors duration-300 ease-in-out">
+						See All
+					</button>
+				</div>
+
+				<div className="w-full h-full overflow-hidden relative">
+					<div className="animate-marquee flex flex-col gap-2 absolute w-full">
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							IIIT Kota Hackathon - Join us for an intensive coding competition
+							on campus. Registration is open!
 						</div>
-						<div className="flex-grow my-4">{item.content}</div>
-						<div className="text-sm text-gray-600">
-							<span>{item.date}</span> • <span>{item.author}</span>
-							<span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-								{" "}
-								• <span className="hover:underline">Read More</span>
-							</span>
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							Tech Talk Series: Emerging Trends in AI by Dr. Smith, a renowned
+							expert in Artificial Intelligence.
+						</div>
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							Cultural Fest 2024 - A 3-day extravaganza of music, dance, and
+							art. Book your tickets now!
+						</div>
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							Workshop on Machine Learning - Hands-on session with industry
+							experts.
+						</div>
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							Career Fair 2024 - Meet with top companies for internship and job
+							opportunities.
 						</div>
 					</div>
-				))}
+				</div>
 			</div>
+
+			{/* News Articles Section */}
+			<div className="lg:h-full lg:w-[30%] h-1/3 w-full rounded-md shadow-2xl hover:mb-5 transition-all duration-500 ease-in-out px-4 py-2 flex flex-col justify-between group">
+				<div className="w-full h-[3rem] flex border-b pb-1">
+					<h3 className="text-lg font-bold text-center flex justify-center items-center text-[#19194D]">
+						News Articles
+					</h3>
+					<button className="ml-auto bg-teal-600 text-white px-4 rounded-lg hover:bg-teal-500 transition-colors duration-300 ease-in-out">
+						See All
+					</button>
+				</div>
+
+				<div className="w-full h-full overflow-hidden relative">
+					<div className="animate-marquee flex flex-col gap-2 absolute w-full">
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							IIIT Kota partners with leading tech companies for advanced
+							research projects.
+						</div>
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							Student achievements: Our students secured top positions in
+							national coding competitions.
+						</div>
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							IIIT Kota announces new courses on Data Science and Blockchain.
+						</div>
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							Alumni Spotlight - Catch up with our alumni excelling in the tech
+							industry.
+						</div>
+						<div className="w-full h-[20rem] my-2 border border-black flex items-center px-2">
+							IIIT Kota ranked among the top emerging tech institutes in India.
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{/* Inline CSS for the marquee animation */}
+			<style>
+				{`
+					@keyframes marquee {
+						0% { transform: translateY(0); }
+						100% { transform: translateY(-50%); }
+					}
+					.animate-marquee {
+						animation: marquee 45s linear infinite;
+					}
+					.animate-marquee:hover {
+						animation-play-state: paused;
+					}
+				`}
+			</style>
 		</div>
 	);
 };

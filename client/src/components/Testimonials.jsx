@@ -12,6 +12,10 @@ const Testimonials = () => {
       text: "An excellent networking opportunity, and the talks were both informative and motivating.",
     },
     {
+      name: "David Lee",
+      text: "I felt right at home. Great people, great stories, and an amazing atmosphere!",
+    },
+    {
       name: "Alice Brown",
       text: "It was wonderful to see how much everyone has grown and achieved since our graduation!",
     },
