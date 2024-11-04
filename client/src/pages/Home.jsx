@@ -102,8 +102,10 @@ const Home = () => {
 					laudantium natus delectus nam repellendus voluptatem ullam?
 				</p>
 				<div className="lg:w-[80%] w-[90%] h-auto flex justify-start">
-					<a className="lg:w-[7rem] h-[3rem] w-[6rem] bg-[#19194D] hover:bg-blue-600 transition-colors duration-300 ease-in-out rounded-md shadow-xl text-white flex justify-center items-center"
-          href="/about">
+					<a
+						className="lg:w-[7rem] h-[3rem] w-[6rem] bg-[#19194D] hover:bg-blue-600 transition-colors duration-300 ease-in-out rounded-md shadow-xl text-white flex justify-center items-center"
+						href="/about"
+					>
 						Read More
 					</a>
 				</div>
@@ -180,47 +182,45 @@ const Home = () => {
 				<div className="flex flex-col lg:flex-row items-center justify-evenly py-4">
 					<div className="h-[15rem] lg:h-[20rem] w-[85%] rounded-md lg:w-[30%] shadow-2xl hover:cursor-pointer lg:hover:mt-5 transition-all duration-500 ease-in-out mb-8 lg:my-8 px-3 py-4 lg:p-4 flex flex-col group">
 						<div className="w-full h-1/4 flex items-center lg:items-center text-2xl font-semibold text-[#19194D] transition-colors duration-500 ease-in-out group-hover:text-blue-500">
-							<p className="text-xl lg:text-3xl">Lorem, ipsum dolor.</p>
+							<p className="text-xl lg:text-3xl">Networking Opportunities</p>
 						</div>
 						<div className="w-full h-3/4 flex items-center text-sm lg:text-lg text-[#19194D]">
 							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-								similique officiis modi odio? Ipsam error, atque voluptates enim
-								consectetur quisquam distinctio asperiores iusto, totam, dolorem
-								molestiae architecto. Sint, voluptate iure.
+								Connect with a vast network of IIIT Kota alumni working in
+								various industries worldwide, opening doors for career guidance,
+								mentorship, and potential collaborations.
 							</p>
 						</div>
 					</div>
 
 					<div className="h-[15rem] lg:h-[20rem] w-[85%] rounded-md lg:w-[30%] shadow-2xl hover:cursor-pointer lg:hover:mt-5 transition-all duration-500 ease-in-out mb-8 lg:my-8 px-3 py-4 lg:p-4 flex flex-col group">
 						<div className="w-full h-1/4 flex items-center lg:items-center text-2xl font-semibold text-[#19194D] transition-colors duration-500 ease-in-out group-hover:text-blue-500">
-							<p className="text-xl lg:text-3xl">Lorem, ipsum dolor.</p>
+							<p className="text-xl lg:text-3xl">Career Development</p>
 						</div>
 						<div className="w-full h-3/4 flex items-center text-sm lg:text-lg text-[#19194D]">
 							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-								similique officiis modi odio? Ipsam error, atque voluptates enim
-								consectetur quisquam distinctio asperiores iusto, totam, dolorem
-								molestiae architecto. Sint, voluptate iure.
+								Access exclusive job postings, internships, and career resources
+								shared by fellow alumni, helping current students and graduates
+								achieve their career goals.
 							</p>
 						</div>
 					</div>
 
 					<div className="h-[15rem] lg:h-[20rem] w-[85%] rounded-md lg:w-[30%] shadow-2xl hover:cursor-pointer lg:hover:mt-5 transition-all duration-500 ease-in-out mb-8 lg:my-8 px-3 py-4 lg:p-4 flex flex-col group">
 						<div className="w-full h-1/4 flex items-center lg:items-center text-2xl font-semibold text-[#19194D] transition-colors duration-500 ease-in-out group-hover:text-blue-500">
-							<p className="text-xl lg:text-3xl">Lorem, ipsum dolor.</p>
+							<p className="text-xl lg:text-3xl">Community Support</p>
 						</div>
 						<div className="w-full h-3/4 flex items-center text-sm lg:text-lg text-[#19194D]">
 							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-								similique officiis modi odio? Ipsam error, atque voluptates enim
-								consectetur quisquam distinctio asperiores iusto, totam, dolorem
-								molestiae architecto. Sint, voluptate iure.
+								Engage with a supportive alumni community that offers
+								assistance, advice, and shared experiences, strengthening the
+								IIIT Kota network and its values.
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
+
 			{/* quick access */}
 			<div className="w-full h-auto lg:h-[399px] bg-[#19194D] flex justify-center items-center py-8">
 				<div className="w-3/4 h-full flex flex-col">

@@ -14,7 +14,7 @@ const NewsArticlesHome = () => {
 	}, []);
 
 	return (
-		<div className="w-full lg:h-[37rem] h-[100rem] flex lg:flex-row flex-col justify-between px-2 lg:px-8 py-4">
+		<div className="w-full lg:h-[82vh] h-[100rem] flex lg:flex-row flex-col justify-between px-2 lg:px-8 py-4">
 			{/* Twitter Timeline */}
 			<div className="lg:h-full lg:w-[30%] h-1/3 w-full rounded-md shadow-2xl hover:mb-5 hover:cursor-pointer transition-all duration-500 ease-in-out p-4 flex flex-col justify-between group">
 				<a
@@ -33,9 +33,9 @@ const NewsArticlesHome = () => {
 					<h3 className="text-lg font-bold text-center flex justify-center items-center text-[#19194D]">
 						Events
 					</h3>
-					<button className="ml-auto bg-teal-600 text-white px-4 rounded-lg hover:bg-teal-500 transition-colors duration-300 ease-in-out">
+					<a href="/events" className="ml-auto bg-teal-600 text-white px-4 rounded-lg flex justify-center items-center hover:bg-teal-500 transition-colors duration-300 ease-in-out">
 						See All
-					</button>
+					</a>
 				</div>
 
 				<div className="w-full h-full overflow-hidden relative">
