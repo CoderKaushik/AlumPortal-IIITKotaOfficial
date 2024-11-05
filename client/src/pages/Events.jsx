@@ -2,7 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { TextField, InputAdornment } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
 import C1 from "../assets/14.webp";
 import C2 from "../assets/15.webp";
 import C3 from "../assets/16.webp";
@@ -16,26 +17,32 @@ const Events = () => {
 
 	const eventImages = [C1, C2, C3, C1, C2, C3]; // Array of event images
 	const eventHeadings = [
-    "Innovative Tech Symposium 2024",
-    "Annual Developer Summit",
-    "AI & Machine Learning Workshop",
-    "Digital Transformation Expo",
-    "AI & Machine Learning Workshop",
-    "Digital Transformation Expo",
-  ]; // Array of event headings
-  
-  const eventDescriptions = [
-    "Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future.",
-    "Meet fellow developers and industry experts at the Annual Developer Summit, featuring hands-on coding sessions, tech talks, and opportunities for skill enhancement.",
-    "An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
-    "Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
-    "An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
-    "Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
-  ]; // Array of event descriptions
-  
+		"Innovative Tech Symposium 2024",
+		"Annual Developer Summit",
+		"AI & Machine Learning Workshop",
+		"Digital Transformation Expo",
+		"AI & Machine Learning Workshop",
+		"Digital Transformation Expo",
+	]; // Array of event headings
+
+	const eventDescriptions = [
+		"Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. ",
+		"Meet fellow developers and industry experts at the Annual Developer Summit, featuring hands-on coding sessions, tech talks, and opportunities for skill enhancement.",
+		"An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
+		"Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
+		"An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
+		"Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
+	]; // Array of event descriptions
 
 	const imageGroups = [
-		[eventImages[0], eventImages[1], eventImages[1], eventImages[1], eventImages[1], eventImages[1]], // Group for the first event
+		[
+			eventImages[0],
+			eventImages[1],
+			eventImages[1],
+			eventImages[1],
+			eventImages[1],
+			eventImages[1],
+		], // Group for the first event
 		[eventImages[2], eventImages[0]], // Group for the second event
 		[eventImages[1], eventImages[2]], // Group for the third event
 		[eventImages[0], eventImages[1]], // Group for the fourth event
@@ -89,6 +96,13 @@ const Events = () => {
 											<SearchIcon style={{ color: "#4A5568" }} />
 										</InputAdornment>
 									),
+									endAdornment: (
+										<InputAdornment position="end">
+											<IconButton>
+												<ArrowForwardIcon style={{ color: "#4A5568" }} />
+											</IconButton>
+										</InputAdornment>
+									),
 								}}
 								sx={{
 									"& .MuiOutlinedInput-root": {
@@ -112,15 +126,19 @@ const Events = () => {
 				{eventHeadings.map((heading, index) => (
 					<div
 						key={index}
-						className={`w-full md:h-auto h-[30rem] mt-6 flex md:flex-row flex-col max-w-492:flex-col-reverse rounded-lg shadow-xl transform transition-all duration-700 ease-out delay-${index * 100} ${
-							visibleRows[index] ? "opacity-100 scale-100" : "opacity-0 scale-95"
+						className={`w-full h-auto md:h-[20rem] mt-6 flex md:flex-row flex-col max-w-492:flex-col-reverse rounded-lg shadow-xl transform transition-all duration-700 ease-out delay-${
+							index * 100
+						} ${
+							visibleRows[index]
+								? "opacity-100 scale-100"
+								: "opacity-0 scale-95"
 						}`}
 						ref={(el) => (rowRefs.current[index] = el)}
 						data-index={index}
 					>
 						{/* Alternating text and image layout */}
 						<div
-							className={`md:w-[70%] md:h-full w-full h-1/2 px-4 cursor-pointer flex flex-col justify-center items-center ${
+							className={`md:w-[70%] md:h-full w-full h-1/2 px-4 cursor-pointer flex flex-col justify-center items-center max-w-492:py-8 ${
 								index % 2 === 0 ? "" : "md:order-2 order-1" // Reverse order for alternating layout
 							}`}
 							onClick={() => openCarousel(index)}
