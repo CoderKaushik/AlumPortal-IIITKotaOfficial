@@ -4,7 +4,6 @@ import imagesData from "../path-to-your-json/images.json";
 import Carousel from "../components/Carousel";
 
 // icons
-import ListIcon from "@mui/icons-material/List";
 import CloseIcon from "@mui/icons-material/Close";
 
 //other components from mui
