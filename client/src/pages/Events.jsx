@@ -138,10 +138,9 @@ const Events = () => {
 					>
 						{/* Alternating text and image layout */}
 						<div
-							className={`md:w-[70%] md:h-full w-full h-1/2 px-4 cursor-pointer flex flex-col justify-center items-center max-w-492:py-8 ${
+							className={`md:w-[70%] md:h-full w-full h-1/2 px-4 flex flex-col max-w-492:justify-center justify-start pt-6 items-center max-w-492:py-8 ${
 								index % 2 === 0 ? "" : "md:order-2 order-1" // Reverse order for alternating layout
 							}`}
-							onClick={() => openCarousel(index)}
 						>
 							<h1 className="w-full py-2 font-bold md:text-xl text-lg text-[#19194D]">
 								{heading}
