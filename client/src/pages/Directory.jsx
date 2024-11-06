@@ -29,7 +29,7 @@ const Directory = () => {
 					"https://alumportal-iiitkotaofficial.onrender.com/api/alumni"
 					// "http://localhost:5000/api/alumni"
 				);
-				console.log("Fetched Alumni Data:", response.data); // Log data
+				// console.log("Fetched Alumni Data:", response.data); // Log data
 				setAlumni(response.data);
 				setFilteredAlumni(response.data); // Set initial filtered list
 
