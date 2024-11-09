@@ -43,7 +43,7 @@ const About = () => {
   return (
     <div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
       <Navbar />
-      <div className="w-screen  overflow-y-scroll custom-scrollbar mt-[10rem] flex flex-col items-center justify-center">
+      <div className="w-screen overflow-y-scroll custom-scrollbar mt-[10rem] flex flex-col items-center justify-center">
         {/* About Us Section */}
         <div className="flex flex-col h-[32rem] items-center text-center space-y-2 mt-2 max-w-2xl px-4 mb-12">
           <img
@@ -62,12 +62,12 @@ const About = () => {
         </div>
 
         {/* What We Do Section */}
-        <div className="w-full bg-[#19194D] flex justify-center items-center px-[1rem] md:px-[5rem]  ">
-          <section className="flex flex-col  items-center text-center space-y-10 w-full px-4 md:px-8 py-12  shadow-lg rounded-lg my-12 bg-gray-100 ">
+        <div className="w-full bg-[#19194D] flex justify-center items-center px-[1rem] md:px-[5rem] py-16">
+          <section className="flex flex-col items-center text-center space-y-10 w-full px-4 md:px-8 py-12 shadow-lg rounded-lg my-12 bg-white">
             <h2 className="text-4xl font-extrabold text-gray-800">
               What We Do
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed ">
+            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
               The Alumni Cell of IIIT Kota is dedicated to fostering a lifelong
               connection between the institute's alumni and its students. We
               organize initiatives that bridge the gap between academia and the
@@ -75,42 +75,40 @@ const About = () => {
               that help students develop their careers, gain insights, and build
               a robust network of support.
             </p>
-            <ul className="text-lg text-gray-700 list-disc list-inside space-y-6  text-left">
-              <li>
-                <strong>Mentorship Programs:</strong> Our mentorship programs
-                connect current students with IIIT Kota alumni, allowing
-                students to receive one-on-one guidance, advice, and
-                industry-specific insights. Alumni mentors share their
-                experiences, offering advice on academic pursuits, project
-                ideas, skill-building, and navigating early career challenges.
-              </li>
-              <li>
-                <strong>Networking Opportunities:</strong> We host networking
-                events where students can interact with alumni from diverse
-                industries and backgrounds. These events are designed to provide
-                a platform for knowledge exchange, foster professional
-                connections, and give students a chance to understand industry
-                expectations and trends directly from those already established
-                in their fields.
-              </li>
-              <li>
-                <strong>Career Talks & Workshops:</strong> Our Alumni Cell
-                organizes regular career talks and workshops led by alumni who
-                have excelled in various domains. These sessions provide
-                students with an in-depth understanding of industry landscapes,
-                emerging fields, and valuable insights into different career
-                paths. Alumni share their journeys, challenges, and tips,
-                helping students make informed career choices.
-              </li>
-              <li>
-                <strong>Alumni Portal:</strong> We are developing a
-                comprehensive online alumni portal to facilitate communication
-                and resource sharing between alumni and current students. The
-                portal allows alumni to stay connected with their alma mater,
-                view job postings, offer guidance, and engage with students
-                through forums, articles, and scheduled interactions.
-              </li>
-            </ul>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+              <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  Mentorship Programs
+                </h3>
+                <p className="text-lg text-gray-700">
+                  Our mentorship programs connect current students with IIIT Kota alumni, allowing students to receive one-on-one guidance, advice, and industry-specific insights. Alumni mentors share their experiences, offering advice on academic pursuits, project ideas, skill-building, and navigating early career challenges.
+                </p>
+              </div>
+              <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  Networking Opportunities
+                </h3>
+                <p className="text-lg text-gray-700">
+                  We host networking events where students can interact with alumni from diverse industries and backgrounds. These events are designed to provide a platform for knowledge exchange, foster professional connections, and give students a chance to understand industry expectations and trends directly from those already established in their fields.
+                </p>
+              </div>
+              <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  Career Talks & Workshops
+                </h3>
+                <p className="text-lg text-gray-700">
+                  Our Alumni Cell organizes regular career talks and workshops led by alumni who have excelled in various domains. These sessions provide students with an in-depth understanding of industry landscapes, emerging fields, and valuable insights into different career paths. Alumni share their journeys, challenges, and tips, helping students make informed career choices.
+                </p>
+              </div>
+              <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  Alumni Portal
+                </h3>
+                <p className="text-lg text-gray-700">
+                  We are developing a comprehensive online alumni portal to facilitate communication and resource sharing between alumni and current students. The portal allows alumni to stay connected with their alma mater, view job postings, offer guidance, and engage with students through forums, articles, and scheduled interactions.
+                </p>
+              </div>
+            </div>
           </section>
         </div>
         <div className="w-full bg-gray-100 flex justify-center items-center p-[2rem]">

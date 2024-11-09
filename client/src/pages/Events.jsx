@@ -3,8 +3,7 @@ import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 import { Search as SearchIcon } from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ClearIcon from "@mui/icons-material/Clear";
-import { TextField, InputAdornment, IconButton, Button } from "@mui/material";
+import { TextField, InputAdornment, IconButton, Button, useMediaQuery } from "@mui/material";
 import C1 from "../assets/14.webp";
 import C2 from "../assets/15.webp";
 import C3 from "../assets/16.webp";
@@ -19,6 +18,8 @@ const Events = () => {
     const [initialEvents, setInitialEvents] = useState([]);
     const [visibleRows, setVisibleRows] = useState({});
 
+    const isMobile = useMediaQuery("(max-width: 768px)"); // Check if the view is mobile
+
     const eventImages = [C1, C2, C3, C1, C2, C3]; // Array of event images
     const eventHeadings = [
         "Innovative Tech Symposium 2024",
@@ -30,7 +31,7 @@ const Events = () => {
     ]; // Array of event headings
 
     const eventDescriptions = [
-        "Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. ",
+        "Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. ",
         "Meet fellow developers and industry experts at the Annual Developer Summit, featuring hands-on coding sessions, tech talks, and opportunities for skill enhancement.",
         "An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
         "Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
@@ -178,42 +179,61 @@ const Events = () => {
                 </div>
 
                 {/* Event Cards */}
-                {filteredEvents.map((event, index) => (
-                    <div
-                        key={index}
-                        className={`w-full h-auto md:h-[20rem] mt-6 flex md:flex-row flex-col max-w-492:flex-col-reverse rounded-lg shadow-xl transform transition-all duration-700 ease-out delay-${
-                            index * 100
-                        } ${visibleRows[index] ? "opacity-100" : "opacity-0"}`}
-                        ref={(el) => (rowRefs.current[index] = el)}
-                        data-index={index}
-                    >
-                        {/* Alternating text and image layout */}
-                        <div
-                            className={`md:w-[70%] md:h-full w-full h-1/2 px-4 flex flex-col max-w-492:justify-center justify-start pt-6 items-center max-w-492:py-8 ${
-                                index % 2 === 0 ? "" : "md:order-2 order-1" // Reverse order for alternating layout
-                            }`}
-                        >
-                            <h1 className="w-full py-2 font-bold md:text-xl text-lg text-[#19194D]">
-                                {event.heading}
-                            </h1>
-                            <p className="mt-3 md:text-lg text-sm text-[#19194D] leading-loose">
-                                {event.description}
-                            </p>
-                        </div>
-                        <div
-                            className={`md:w-[30%] md:min-h-[20rem] w-full h-1/2 bg-gray-300 hover:cursor-pointer rounded-tr-lg rounded-br-lg ${
-                                index % 2 === 0 ? "" : "md:order-1 order-2" // Reverse order for alternating layout
-                            }`}
-                            onClick={() => openCarousel(index)}
-                        >
-                            <img
-                                src={event.images[0]}
-                                alt="img__"
-                                className="w-full h-full object-cover md:rounded-bl-none rounded-tl-md rounded-tr-lg"
-                            />
-                        </div>
+                {filteredEvents.length === 0 ? (
+                    <div className="w-full h-[20rem] flex justify-center items-center">
+                        <p className="text-xl text-gray-500">No events found</p>
                     </div>
-                ))}
+                ) : (
+                    filteredEvents.map((event, index) => (
+                        <div
+                            key={index}
+                            className={`w-full h-auto md:h-[20rem] mt-6 flex md:flex-row flex-col max-w-492:flex-col-reverse rounded-lg shadow-xl transform transition-all duration-700 ease-out delay-${
+                                index * 100
+                            } ${visibleRows[index] ? "opacity-100" : "opacity-0"} ${
+                                visibleRows[index] ? "scale-100" : "scale-95"
+                            }`}
+                            ref={(el) => (rowRefs.current[index] = el)}
+                            data-index={index}
+                        >
+                            {/* Alternating text and image layout */}
+                            <div
+                                className={`md:w-[70%] md:h-full w-full h-auto px-4 flex flex-col max-w-492:justify-center justify-start pt-6 items-center max-w-492:py-8 ${
+                                    index % 2 === 0 ? "" : "md:order-2 order-1" // Reverse order for alternating layout
+                                }`}
+                            >
+                                <h1 className="w-full py-2 font-bold md:text-xl text-lg text-[#19194D]">
+                                    {event.heading}
+                                </h1>
+                                <p className="mt-3 md:text-lg text-sm text-[#19194D] leading-loose  overflow-y-scroll scrollbar-hide mb-4">
+                                    {event.description}
+                                </p>
+                            </div>
+                            <div
+                                className={`md:w-[30%] md:min-h-[20rem] w-full h-auto bg-gray-300 hover:cursor-pointer relative ${
+                                    index % 2 === 0 ? "md:rounded-tl-none md:rounded-bl-none md:rounded-tr-lg md:rounded-br-lg rounded-tl-lg rounded-tr-lg" : "md:order-1 order-2 md:rounded-tr-none md:rounded-br-none md:rounded-tl-lg md:rounded-bl-lg rounded-tl-lg rounded-tr-lg"
+                                }`}
+                                onClick={() => openCarousel(index)}
+                            >
+                                <img
+                                    src={event.images[0]}
+                                    alt="img__"
+                                    className={`w-full h-full object-cover ${
+                                        index % 2 === 0 ? "md:rounded-bl-none md:rounded-tl-none md:rounded-tr-lg md:rounded-br-lg rounded-tl-lg rounded-tr-lg" : "md:rounded-br-none md:rounded-tr-none md:rounded-tl-lg md:rounded-bl-lg rounded-tl-lg rounded-tr-lg"
+                                    }`}
+                                />
+                                {isMobile ? (
+                                    <div className="absolute bottom-2 right-2 bg-white bg-opacity-75 rounded-full p-1 flex justify-center items-center">
+                                        <span style={{ color: "#4A5568", fontSize: "12px" }}>Click</span>
+                                    </div>
+                                ) : (
+                                    <div className="absolute inset-0 bg-black bg-opacity-80 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                        <span className="text-white text-center px-4">Click to view carousel for this event</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    ))
+                )}
             </div>
             <Footer />
             {isCarouselOpen && (

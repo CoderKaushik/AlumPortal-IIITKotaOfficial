@@ -70,7 +70,7 @@ const Gallery = () => {
 						className="w-[25%] h-full flex justify-center items-center text-lg text-teal-600"
 						onClick={() => setIsModalOpen(true)}
 					>
-						<button className="bg-teal-600 text-white font-semibold py-2 px-2 w-full rounded-lg hover:bg-teal-500 xl:hidden">
+						<button className="bg-teal-600 text-sm text-white font-semibold py-2 px-2 w-full rounded-lg hover:bg-teal-500 xl:hidden">
 							Menu
 						</button>
 					</div>
