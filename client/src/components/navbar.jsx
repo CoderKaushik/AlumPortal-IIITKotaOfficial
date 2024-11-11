@@ -363,7 +363,7 @@ const Navbar = () => {
 								<>
 									<li className="w-full h-auto flex gap-3">
 										{user.profilePicture ? (
-											<a href="/profile/me">
+											<a href="/profile/me" onClick={toggleMobileMenu}>
 												<img
 													src={user.profilePicture}
 													alt="Profile"
@@ -373,14 +373,14 @@ const Navbar = () => {
 										) : (
 											<div className="bg-gray-400 w-full h-full"></div>
 										)}
-										<a href="/profile/me">
+										<a href="/profile/me" onClick={toggleMobileMenu}>
 											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
 												Profile
 											</div>
 										</a>
 									</li>
 									<li>
-										<a href="/signin">
+										<a href="/signin" onClick={toggleMobileMenu}>
 											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
 												<LogoutIcon />
 												Sign In
@@ -390,7 +390,7 @@ const Navbar = () => {
 								</>
 							) : (
 								<li>
-									<a href="/signin">
+									<a href="/signin" onClick={toggleMobileMenu}>
 										<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
 											<LockOpenIcon />
 											Sign In
