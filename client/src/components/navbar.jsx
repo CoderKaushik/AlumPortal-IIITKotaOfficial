@@ -365,7 +365,7 @@ const Navbar = () => {
 										<img
 											src={user.profilePicture}
 											alt="Profile"
-											className="w-full h-full object-cover"
+											className="w-12 h-12 rounded-full object-cover"
 										/>
 									) : (
 										<div className="bg-gray-400 w-full h-full"></div>
