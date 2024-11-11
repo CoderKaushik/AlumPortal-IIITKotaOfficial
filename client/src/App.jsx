@@ -13,6 +13,7 @@ import Gallery from './pages/Gallery';
 import ProminentAlumni from './pages/ProminentAlumni';
 import Events from './pages/Events';
 import ContactUs from './pages/ContactUs';
+import JobsPosting from './pages/JobsPosting';
 import Loading from './pages/Loading';
 import NotFound from './pages/NotFound';
 
@@ -46,6 +47,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/alumni/gallery" element={<Gallery />} />
             <Route path="/alumni/prominent-alumni" element={<ProminentAlumni />} />
+            <Route path="/alumni/job-postings" element={<JobsPosting />} />
             <Route path="/alumni/contact" element={<ContactUs />} />
             <Route path="/events" element={<Events />} />
             <Route path="*" element={<NotFound />} />

@@ -142,6 +142,9 @@ const Navbar = () => {
 									<a href="/alumni/gallery">Alumni Gallery</a>
 								</li>
 								<li className="hover:bg-gray-100 p-2">
+									<a href="/alumni/job-postings">Jobs via Alumni</a>
+								</li>
+								<li className="hover:bg-gray-100 p-2">
 									<a href="/alumni/contact">Contact Us</a>
 								</li>
 							</ul>
@@ -259,7 +262,7 @@ const Navbar = () => {
 								</button>
 								<div
 									className={`pl-6 overflow-hidden transition-max-height duration-300 ease-in-out ${
-										activeSubMenu === "alumni" ? "max-h-40" : "max-h-0"
+										activeSubMenu === "alumni" ? "max-h-48" : "max-h-0"
 									}`}
 								>
 									<ul className="space-y-2 mt-2 text-sm font-normal border-l border-gray-200">
@@ -274,6 +277,12 @@ const Navbar = () => {
 											onClick={toggleMobileMenu}
 										>
 											<a href="/alumni/gallery">Alumni Gallery</a>
+										</li>
+										<li
+											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+											onClick={toggleMobileMenu}
+										>
+											<a href="/alumni/job-postings">Jobs via Alumni</a>
 										</li>
 										<li
 											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
