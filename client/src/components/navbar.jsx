@@ -360,22 +360,34 @@ const Navbar = () => {
 								</a>
 							</li> */}
 							{isLoggedIn && user ? (
-								<li className="w-full h-auto flex gap-3">
-									{user.profilePicture ? (
-										<a href="/profile/me"><img
-											src={user.profilePicture}
-											alt="Profile"
-											className="w-6 h-6 rounded-full object-cover"
-										/></a>
-									) : (
-										<div className="bg-gray-400 w-full h-full"></div>
-									)}
-									<a href="/profile/me">
-										<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
-											Profile
-										</div>
-									</a>
-								</li>
+								<>
+									<li className="w-full h-auto flex gap-3">
+										{user.profilePicture ? (
+											<a href="/profile/me">
+												<img
+													src={user.profilePicture}
+													alt="Profile"
+													className="w-6 h-6 rounded-full object-cover"
+												/>
+											</a>
+										) : (
+											<div className="bg-gray-400 w-full h-full"></div>
+										)}
+										<a href="/profile/me">
+											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
+												Profile
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="/signin">
+											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
+												<LogoutIcon />
+												Sign In
+											</div>
+										</a>
+									</li>
+								</>
 							) : (
 								<li>
 									<a href="/signin">
