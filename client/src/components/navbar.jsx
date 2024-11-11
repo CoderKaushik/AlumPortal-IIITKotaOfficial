@@ -380,7 +380,7 @@ const Navbar = () => {
 										</a>
 									</li>
 									<li>
-										<a href="/signin" onClick={() => { toggleMobileMenu(); setIsLoggedIn(false); handleLogout(); }}>
+										<a href="/signin" onClick={() => { toggleMobileMenu(); handleLogout(); }}>
 											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
 												<LogoutIcon />
 												Log Out
