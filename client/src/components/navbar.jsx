@@ -9,14 +9,17 @@ import EventIcon from "@mui/icons-material/Event";
 import FeedIcon from "@mui/icons-material/Feed";
 import WorkIcon from "@mui/icons-material/Work";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
+import LogoutIcon from "@mui/icons-material/Logout";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TopLayer from "./topLayer.jsx";
 
+import axios from "axios";
+
 const Navbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [activeSubMenu, setActiveSubMenu] = useState(null);
-	
+
 	const toggleMobileMenu = () => {
 		setIsMobileMenuOpen((prev) => {
 			// Reset active submenu when closing the modal
@@ -26,39 +29,39 @@ const Navbar = () => {
 			return !prev;
 		});
 	};
-	
+
 	const handleSubMenuToggle = (menu) => {
 		setActiveSubMenu(activeSubMenu === menu ? null : menu);
 	};
-	
+
 	const [user, setUser] = useState(null);
 	const [error, setError] = useState(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	
 
 	const token = localStorage.getItem("token");
 
 	useEffect(() => {
-		const fetchUser = async () => {
-			if (token) {
+		if (token) {
+			setIsLoggedIn(true);
+			const fetchUser = async () => {
 				try {
 					const response = await axios.get(
 						"https://alumportal-iiitkotaofficial.onrender.com/api/profile/me",
-						{ headers: { Authorization: `Bearer ${token}` } }
+						// "http://localhost:5000/api/profile/me",
+						{
+							headers: { Authorization: `Bearer ${token}` },
+						}
 					);
 					setUser(response.data);
-					setIsLoggedIn(true); // Set logged in after successfully fetching user
 				} catch (error) {
 					setError(error.message);
-					setIsLoggedIn(false); // Set logged out if there's an error
 				}
-			} else {
-				setIsLoggedIn(false);
-			}
-		};
-	
-		fetchUser();
-	}, [token]);	
+			};
+			fetchUser();
+		} else {
+			setIsLoggedIn(false);
+		}
+	}, [token]);
 
 	const handleLogout = (e) => {
 		e.preventDefault();
@@ -206,155 +209,187 @@ const Navbar = () => {
 
 			{/* Mobile Menu Modal */}
 			<div
-    className={`fixed top-2 right-2 md:right-8 w-[95vw] md:w-[60vw] h-auto flex items-center justify-center transition-opacity duration-300 ${
-        isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-    }`}
->
-    <div
-        className={`bg-white border-b-8 border-[#0E407C] shadow-2xl w-full h-full p-6 transition-opacity duration-300 transform ${
-            isMobileMenuOpen ? "opacity-100" : "opacity-95"
-        }`}
-    >
-        <div className="flex justify-between items-center border-b border-gray-200 text-[#172B4D] pb-4">
-            <div className="w-auto h-auto flex gap-2 justify-start items-center">
-                <a href="/">
-                    <img src={Logo} alt="home_page" className="w-10 h-10" />
-                </a>
-                <h3 className="text-lg font-semibold tracking-wide">MENU</h3>
-            </div>
-            <CloseIcon onClick={toggleMobileMenu} className="cursor-pointer" />
-        </div>
-        <div className="mt-4">
-            <ul className="space-y-3">
-                <li>
-                    <button className="w-full text-left text-[#172B4D]">
-                        <a
-                            className="flex gap-3 items-center text-base font-medium"
-                            href="/about"
-                            onClick={toggleMobileMenu}
-                        >
-                            <InfoIcon />
-                            About Us
-                        </a>
-                    </button>
-                </li>
-                <li>
-                    <button
-                        onClick={() => handleSubMenuToggle("alumni")}
-                        className="w-full text-left text-[#172B4D]"
-                    >
-                        <div className="flex gap-3 items-center text-base font-medium">
-                            <HelpIcon />
-                            Alumni Assist
-                            <span className="ml-auto">
-                                {activeSubMenu === "alumni" ? "-" : "+"}
-                            </span>
-                        </div>
-                    </button>
-                    <div
-                        className={`pl-6 overflow-hidden transition-max-height duration-300 ease-in-out ${
-                            activeSubMenu === "alumni" ? "max-h-40" : "max-h-0"
-                        }`}
-                    >
-                        <ul className="space-y-2 mt-2 text-sm font-normal border-l border-gray-200">
-                            <li className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded" onClick={toggleMobileMenu}>
-                                <a href="/alumni/prominent-alumni">Prominent Alumni</a>
-                            </li>
-                            <li className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded" onClick={toggleMobileMenu}>
-                                <a href="/alumni/gallery">Alumni Gallery</a>
-                            </li>
-                            <li className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded" onClick={toggleMobileMenu}>
-                                <a href="/alumni/contact">Contact Us</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="/directory" onClick={toggleMobileMenu} className="w-full text-left text-[#172B4D]">
-                        <div className="flex gap-3 items-center text-base font-medium">
-                            <FolderSharedIcon />
-                            Directory
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <button
-                        onClick={() => handleSubMenuToggle("events")}
-                        className="w-full text-left text-[#172B4D]"
-                    >
-                        <div className="flex gap-3 items-center text-base font-medium">
-                            <EventIcon />
-                            Events
-                            <span className="ml-auto">
-                                {activeSubMenu === "events" ? "-" : "+"}
-                            </span>
-                        </div>
-                    </button>
-                    <div
-                        className={`pl-6 overflow-hidden transition-max-height duration-300 ease-in-out ${
-                            activeSubMenu === "events" ? "max-h-40" : "max-h-0"
-                        }`}
-                    >
-                        <ul className="space-y-2 mt-2 text-sm font-normal border-l border-gray-200">
-                            <li className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded" onClick={toggleMobileMenu}>
-                                <a href="/events">Events</a>
-                            </li>
-                            <li className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded" onClick={toggleMobileMenu}>
-                                <a href="/newsletters">Newsletters</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="/newsletters" onClick={toggleMobileMenu} className="w-full text-left text-[#172B4D]">
-                        <div className="flex gap-3 items-center text-base font-medium">
-                            <FeedIcon />
-                            Newsletters
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://tpcell.iiitkota.ac.in/" onClick={toggleMobileMenu} className="w-full text-left text-[#172B4D]">
-                        <div className="flex gap-3 items-center text-base font-medium">
-                            <WorkIcon />
-                            Placements
-                        </div>
-                    </a>
-                </li>
-                {isLoggedIn && user ? (
-                    <>
-                        <li>
-                            <a href="/profile/me">
-                                <div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
-                                    <AccountCircleIcon />
-                                    Profile
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/signin">
-                                <div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
-                                    <ExitToAppIcon />
-                                    Sign Out
-                                </div>
-                            </a>
-                        </li>
-                    </>
-                ) : (
-                    <li>
-                        <a href="/signin">
-                            <div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
-                                <LockOpenIcon />
-                                Sign In
-                            </div>
-                        </a>
-                    </li>
-                )}
-            </ul>
-        </div>
-    </div>
-</div>
-
+				className={`fixed top-2 right-2 md:right-8 w-[95vw] md:w-[60vw] h-auto flex items-center justify-center transition-opacity duration-300 ${
+					isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+				}`}
+			>
+				<div
+					className={`bg-white border-b-8 border-[#0E407C] shadow-2xl w-full h-full p-6 transition-opacity duration-300 transform ${
+						isMobileMenuOpen ? "opacity-100" : "opacity-95"
+					}`}
+				>
+					<div className="flex justify-between items-center border-b border-gray-200 text-[#172B4D] pb-4">
+						<div className="w-auto h-auto flex gap-2 justify-start items-center">
+							<a href="/">
+								<img src={Logo} alt="home_page" className="w-10 h-10" />
+							</a>
+							<h3 className="text-lg font-semibold tracking-wide">MENU</h3>
+						</div>
+						<CloseIcon onClick={toggleMobileMenu} className="cursor-pointer" />
+					</div>
+					<div className="mt-4">
+						<ul className="space-y-3">
+							<li>
+								<button className="w-full text-left text-[#172B4D]">
+									<a
+										className="flex gap-3 items-center text-base font-medium"
+										href="/about"
+										onClick={toggleMobileMenu}
+									>
+										<InfoIcon />
+										About Us
+									</a>
+								</button>
+							</li>
+							<li>
+								<button
+									onClick={() => handleSubMenuToggle("alumni")}
+									className="w-full text-left text-[#172B4D]"
+								>
+									<div className="flex gap-3 items-center text-base font-medium">
+										<HelpIcon />
+										Alumni Assist
+										<span className="ml-auto">
+											{activeSubMenu === "alumni" ? "-" : "+"}
+										</span>
+									</div>
+								</button>
+								<div
+									className={`pl-6 overflow-hidden transition-max-height duration-300 ease-in-out ${
+										activeSubMenu === "alumni" ? "max-h-40" : "max-h-0"
+									}`}
+								>
+									<ul className="space-y-2 mt-2 text-sm font-normal border-l border-gray-200">
+										<li
+											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+											onClick={toggleMobileMenu}
+										>
+											<a href="/alumni/prominent-alumni">Prominent Alumni</a>
+										</li>
+										<li
+											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+											onClick={toggleMobileMenu}
+										>
+											<a href="/alumni/gallery">Alumni Gallery</a>
+										</li>
+										<li
+											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+											onClick={toggleMobileMenu}
+										>
+											<a href="/alumni/contact">Contact Us</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a
+									href="/directory"
+									onClick={toggleMobileMenu}
+									className="w-full text-left text-[#172B4D]"
+								>
+									<div className="flex gap-3 items-center text-base font-medium">
+										<FolderSharedIcon />
+										Directory
+									</div>
+								</a>
+							</li>
+							<li>
+								<button
+									onClick={() => handleSubMenuToggle("events")}
+									className="w-full text-left text-[#172B4D]"
+								>
+									<div className="flex gap-3 items-center text-base font-medium">
+										<EventIcon />
+										Events
+										<span className="ml-auto">
+											{activeSubMenu === "events" ? "-" : "+"}
+										</span>
+									</div>
+								</button>
+								<div
+									className={`pl-6 overflow-hidden transition-max-height duration-300 ease-in-out ${
+										activeSubMenu === "events" ? "max-h-40" : "max-h-0"
+									}`}
+								>
+									<ul className="space-y-2 mt-2 text-sm font-normal border-l border-gray-200">
+										<li
+											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+											onClick={toggleMobileMenu}
+										>
+											<a href="/events">Events</a>
+										</li>
+										<li
+											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+											onClick={toggleMobileMenu}
+										>
+											<a href="/newsletters">Newsletters</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a
+									href="/newsletters"
+									onClick={toggleMobileMenu}
+									className="w-full text-left text-[#172B4D]"
+								>
+									<div className="flex gap-3 items-center text-base font-medium">
+										<FeedIcon />
+										Newsletters
+									</div>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://tpcell.iiitkota.ac.in/"
+									onClick={toggleMobileMenu}
+									className="w-full text-left text-[#172B4D]"
+								>
+									<div className="flex gap-3 items-center text-base font-medium">
+										<WorkIcon />
+										Placements
+									</div>
+								</a>
+							</li>
+							{/* <li>
+								<a href="/signin">
+									<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
+										<LockOpenIcon />
+										Sign In
+									</div>
+								</a>
+							</li> */}
+							{isLoggedIn && user ? (
+								<li className="w-full h-auto flex gap-3">
+									{user.profilePicture ? (
+										<img
+											src={user.profilePicture}
+											alt="Profile"
+											className="w-full h-full object-cover"
+										/>
+									) : (
+										<div className="bg-gray-400 w-full h-full"></div>
+									)}
+									<a href="/signin">
+										<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
+											Sign In
+										</div>
+									</a>
+								</li>
+							) : (
+								<li>
+									<a href="/signin">
+										<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
+											<LockOpenIcon />
+											Sign In
+										</div>
+									</a>
+								</li>
+							)}
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
