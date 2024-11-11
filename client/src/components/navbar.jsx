@@ -362,17 +362,17 @@ const Navbar = () => {
 							{isLoggedIn && user ? (
 								<li className="w-full h-auto flex gap-3">
 									{user.profilePicture ? (
-										<img
+										<a href="/profile/me"><img
 											src={user.profilePicture}
 											alt="Profile"
-											className="w-12 h-12 rounded-full object-cover"
-										/>
+											className="w-6 h-6 rounded-full object-cover"
+										/></a>
 									) : (
 										<div className="bg-gray-400 w-full h-full"></div>
 									)}
-									<a href="/signin">
+									<a href="/profile/me">
 										<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
-											Sign In
+											Profile
 										</div>
 									</a>
 								</li>
