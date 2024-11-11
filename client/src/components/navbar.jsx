@@ -21,13 +21,15 @@ const Navbar = () => {
 	const [activeSubMenu, setActiveSubMenu] = useState(null);
 
 	const toggleMobileMenu = () => {
-		setIsMobileMenuOpen((prev) => {
-			// Reset active submenu when closing the modal
-			if (prev) {
-				setActiveSubMenu(null);
-			}
-			return !prev;
-		});
+		setTimeout(() => {
+			setIsMobileMenuOpen((prev) => {
+				// Reset active submenu when closing the modal
+				if (prev) {
+					setActiveSubMenu(null);
+				}
+				return !prev;
+			});
+		}, 200);
 	};
 
 	const handleSubMenuToggle = (menu) => {
