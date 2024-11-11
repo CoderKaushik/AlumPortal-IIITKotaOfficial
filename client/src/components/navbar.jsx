@@ -68,6 +68,7 @@ const Navbar = () => {
 		localStorage.removeItem("token");
 		setIsLoggedIn(false);
 		setUser(null);
+		toggleMobileMenu(); // Close the mobile menu
 		window.location.reload();
 	};
 
@@ -380,7 +381,7 @@ const Navbar = () => {
 										</a>
 									</li>
 									<li>
-										<a href="/signin" onClick={() => { toggleMobileMenu(); handleLogout(); }}>
+										<a href="/signin" onClick={handleLogout}>
 											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
 												<LogoutIcon />
 												Log Out
