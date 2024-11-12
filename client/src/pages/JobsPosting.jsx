@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import { Button, TextField, InputAdornment, Menu, MenuItem, IconButton, Modal, Box, Card, CardContent, Typography } from "@mui/material";
-import { Search as SearchIcon, MoreVert as MoreVertIcon, Share as ShareIcon } from "@mui/icons-material";
+import { Search as SearchIcon, MoreVert as MoreVertIcon, Share as ShareIcon, Email as EmailIcon, WhatsApp as WhatsAppIcon, Twitter as TwitterIcon, Telegram as TelegramIcon, Link as LinkIcon } from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Footer from "../components/Footer";
 
@@ -9,6 +10,9 @@ const JobsPosting = () => {
 	const [searchPlaceholder, setSearchPlaceholder] = useState("Search jobs by Title, Company, Skills...");
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [shareModalOpen, setShareModalOpen] = useState(false);
+	const [shareJob, setShareJob] = useState(null);
+	const navigate = useNavigate();
 
 	const handleJobClick = () => {
 		setSearchPlaceholder("Search jobs by Title, Company, Skills...");
@@ -37,12 +41,37 @@ const JobsPosting = () => {
 		setIsModalOpen(false);
 	};
 
+	const handleJobCardClick = (job) => {
+		navigate(`/alumni/job-postings/${job.id}`, { state: { job } });
+	};
+
+	const handleShareClick = (event, job) => {
+		event.stopPropagation();
+		setShareJob(job);
+		setShareModalOpen(true);
+	};
+
+	const handleCloseShareModal = () => {
+		setShareModalOpen(false);
+		setShareJob(null);
+	};
+
+	const shareOptions = [
+		{ icon: <EmailIcon />, label: "Email", link: `mailto:?subject=Check out this job&body=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}` },
+		{ icon: <WhatsAppIcon />, label: "WhatsApp", link: `https://wa.me/?text=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}` },
+		{ icon: <TwitterIcon />, label: "Twitter", link: `https://twitter.com/intent/tweet?text=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}` },
+		{ icon: <TelegramIcon />, label: "Telegram", link: `https://t.me/share/url?url=${window.location.origin}/alumni/job-postings/${shareJob?.id}&text=Check out this job` },
+		{ icon: <LinkIcon />, label: "Copy Link", link: `#`, onClick: () => navigator.clipboard.writeText(`${window.location.origin}/alumni/job-postings/${shareJob?.id}`) },
+	];
+
 	const jobCards = [
 		{
+			id: "1a2b3c4d5e6f7g8h9i0j",
 			title: "Software Engineer",
 			company: "Tech Corp",
 			location: "San Francisco, CA",
 			description: "Develop and maintain web applications.",
+			about: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel?",
 			skills: "JavaScript, React, Node.js",
 			experience: "2+ years",
 			deadline: "2023-12-31",
@@ -54,6 +83,7 @@ const JobsPosting = () => {
 			},
 		},
 		{
+			id: "2b3c4d5e6f7g8h9i0j1a",
 			title: "Data Scientist",
 			company: "Data Inc.",
 			location: "New York, NY",
@@ -69,6 +99,7 @@ const JobsPosting = () => {
 			},
 		},
 		{
+			id: "3c4d5e6f7g8h9i0j1a2b",
 			title: "Software Engineer",
 			company: "Tech Corp",
 			location: "San Francisco, CA",
@@ -84,6 +115,7 @@ const JobsPosting = () => {
 			},
 		},
 		{
+			id: "4d5e6f7g8h9i0j1a2b3c",
 			title: "Data Scientist",
 			company: "Data Inc.",
 			location: "New York, NY",
@@ -99,6 +131,7 @@ const JobsPosting = () => {
 			},
 		},
 		{
+			id: "5e6f7g8h9i0j1a2b3c4d",
 			title: "Software Engineer",
 			company: "Tech Corp",
 			location: "San Francisco, CA",
@@ -114,6 +147,7 @@ const JobsPosting = () => {
 			},
 		},
 		{
+			id: "6f7g8h9i0j1a2b3c4d5e",
 			title: "Data Scientist",
 			company: "Data Inc.",
 			location: "New York, NY",
@@ -129,6 +163,7 @@ const JobsPosting = () => {
 			},
 		},
 		{
+			id: "7g8h9i0j1a2b3c4d5e6f",
 			title: "Software Engineer",
 			company: "Tech Corp",
 			location: "San Francisco, CA",
@@ -144,6 +179,7 @@ const JobsPosting = () => {
 			},
 		},
 		{
+			id: "8h9i0j1a2b3c4d5e6f7g",
 			title: "Data Scientist",
 			company: "Data Inc.",
 			location: "New York, NY",
@@ -159,6 +195,7 @@ const JobsPosting = () => {
 			},
 		},
 		{
+			id: "9i0j1a2b3c4d5e6f7g8h",
 			title: "Software Engineer",
 			company: "Tech Corp",
 			location: "San Francisco, CA",
@@ -174,6 +211,7 @@ const JobsPosting = () => {
 			},
 		},
 		{
+			id: "0j1a2b3c4d5e6f7g8h9i",
 			title: "Data Scientist",
 			company: "Data Inc.",
 			location: "New York, NY",
@@ -196,7 +234,7 @@ const JobsPosting = () => {
 			<Navbar />
 			<div className="flex-grow overflow-y-scroll scrollbar-hide mt-[9rem] max-w-980:mt-[100px] max-w-492:mt-[75px]">
 				<div className="w-full h-auto flex flex-col gap-4">
-					<div className="w-full h-auto bg-white p-4 shadow-md rounded-lg flex justify-between items-center">
+					<div className="w-full h-auto bg-white py-4 shadow-md rounded-lg flex justify-between items-center">
 						<TextField
 							variant="outlined"
 							placeholder={searchPlaceholder}
@@ -239,6 +277,7 @@ const JobsPosting = () => {
 						{jobCards.map((job, index) => (
 								<Card
 									key={index}
+									onClick={() => handleJobCardClick(job)}
 									sx={{
 										width: { lg: 400, md: 300, sm: 300, xs: 325 },
 										boxShadow: 3,
@@ -262,6 +301,7 @@ const JobsPosting = () => {
 											},
 										}}
 										aria-label="share"
+										onClick={(event) => handleShareClick(event, job)}
 									>
 										<ShareIcon />
 									</IconButton>
@@ -312,6 +352,60 @@ const JobsPosting = () => {
 				</div>
 			</div>
             <Footer />
+			<Modal
+				open={shareModalOpen}
+				onClose={handleCloseShareModal}
+				aria-labelledby="share-modal-title"
+				aria-describedby="share-modal-description"
+			>
+				<Box
+					sx={{
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: 'translate(-50%, -50%)',
+						width: { xs: 300, sm: 400 },
+						bgcolor: 'background.paper',
+						border: '2px solid #000',
+						boxShadow: 24,
+						borderRadius: 2,
+						p: 4,
+					}}
+				>
+					<Typography id="share-modal-title" variant="h6" component="h2" sx={{ mb: 2, color: '#007BFF' }}>
+						Share Job
+					</Typography>
+					<Typography id="share-modal-description" sx={{ mb: 2, color: '#4A5568' }}>
+						Choose an option to share this job:
+					</Typography>
+					<Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+						{shareOptions.map((option, index) => (
+							<Button
+								key={index}
+								startIcon={option.icon}
+								onClick={() => {
+									if (option.onClick) option.onClick();
+									else window.open(option.link, "_blank");
+									handleCloseShareModal();
+								}}
+								sx={{
+									justifyContent: 'flex-start',
+									color: '#FFFFFF',
+									backgroundColor: '#007BFF',
+									borderColor: '#007BFF',
+									'&:hover': {
+										backgroundColor: '#0056b3',
+										borderColor: '#0056b3',
+									},
+								}}
+								variant="contained"
+							>
+								{option.label}
+							</Button>
+						))}
+					</Box>
+				</Box>
+			</Modal>
 			<Modal
 				open={isModalOpen}
 				onClose={handleCloseModal}

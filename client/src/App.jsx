@@ -16,6 +16,7 @@ import ContactUs from './pages/ContactUs';
 import JobsPosting from './pages/JobsPosting';
 import Loading from './pages/Loading';
 import NotFound from './pages/NotFound';
+import JobDetails from './pages/JobDetails';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +51,8 @@ function App() {
             <Route path="/alumni/job-postings" element={<JobsPosting />} />
             <Route path="/alumni/contact" element={<ContactUs />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/job/:title" element={<JobDetails />} />
+            <Route path="/alumni/job-postings/:id" element={<JobDetails />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
