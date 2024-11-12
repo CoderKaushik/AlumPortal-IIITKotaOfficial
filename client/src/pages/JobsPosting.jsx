@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import { Button, TextField, InputAdornment, Menu, MenuItem, IconButton, Modal, Box, Card, CardContent, Typography } from "@mui/material";
 import { Search as SearchIcon, MoreVert as MoreVertIcon, Share as ShareIcon, Email as EmailIcon, WhatsApp as WhatsAppIcon, Twitter as TwitterIcon, Telegram as TelegramIcon, Link as LinkIcon } from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Footer from "../components/Footer";
+import axios from "axios";
 
 const JobsPosting = () => {
 	const [searchPlaceholder, setSearchPlaceholder] = useState("Search jobs by Title, Company, Skills...");
@@ -12,7 +13,33 @@ const JobsPosting = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [shareModalOpen, setShareModalOpen] = useState(false);
 	const [shareJob, setShareJob] = useState(null);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [user, setUser] = useState(null);
 	const navigate = useNavigate();
+
+	const token = localStorage.getItem("token");
+
+	useEffect(() => {
+		if (token) {
+			setIsLoggedIn(true);
+			const fetchUser = async () => {
+				try {
+					const response = await axios.get(
+						"https://alumportal-iiitkotaofficial.onrender.com/api/profile/me",
+						{
+							headers: { Authorization: `Bearer ${token}` },
+						}
+					);
+					setUser(response.data);
+				} catch (error) {
+					console.error(error.message);
+				}
+			};
+			fetchUser();
+		} else {
+			setIsLoggedIn(false);
+		}
+	}, [token]);
 
 	const handleJobClick = () => {
 		setSearchPlaceholder("Search jobs by Title, Company, Skills...");
@@ -418,68 +445,78 @@ const JobsPosting = () => {
 						top: '50%',
 						left: '50%',
 						transform: 'translate(-50%, -50%)',
-						width: { xs: 350, sm: 400, md: 500, lg: 600 }, // Adjust width for mobile screen sizes
+						width: { xs: 300, sm: 400, md: 500, lg: 600 }, // Adjust width for mobile screen sizes
+						height: { xs: 500, sm: 500, md: 600, lg: 700 }, // Adjust height for mobile screen sizes
 						bgcolor: 'background.paper',
 						border: '2px solid #000',
 						boxShadow: 24,
                         borderRadius: 2,
 						p: 4,
+						overflowY: 'scroll',
 					}}
 				>
-					<h1 id="modal-title" className="text-xl">Post a Job</h1>
-					<p id="modal-description">Fill in the details to post a job.</p>
-					<form>
-						<TextField
-							fullWidth
-							margin="normal"
-							label="Company Name"
-							variant="outlined"
-						/>
-						<TextField
-							fullWidth
-							margin="normal"
-							label="Location"
-							variant="outlined"
-						/>
-						<TextField
-							fullWidth
-							margin="normal"
-							label="Position Name"
-							variant="outlined"
-						/>
-						<TextField
-							fullWidth
-							margin="normal"
-							label="Position Type (Full Time, Part Time, Intern, etc.)"
-							variant="outlined"
-						/>
-						<TextField
-							fullWidth
-							margin="normal"
-							label="Skills Required"
-							variant="outlined"
-						/>
-						<TextField
-							fullWidth
-							margin="normal"
-							label="Experience Required"
-							variant="outlined"
-						/>
-						<TextField
-							fullWidth
-							margin="normal"
-							label="Deadline"
-							variant="outlined"
-							type="date"
-							InputLabelProps={{
-								shrink: true,
-							}}
-						/>
-						<Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-							<Button onClick={handleCloseModal} sx={{ mr: 2 }}>Cancel</Button>
-							<Button variant="contained" color="primary">Submit</Button>
-						</Box>
-					</form>
+					{isLoggedIn ? (
+						<>
+							<h1 id="modal-title" className="text-xl">Post a Job</h1>
+							<p id="modal-description">Fill in the details to post a job.</p>
+							<form>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Company Name"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Location"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Position Name"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Position Type (Full Time, Part Time, Intern, etc.)"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Skills Required"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Experience Required"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Deadline"
+									variant="outlined"
+									type="date"
+									InputLabelProps={{
+										shrink: true,
+									}}
+								/>
+								<Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+									<Button onClick={handleCloseModal} sx={{ mr: 2 }}>Cancel</Button>
+									<Button variant="contained" color="primary">Submit</Button>
+								</Box>
+							</form>
+						</>
+					) : (
+						<Typography variant="h6" sx={{ textAlign: 'center' }}>
+							Please log in to post a job/internship.
+						</Typography>
+					)}
 				</Box>
 			</Modal>
 		</div>
