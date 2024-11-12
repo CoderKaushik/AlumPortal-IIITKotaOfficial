@@ -273,7 +273,7 @@ const JobsPosting = () => {
 							<MenuItem onClick={handlePostJobsClick}>Post Jobs</MenuItem>
 						</Menu>
 					</div>
-					<div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center mb-4">
+					<div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center mb-4 hover:cursor-pointer">
 						{jobCards.map((job, index) => (
 								<Card
 									key={index}
