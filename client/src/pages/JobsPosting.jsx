@@ -513,7 +513,7 @@ const JobsPosting = () => {
 							</form>
 						</>
 					) : (
-						<Box sx={{ textAlign: 'center' }}>
+						<Box sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 3, justifyContent: 'center', alignItems: 'center' }}>
 							<Typography variant="h6" sx={{ mb: 2 }}>
 								Please log in to post a job/internship.
 							</Typography>
