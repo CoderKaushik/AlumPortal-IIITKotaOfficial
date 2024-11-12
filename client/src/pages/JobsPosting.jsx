@@ -1,14 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
-import { Button, TextField, InputAdornment, Menu, MenuItem, IconButton, Modal, Box, Card, CardContent, Typography } from "@mui/material";
-import { Search as SearchIcon, MoreVert as MoreVertIcon, Share as ShareIcon, Email as EmailIcon, WhatsApp as WhatsAppIcon, Twitter as TwitterIcon, Telegram as TelegramIcon, Link as LinkIcon } from "@mui/icons-material";
+import {
+	Button,
+	TextField,
+	InputAdornment,
+	Menu,
+	MenuItem,
+	IconButton,
+	Modal,
+	Box,
+	Card,
+	CardContent,
+	Typography,
+} from "@mui/material";
+import {
+	Search as SearchIcon,
+	MoreVert as MoreVertIcon,
+	Share as ShareIcon,
+	Email as EmailIcon,
+	WhatsApp as WhatsAppIcon,
+	Twitter as TwitterIcon,
+	Telegram as TelegramIcon,
+	Link as LinkIcon,
+} from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Footer from "../components/Footer";
 import axios from "axios";
 
 const JobsPosting = () => {
-	const [searchPlaceholder, setSearchPlaceholder] = useState("Search jobs by Title, Company, Skills...");
+	const [searchPlaceholder, setSearchPlaceholder] = useState(
+		"Search jobs by Title, Company, Skills..."
+	);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [shareModalOpen, setShareModalOpen] = useState(false);
@@ -84,11 +107,35 @@ const JobsPosting = () => {
 	};
 
 	const shareOptions = [
-		{ icon: <EmailIcon />, label: "Email", link: `mailto:?subject=Check out this job&body=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}` },
-		{ icon: <WhatsAppIcon />, label: "WhatsApp", link: `https://wa.me/?text=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}` },
-		{ icon: <TwitterIcon />, label: "Twitter", link: `https://twitter.com/intent/tweet?text=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}` },
-		{ icon: <TelegramIcon />, label: "Telegram", link: `https://t.me/share/url?url=${window.location.origin}/alumni/job-postings/${shareJob?.id}&text=Check out this job` },
-		{ icon: <LinkIcon />, label: "Copy Link", link: `#`, onClick: () => navigator.clipboard.writeText(`${window.location.origin}/alumni/job-postings/${shareJob?.id}`) },
+		{
+			icon: <EmailIcon />,
+			label: "Email",
+			link: `mailto:?subject=Check out this job&body=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}`,
+		},
+		{
+			icon: <WhatsAppIcon />,
+			label: "WhatsApp",
+			link: `https://wa.me/?text=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}`,
+		},
+		{
+			icon: <TwitterIcon />,
+			label: "Twitter",
+			link: `https://twitter.com/intent/tweet?text=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}`,
+		},
+		{
+			icon: <TelegramIcon />,
+			label: "Telegram",
+			link: `https://t.me/share/url?url=${window.location.origin}/alumni/job-postings/${shareJob?.id}&text=Check out this job`,
+		},
+		{
+			icon: <LinkIcon />,
+			label: "Copy Link",
+			link: `#`,
+			onClick: () =>
+				navigator.clipboard.writeText(
+					`${window.location.origin}/alumni/job-postings/${shareJob?.id}`
+				),
+		},
 	];
 
 	const jobCards = [
@@ -98,7 +145,8 @@ const JobsPosting = () => {
 			company: "Tech Corp",
 			location: "San Francisco, CA",
 			description: "Develop and maintain web applications.",
-			about: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel?",
+			about:
+				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel?",
 			skills: "JavaScript, React, Node.js",
 			experience: "2+ years",
 			deadline: "2023-12-31",
@@ -302,83 +350,87 @@ const JobsPosting = () => {
 					</div>
 					<div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center mb-4 hover:cursor-pointer">
 						{jobCards.map((job, index) => (
-								<Card
-									key={index}
-									onClick={() => handleJobCardClick(job)}
+							<Card
+								key={index}
+								onClick={() => handleJobCardClick(job)}
+								sx={{
+									width: { lg: 400, md: 300, sm: 300, xs: 325 },
+									boxShadow: 3,
+									borderRadius: 2,
+									transition: "transform 0.3s, box-shadow 0.3s",
+									"&:hover": {
+										transform: "translateY(-5px)",
+										boxShadow: 6,
+									},
+									position: "relative",
+								}}
+							>
+								<IconButton
 									sx={{
-										width: { lg: 400, md: 300, sm: 300, xs: 325 },
-										boxShadow: 3,
-										borderRadius: 2,
-										transition: "transform 0.3s, box-shadow 0.3s",
+										position: "absolute",
+										top: 8,
+										right: 8,
+										transition: "color 0.3s",
 										"&:hover": {
-											transform: "translateY(-5px)",
-											boxShadow: 6,
-											},
-										position: "relative",
+											color: "#007BFF", // Professional-looking blue color
+										},
 									}}
+									aria-label="share"
+									onClick={(event) => handleShareClick(event, job)}
 								>
-									<IconButton
-										sx={{
-											position: "absolute",
-											top: 8,
-											right: 8,
-											transition: "color 0.3s",
-											"&:hover": {
-												color: "#007BFF", // Professional-looking blue color
-											},
-										}}
-										aria-label="share"
-										onClick={(event) => handleShareClick(event, job)}
+									<ShareIcon />
+								</IconButton>
+								<CardContent>
+									<Typography
+										variant="h5"
+										component="div"
+										sx={{ fontWeight: "bold" }}
 									>
-										<ShareIcon />
-									</IconButton>
-									<CardContent>
-										<Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
-											{job.title}
-										</Typography>
-										<Typography sx={{ mb: 1.5 }} color="text.secondary">
-											{job.company} - {job.location}
-										</Typography>
-										<Typography variant="body2" sx={{ mb: 1.5 }}>
-											{job.description}
-										</Typography>
-										<Typography variant="body2" sx={{ mb: 1.5 }}>
-											<strong>Skills Required:</strong> {job.skills}
-										</Typography>
-										<Typography variant="body2" sx={{ mb: 1.5 }}>
-											<strong>Experience Required:</strong> {job.experience}
-										</Typography>
-										<Typography variant="body2" sx={{ mb: 1.5 }}>
-											<strong>Deadline:</strong> {job.deadline}
-										</Typography>
-										<Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-											<img src={job.postedBy.picture} alt={job.postedBy.name} className="w-10 h-10 rounded-full object-cover mr-2" />
-											<Box>
-												<Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-													{job.postedBy.name}
-												</Typography>
-												<Typography variant="body2" color="text.secondary">
-													Batch of {job.postedBy.batch}
-												</Typography>
-												<Typography variant="body2" color="text.secondary">
-													{job.postedBy.currentPosition}
-												</Typography>
-											</Box>
+										{job.title}
+									</Typography>
+									<Typography sx={{ mb: 1.5 }} color="text.secondary">
+										{job.company} - {job.location}
+									</Typography>
+									<Typography variant="body2" sx={{ mb: 1.5 }}>
+										{job.description}
+									</Typography>
+									<Typography variant="body2" sx={{ mb: 1.5 }}>
+										<strong>Skills Required:</strong> {job.skills}
+									</Typography>
+									<Typography variant="body2" sx={{ mb: 1.5 }}>
+										<strong>Experience Required:</strong> {job.experience}
+									</Typography>
+									<Typography variant="body2" sx={{ mb: 1.5 }}>
+										<strong>Deadline:</strong> {job.deadline}
+									</Typography>
+									<Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+										<img
+											src={job.postedBy.picture}
+											alt={job.postedBy.name}
+											className="w-10 h-10 rounded-full object-cover mr-2"
+										/>
+										<Box>
+											<Typography variant="body2" sx={{ fontWeight: "bold" }}>
+												{job.postedBy.name}
+											</Typography>
+											<Typography variant="body2" color="text.secondary">
+												Batch of {job.postedBy.batch}
+											</Typography>
+											<Typography variant="body2" color="text.secondary">
+												{job.postedBy.currentPosition}
+											</Typography>
 										</Box>
-										<Button
-											variant="contained"
-											color="primary"
-											sx={{ mt: 2 }}
-										>
-											Apply
-										</Button>
-									</CardContent>
-								</Card>
-							))}
+									</Box>
+									<Button variant="contained" color="primary" sx={{ mt: 2 }}>
+										Apply
+									</Button>
+								</CardContent>
+							</Card>
+						))}
 					</div>
 				</div>
 			</div>
-            <Footer />
+			<Footer />
 			<Modal
 				open={shareModalOpen}
 				onClose={handleCloseShareModal}
@@ -387,25 +439,33 @@ const JobsPosting = () => {
 			>
 				<Box
 					sx={{
-						position: 'absolute',
-						top: '50%',
-						left: '50%',
-						transform: 'translate(-50%, -50%)',
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
 						width: { xs: 300, sm: 400 },
-						bgcolor: 'background.paper',
-						border: '2px solid #000',
+						bgcolor: "background.paper",
+						border: "2px solid #000",
 						boxShadow: 24,
 						borderRadius: 2,
 						p: 4,
 					}}
 				>
-					<Typography id="share-modal-title" variant="h6" component="h2" sx={{ mb: 2, color: '#007BFF' }}>
+					<Typography
+						id="share-modal-title"
+						variant="h6"
+						component="h2"
+						sx={{ mb: 2, color: "#007BFF" }}
+					>
 						Share Job
 					</Typography>
-					<Typography id="share-modal-description" sx={{ mb: 2, color: '#4A5568' }}>
+					<Typography
+						id="share-modal-description"
+						sx={{ mb: 2, color: "#4A5568" }}
+					>
 						Choose an option to share this job:
 					</Typography>
-					<Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+					<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 						{shareOptions.map((option, index) => (
 							<Button
 								key={index}
@@ -416,13 +476,13 @@ const JobsPosting = () => {
 									handleCloseShareModal();
 								}}
 								sx={{
-									justifyContent: 'flex-start',
-									color: '#FFFFFF',
-									backgroundColor: '#007BFF',
-									borderColor: '#007BFF',
-									'&:hover': {
-										backgroundColor: '#0056b3',
-										borderColor: '#0056b3',
+									justifyContent: "flex-start",
+									color: "#FFFFFF",
+									backgroundColor: "#007BFF",
+									borderColor: "#007BFF",
+									"&:hover": {
+										backgroundColor: "#0056b3",
+										borderColor: "#0056b3",
 									},
 								}}
 								variant="contained"
@@ -441,23 +501,30 @@ const JobsPosting = () => {
 			>
 				<Box
 					sx={{
-						position: 'absolute',
-						top: '50%',
-						left: '50%',
-						transform: 'translate(-50%, -50%)',
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
 						width: { xs: 300, sm: 400, md: 500, lg: 600 }, // Adjust width for mobile screen sizes
 						height: { xs: 500, sm: 500, md: 600, lg: 700 }, // Adjust height for mobile screen sizes
-						bgcolor: 'background.paper',
-						border: '2px solid #000',
+						bgcolor: "background.paper",
+						border: "2px solid #000",
 						boxShadow: 24,
-                        borderRadius: 2,
+						borderRadius: 2,
 						p: 4,
-						overflowY: 'scroll',
+						overflowY: "scroll",
+						display: "flex",
+						flexDirection: "column",
+						gap: 3,
+						justifyContent: "center",
+						alignItems: "center",
 					}}
 				>
 					{isLoggedIn ? (
 						<>
-							<h1 id="modal-title" className="text-xl">Post a Job</h1>
+							<h1 id="modal-title" className="text-3xl mt-10 font-bold">
+								Post a Job
+							</h1>
 							<p id="modal-description">Fill in the details to post a job.</p>
 							<form>
 								<TextField
@@ -506,18 +573,37 @@ const JobsPosting = () => {
 										shrink: true,
 									}}
 								/>
-								<Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-									<Button onClick={handleCloseModal} sx={{ mr: 2 }}>Cancel</Button>
-									<Button variant="contained" color="primary">Submit</Button>
+								<Box
+									sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}
+								>
+									<Button onClick={handleCloseModal} sx={{ mr: 2 }}>
+										Cancel
+									</Button>
+									<Button variant="contained" color="primary">
+										Submit
+									</Button>
 								</Box>
 							</form>
 						</>
 					) : (
-						<Box sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 3, justifyContent: 'center', alignItems: 'center' }}>
+						<Box
+							sx={{
+								textAlign: "center",
+								display: "flex",
+								flexDirection: "column",
+								gap: 3,
+								justifyContent: "center",
+								alignItems: "center",
+							}}
+						>
 							<Typography variant="h6" sx={{ mb: 2 }}>
 								Please log in to post a job/internship.
 							</Typography>
-							<Button variant="contained" color="primary" onClick={() => navigate('/signin')}>
+							<Button
+								variant="contained"
+								color="primary"
+								onClick={() => navigate("/signin")}
+							>
 								Sign In
 							</Button>
 						</Box>
