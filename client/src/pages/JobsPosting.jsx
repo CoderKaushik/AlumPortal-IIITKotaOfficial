@@ -513,9 +513,14 @@ const JobsPosting = () => {
 							</form>
 						</>
 					) : (
-						<Typography variant="h6" sx={{ textAlign: 'center' }}>
-							Please log in to post a job/internship.
-						</Typography>
+						<Box sx={{ textAlign: 'center' }}>
+							<Typography variant="h6" sx={{ mb: 2 }}>
+								Please log in to post a job/internship.
+							</Typography>
+							<Button variant="contained" color="primary" onClick={() => navigate('/signin')}>
+								Sign In
+							</Button>
+						</Box>
 					)}
 				</Box>
 			</Modal>
