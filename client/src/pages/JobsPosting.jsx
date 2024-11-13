@@ -654,6 +654,7 @@ const JobsPosting = () => {
 						boxShadow: 24,
 						borderRadius: 2,
 						p: 4,
+						marginTop: { xs: "3rem", sm: 0 }, // Adjust margin for mobile screen sizes
 						overflowY: "auto", // Enable scrolling if content overflows
 						display: "flex",
 						flexDirection: "column",
