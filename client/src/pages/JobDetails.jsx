@@ -169,10 +169,46 @@ const jobCards = [
     // Add more job cards as needed
 ];
 
+const internCards = [
+	{
+		id: "1a2b3c4d5e6f7g8h9i0j",
+		title: "Software Engineering Intern",
+		company: "Tech Corp",
+		location: "San Francisco, CA",
+		description: "Assist in developing and maintaining web applications.",
+		skills: "JavaScript, React, Node.js",
+		experience: "0-1 years",
+		deadline: "2023-12-31",
+		postedBy: {
+			name: "John Doe",
+			picture: "https://via.placeholder.com/40",
+			batch: "2015",
+			currentPosition: "Senior Software Engineer at Tech Corp",
+		},
+	},
+	{
+		id: "2b3c4d5e6f7g8h9i0j1a",
+		title: "Data Science Intern",
+		company: "Data Inc.",
+		location: "New York, NY",
+		description: "Assist in analyzing and interpreting complex data sets.",
+		skills: "Python, R, SQL",
+		experience: "0-1 years",
+		deadline: "2023-11-30",
+		postedBy: {
+			name: "Jane Smith",
+			picture: "https://via.placeholder.com/40",
+			batch: "2016",
+			currentPosition: "Lead Data Scientist at Data Inc.",
+		},
+	},
+	// Add more intern cards as needed
+];
+
 const JobDetails = () => {
 	const location = useLocation();
 	const { id } = useParams();
-	const job = location.state?.job || jobCards.find(job => job.id === id);
+	const job = location.state?.job || jobCards.find(job => job.id === id) || internCards.find(intern => intern.id === id);
 
 	if (!job) {
 		return <Typography variant="h6">Job not found</Typography>;
@@ -193,9 +229,11 @@ const JobDetails = () => {
 					<Typography variant="body1" sx={{ mb: 2 }}>
 						{job.description}
 					</Typography>
-					<Typography variant="body1" sx={{ mb: 2 }}>
-						{job.about}
-					</Typography>
+					{job.about && (
+						<Typography variant="body1" sx={{ mb: 2 }}>
+							{job.about}
+						</Typography>
+					)}
 					<Typography variant="body1" sx={{ mb: 2 }}>
 						<strong>Skills Required:</strong> {job.skills}
 					</Typography>

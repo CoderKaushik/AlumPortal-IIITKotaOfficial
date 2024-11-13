@@ -27,6 +27,8 @@ import {
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Footer from "../components/Footer";
 import axios from "axios";
+import emailjs from "@emailjs/browser";
+import { toast, Toaster } from "react-hot-toast"; 
 
 const JobsPosting = () => {
 	const [searchPlaceholder, setSearchPlaceholder] = useState(
@@ -44,6 +46,7 @@ const JobsPosting = () => {
 	const [visibleRows, setVisibleRows] = useState({});
 	const rowRefs = useRef([]);
 	const navigate = useNavigate();
+	const [isJobView, setIsJobView] = useState(true); // New state to toggle between jobs and interns
 
 	const token = localStorage.getItem("token");
 
@@ -70,9 +73,9 @@ const JobsPosting = () => {
 	}, [token]);
 
 	useEffect(() => {
-		setFilteredJobs(jobCards);
-		setInitialJobs(jobCards);
-	}, []);
+		setFilteredJobs(isJobView ? jobCards : internCards);
+		setInitialJobs(isJobView ? jobCards : internCards);
+	}, [isJobView]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -93,11 +96,13 @@ const JobsPosting = () => {
 
 	const handleJobClick = () => {
 		setSearchPlaceholder("Search jobs by Title, Company, Skills...");
+		setIsJobView(true);
 		setAnchorEl(null);
 	};
 
 	const handleInternClick = () => {
 		setSearchPlaceholder("Search interns by Title, Company, Skills...");
+		setIsJobView(false);
 		setAnchorEl(null);
 	};
 
@@ -354,6 +359,79 @@ const JobsPosting = () => {
 		// Add more job cards as needed
 	];
 
+	const internCards = [
+		{
+			id: "1a2b3c4d5e6f7g8h9i0j",
+			title: "Software Engineering Intern",
+			company: "Tech Corp",
+			location: "San Francisco, CA",
+			description: "Assist in developing and maintaining web applications.",
+			skills: "JavaScript, React, Node.js",
+			experience: "0-1 years",
+			deadline: "2023-12-31",
+			postedBy: {
+				name: "John Doe",
+				picture: "https://via.placeholder.com/40",
+				batch: "2015",
+				currentPosition: "Senior Software Engineer at Tech Corp",
+			},
+		},
+		{
+			id: "2b3c4d5e6f7g8h9i0j1a",
+			title: "Data Science Intern",
+			company: "Data Inc.",
+			location: "New York, NY",
+			description: "Assist in analyzing and interpreting complex data sets.",
+			skills: "Python, R, SQL",
+			experience: "0-1 years",
+			deadline: "2023-11-30",
+			postedBy: {
+				name: "Jane Smith",
+				picture: "https://via.placeholder.com/40",
+				batch: "2016",
+				currentPosition: "Lead Data Scientist at Data Inc.",
+			},
+		},
+		// Add more intern cards as needed
+	];
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const formData = new FormData(event.target);
+		const jobData = {
+			companyName: formData.get('companyName'),
+			location: formData.get('location'),
+			positionName: formData.get('positionName'),
+			positionType: formData.get('positionType'),
+			skillsRequired: formData.get('skillsRequired'),
+			experienceRequired: formData.get('experienceRequired'),
+			about: formData.get('about'),
+			deadline: formData.get('deadline'),
+			applicationLink: formData.get('applicationLink'),
+			postedBy: {
+				name: user.name,
+				graduationYear: user.graduationYear,
+				currentCompany: user.currentCompany,
+				branch: user.branch,
+			},
+		};
+
+		emailjs.send('service_wey3wx7', 'template_wzlmwv8', jobData, 'DXrpGBTFte2R1jdAq')
+			.then((response) => {
+				() => {
+					toast.success("Message Delivered!"); // Success toast
+					form.current.reset(); 
+				},
+				(error) => {
+					console.log("FAILED...", error.text);
+					toast.error("Email sending failed!"); // Error toast
+				}
+				handleCloseModal();
+			}, (error) => {
+				console.log('FAILED...', error);
+			});
+	};
+
 	return (
 		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gradient-to-br from-gray-100 to-blue-50">
 			<Navbar />
@@ -367,7 +445,7 @@ const JobsPosting = () => {
 							value={searchInput}
 							onChange={handleSearchInputChange}
 							onKeyPress={handleSearchKeyPress}
-							sx={{ flexGrow: 1, mx: 2 }}
+							sx={{ flexGrow: 1, mx: 1 }}
 							InputProps={{
 								startAdornment: (
 									<InputAdornment position="start">
@@ -387,7 +465,7 @@ const JobsPosting = () => {
 							onClick={clearSearch}
 							variant="contained"
 							color="primary"
-							sx={{ ml: 2, backgroundColor: searchInput || filteredJobs.length !== initialJobs.length ? "#38B2AC" : "#CBD5E0" }}
+							sx={{ ml: 1, backgroundColor: searchInput || filteredJobs.length !== initialJobs.length ? "#38B2AC" : "#CBD5E0" }}
 							disabled={filteredJobs.length === initialJobs.length}
 						>
 							Clear
@@ -589,58 +667,81 @@ const JobsPosting = () => {
 						alignItems: "center",
 					}}
 				>
-					{isLoggedIn ? (
+					{/* {isLoggedIn ? (
 						<>
 							<h1 id="modal-title" className="text-3xl mt-10 font-bold">
 								Post a Job
 							</h1>
 							<p id="modal-description">Fill in the details to post a job.</p>
-							<form>
+								<form onSubmit={handleSubmit}>
 								<TextField
 									fullWidth
 									margin="normal"
 									label="Company Name"
+									name="companyName"
 									variant="outlined"
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
 									label="Location"
+									name="location"
 									variant="outlined"
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
 									label="Position Name"
+									name="positionName"
 									variant="outlined"
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
 									label="Position Type (Full Time, Part Time, Intern, etc.)"
+									name="positionType"
 									variant="outlined"
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
 									label="Skills Required"
+									name="skillsRequired"
 									variant="outlined"
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
 									label="Experience Required"
+									name="experienceRequired"
 									variant="outlined"
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
+									label="About the Job"
+									name="about"
+									variant="outlined"
+									multiline
+									rows={4}
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
 									label="Deadline"
+									name="deadline"
 									variant="outlined"
 									type="date"
 									InputLabelProps={{
 										shrink: true,
 									}}
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Link of Application"
+									name="applicationLink"
+									variant="outlined"
 								/>
 								<Box
 									sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}
@@ -648,7 +749,7 @@ const JobsPosting = () => {
 									<Button onClick={handleCloseModal} sx={{ mr: 2 }}>
 										Cancel
 									</Button>
-									<Button variant="contained" color="primary">
+									<Button type="submit" variant="contained" color="primary">
 										Submit
 									</Button>
 								</Box>
@@ -676,7 +777,94 @@ const JobsPosting = () => {
 								Sign In
 							</Button>
 						</Box>
-					)}
+					)} */}
+					<>
+							<h1 id="modal-title" className="text-3xl mt-10 font-bold">
+								Post a Job
+							</h1>
+							<p id="modal-description">Fill in the details to post a job.</p>
+								<form onSubmit={handleSubmit}>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Company Name"
+									name="companyName"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Location"
+									name="location"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Position Name"
+									name="positionName"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Position Type (Full Time, Part Time, Intern, etc.)"
+									name="positionType"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Skills Required"
+									name="skillsRequired"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Experience Required"
+									name="experienceRequired"
+									variant="outlined"
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="About the Job"
+									name="about"
+									variant="outlined"
+									multiline
+									rows={4}
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Deadline"
+									name="deadline"
+									variant="outlined"
+									type="date"
+									InputLabelProps={{
+										shrink: true,
+									}}
+								/>
+								<TextField
+									fullWidth
+									margin="normal"
+									label="Link of Application"
+									name="applicationLink"
+									variant="outlined"
+								/>
+								<Box
+									sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}
+								>
+									<Button onClick={handleCloseModal} sx={{ mr: 2 }}>
+										Cancel
+									</Button>
+									<Button type="submit" variant="contained" color="primary">
+										Submit
+									</Button>
+								</Box>
+							</form>
+						</>
 				</Box>
 			</Modal>
 		</div>
