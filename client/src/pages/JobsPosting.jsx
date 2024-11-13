@@ -419,8 +419,7 @@ const JobsPosting = () => {
 		emailjs.send('service_wey3wx7', 'template_wzlmwv8', jobData, 'DXrpGBTFte2R1jdAq')
 			.then((response) => {
 				toast.success("Your job application has been sent to Alumni Cell!"); // Success toast
-				form.current.reset(); 
-				handleCloseModal();
+				handleCloseModal(); // Close the modal
 			}, (error) => {
 				console.log("FAILED...", error.text);
 				toast.error("Email sending failed!"); // Error toast
