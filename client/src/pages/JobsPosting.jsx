@@ -648,13 +648,15 @@ const JobsPosting = () => {
 						left: "50%",
 						transform: "translate(-50%, -50%)",
 						width: { xs: "90%", sm: "80%", md: "70%", lg: "60%" }, // Adjust width for mobile screen sizes
-						maxHeight: "100vh", // Ensure the modal doesn't exceed the viewport height
+						maxHeight: "95vh", // Ensure the modal doesn't exceed the viewport height
 						bgcolor: "background.paper",
 						border: "2px solid #000",
 						boxShadow: 24,
 						borderRadius: 2,
 						p: 4,
-						marginTop: { xs: "3rem", sm: 0 }, // Adjust margin for mobile screen sizes
+						paddingTop: { xs: "8rem", sm: 
+							"5rem", md: "0rem", lg: "0rem"
+						 }, // Adjust margin for mobile screen sizes
 						overflowY: "auto", // Enable scrolling if content overflows
 						display: "flex",
 						flexDirection: "column",
