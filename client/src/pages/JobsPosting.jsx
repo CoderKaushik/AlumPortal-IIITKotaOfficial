@@ -647,14 +647,14 @@ const JobsPosting = () => {
 						top: "50%",
 						left: "50%",
 						transform: "translate(-50%, -50%)",
-						width: { xs: 300, sm: 400, md: 500, lg: 600 }, // Adjust width for mobile screen sizes
-						height: { xs: 500, sm: 500, md: 600, lg: 700 }, // Adjust height for mobile screen sizes
+						width: { xs: "90%", sm: "80%", md: "70%", lg: "60%" }, // Adjust width for mobile screen sizes
+						maxHeight: "90vh", // Ensure the modal doesn't exceed the viewport height
 						bgcolor: "background.paper",
 						border: "2px solid #000",
 						boxShadow: 24,
 						borderRadius: 2,
 						p: 4,
-						overflowY: "scroll",
+						overflowY: "auto", // Enable scrolling if content overflows
 						display: "flex",
 						flexDirection: "column",
 						gap: 3,
@@ -672,53 +672,60 @@ const JobsPosting = () => {
 								<TextField
 									fullWidth
 									margin="normal"
-									label="Company Name"
+									label="Company Name *"
 									name="companyName"
 									variant="outlined"
+									required
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
-									label="Location"
+									label="Location *"
 									name="location"
 									variant="outlined"
+									required
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
-									label="Position Name"
+									label="Position Name *"
 									name="positionName"
 									variant="outlined"
+									required
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
-									label="Position Type (Full Time, Part Time, Intern, etc.)"
+									label="Position Type (Full Time, Intern, etc.) *"
 									name="positionType"
 									variant="outlined"
+									required
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
-									label="Skills Required"
+									label="Skills Required *"
 									name="skillsRequired"
 									variant="outlined"
+									required
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
-									label="Experience Required"
+									label="Experience Required *"
 									name="experienceRequired"
 									variant="outlined"
+									required
 								/>
 								<TextField
 									fullWidth
 									margin="normal"
-									label="About the Job"
+									label="About the Job *"
 									name="about"
 									variant="outlined"
 									multiline
 									rows={4}
+									required
 								/>
 								<TextField
 									fullWidth
@@ -734,9 +741,10 @@ const JobsPosting = () => {
 								<TextField
 									fullWidth
 									margin="normal"
-									label="Link of Application"
+									label="Link of Application *"
 									name="applicationLink"
 									variant="outlined"
+									required
 								/>
 								<Box
 									sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}
