@@ -418,17 +418,12 @@ const JobsPosting = () => {
 
 		emailjs.send('service_wey3wx7', 'template_wzlmwv8', jobData, 'DXrpGBTFte2R1jdAq')
 			.then((response) => {
-				() => {
-					toast.success("Message Delivered!"); // Success toast
-					form.current.reset(); 
-				},
-				(error) => {
-					console.log("FAILED...", error.text);
-					toast.error("Email sending failed!"); // Error toast
-				}
+				toast.success("Your job application has been sent to Alumni Cell!"); // Success toast
+				form.current.reset(); 
 				handleCloseModal();
 			}, (error) => {
-				console.log('FAILED...', error);
+				console.log("FAILED...", error.text);
+				toast.error("Email sending failed!"); // Error toast
 			});
 	};
 
