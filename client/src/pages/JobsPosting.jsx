@@ -654,9 +654,6 @@ const JobsPosting = () => {
 						boxShadow: 24,
 						borderRadius: 2,
 						p: 4,
-						paddingTop: { xs: "8rem", sm: 
-							"5rem", md: "0rem", lg: "0rem"
-						 }, // Adjust margin for mobile screen sizes
 						overflowY: "auto", // Enable scrolling if content overflows
 						display: "flex",
 						flexDirection: "column",
@@ -667,9 +664,9 @@ const JobsPosting = () => {
 				>
 					{isLoggedIn ? (
 						<>
-							<h1 id="modal-title" className="text-3xl mt-10 font-bold">
+							<Typography variant="h4" component="h1" sx={{ mt: 2, mb: 2 }}>
 								Post a Job
-							</h1>
+							</Typography>
 							<p id="modal-description">Fill in the details to post a job.</p>
 								<form onSubmit={handleSubmit}>
 								<TextField
@@ -740,6 +737,7 @@ const JobsPosting = () => {
 									InputLabelProps={{
 										shrink: true,
 									}}
+									required
 								/>
 								<TextField
 									fullWidth
