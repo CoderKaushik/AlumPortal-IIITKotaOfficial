@@ -664,9 +664,9 @@ const JobsPosting = () => {
 				>
 					{isLoggedIn ? (
 						<>
-							<Typography variant="h4" component="h1" sx={{ mt: 2, mb: 2 }}>
+							<h1 id="modal-title" className="text-3xl mt-10 font-bold">
 								Post a Job
-							</Typography>
+							</h1>
 							<p id="modal-description">Fill in the details to post a job.</p>
 								<form onSubmit={handleSubmit}>
 								<TextField
