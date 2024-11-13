@@ -675,6 +675,7 @@ const JobsPosting = () => {
 									label="Company Name"
 									name="companyName"
 									variant="outlined"
+									sx={{ mt: { xs: 8, sm: 0 } }}
 									required
 								/>
 								<TextField
