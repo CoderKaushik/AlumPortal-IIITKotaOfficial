@@ -667,7 +667,7 @@ const JobsPosting = () => {
 						alignItems: "center",
 					}}
 				>
-					{/* {isLoggedIn ? (
+					{isLoggedIn ? (
 						<>
 							<h1 id="modal-title" className="text-3xl mt-10 font-bold">
 								Post a Job
@@ -777,94 +777,7 @@ const JobsPosting = () => {
 								Sign In
 							</Button>
 						</Box>
-					)} */}
-					<>
-							<h1 id="modal-title" className="text-3xl mt-10 font-bold">
-								Post a Job
-							</h1>
-							<p id="modal-description">Fill in the details to post a job.</p>
-								<form onSubmit={handleSubmit}>
-								<TextField
-									fullWidth
-									margin="normal"
-									label="Company Name"
-									name="companyName"
-									variant="outlined"
-								/>
-								<TextField
-									fullWidth
-									margin="normal"
-									label="Location"
-									name="location"
-									variant="outlined"
-								/>
-								<TextField
-									fullWidth
-									margin="normal"
-									label="Position Name"
-									name="positionName"
-									variant="outlined"
-								/>
-								<TextField
-									fullWidth
-									margin="normal"
-									label="Position Type (Full Time, Part Time, Intern, etc.)"
-									name="positionType"
-									variant="outlined"
-								/>
-								<TextField
-									fullWidth
-									margin="normal"
-									label="Skills Required"
-									name="skillsRequired"
-									variant="outlined"
-								/>
-								<TextField
-									fullWidth
-									margin="normal"
-									label="Experience Required"
-									name="experienceRequired"
-									variant="outlined"
-								/>
-								<TextField
-									fullWidth
-									margin="normal"
-									label="About the Job"
-									name="about"
-									variant="outlined"
-									multiline
-									rows={4}
-								/>
-								<TextField
-									fullWidth
-									margin="normal"
-									label="Deadline"
-									name="deadline"
-									variant="outlined"
-									type="date"
-									InputLabelProps={{
-										shrink: true,
-									}}
-								/>
-								<TextField
-									fullWidth
-									margin="normal"
-									label="Link of Application"
-									name="applicationLink"
-									variant="outlined"
-								/>
-								<Box
-									sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}
-								>
-									<Button onClick={handleCloseModal} sx={{ mr: 2 }}>
-										Cancel
-									</Button>
-									<Button type="submit" variant="contained" color="primary">
-										Submit
-									</Button>
-								</Box>
-							</form>
-						</>
+					)}
 				</Box>
 			</Modal>
 		</div>
