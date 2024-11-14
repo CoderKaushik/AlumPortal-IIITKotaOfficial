@@ -220,7 +220,7 @@ const Navbar = () => {
 				}`}
 			>
 				<div
-					className={`bg-white border-b-8 border-[#0E407C] shadow-2xl w-full h-full transition-opacity duration-300 transform ${
+					className={`bg-white border-b-8 border-[#0E407C] shadow-2xl w-full h-full p-6 transition-opacity duration-300 transform ${
 						isMobileMenuOpen ? "opacity-100" : "opacity-95"
 					}`}
 				>
