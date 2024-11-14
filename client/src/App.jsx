@@ -1,7 +1,6 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Directory from './pages/Directory';
@@ -36,7 +35,7 @@ function App() {
 
   return (
     <Router>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <div className="w-screen h-screen">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -56,7 +55,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </Router>
   );
 }

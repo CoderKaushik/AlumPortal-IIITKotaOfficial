@@ -12,7 +12,6 @@ const carouselHome = () => {
     {
       loop: true,
       slideChanged() {
-        console.log('slide changed');
         resetTimer();
       },
     }
