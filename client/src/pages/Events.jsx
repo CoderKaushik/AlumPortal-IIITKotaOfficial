@@ -8,6 +8,7 @@ import C1 from "../assets/14.webp";
 import C2 from "../assets/15.webp";
 import C3 from "../assets/16.webp";
 import Carousel from "../components/CarouselEvents.jsx"; // Import the Carousel component
+import { useNavigate } from "react-router-dom";
 
 const Events = () => {
     const rowRefs = useRef([]);
@@ -31,7 +32,7 @@ const Events = () => {
     ]; // Array of event headings
 
     const eventDescriptions = [
-        "Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. ",
+        "Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the lateslogy. Netwus for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. ",
         "Meet fellow developers and industry experts at the Annual Developer Summit, featuring hands-on coding sessions, tech talks, and opportunities for skill enhancement.",
         "An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
         "Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
@@ -114,13 +115,20 @@ const Events = () => {
         setFilteredEvents(initialEvents);
     };
 
+    const navigate = useNavigate();
+
+    const handleEventCardClick = (event) => {
+        const eventTitle = event.heading.toLowerCase().replace(/ /g, "-");
+        navigate(`/events/${eventTitle}`, { state: { event } });
+    };
+
     return (
         <div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gradient-to-br from-gray-100 to-blue-50">
             <Navbar />
             <div className="h-auto mt-[8.375rem] max-w-980:mt-[90px] max-w-492:mt-[70px] overflow-scroll scrollbar-hide md:px-8 px-2 pb-6">
                 <div className="w-full h-[4rem] flex justify-center items-center">
-                    <div className="w-full md:h-[5rem] h-[4.5rem] flex justify-between items-center md:px-6 px-2 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg shadow-lg text-white">
-                        <h1 className="text-2xl font-semibold md:block hidden">
+                    <div className="w-full md:h-[5rem] h-[4.5rem] flex justify-between items-center md:px-6 px-2 bg-white rounded-lg shadow-lg text-white">
+                        <h1 className="text-2xl font-semibold md:block hidden text-[#19194D]">
                             Events by Alumni Cell, IIIT Kota
                         </h1>
                         <div className="md:w-1/2 w-full flex items-center">
@@ -194,6 +202,7 @@ const Events = () => {
                             }`}
                             ref={(el) => (rowRefs.current[index] = el)}
                             data-index={index}
+                            onClick={() => handleEventCardClick(event)}
                         >
                             {/* Alternating text and image layout */}
                             <div
@@ -227,7 +236,7 @@ const Events = () => {
                                     </div>
                                 ) : (
                                     <div className="absolute inset-0 bg-black bg-opacity-80 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                        <span className="text-white text-center px-4">Click to view carousel for this event</span>
+                                        <span className="text-white text-center px-4">Tap for details</span>
                                     </div>
                                 )}
                             </div>
