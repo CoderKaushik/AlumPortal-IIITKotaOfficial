@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar.jsx";
-import imagesData from "../path-to-your-json/images.json";
+import imagesData from "../GalleryAssets/GalleryImages.json";
 import Carousel from "../components/Carousel";
 
 // icons
