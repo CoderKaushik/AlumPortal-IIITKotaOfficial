@@ -22,6 +22,10 @@ import {
 	Link,
 	Grid,
 	Paper,
+	Card,
+	CardContent,
+	CardHeader,
+	Divider,
 } from "@mui/material";
 import {
 	Settings as SettingsIcon,
@@ -73,7 +77,6 @@ const Profile = () => {
 				try {
 					const endpoint = id === "me" ? `/profile/me` : `/profile/${id}`;
 					const response = await axios.get(
-						// `http://localhost:5000/api${endpoint}`,
 						`https://alumportal-iiitkotaofficial.onrender.com/api${endpoint}`,
 						{
 							headers: { Authorization: `Bearer ${token}` },
@@ -104,7 +107,6 @@ const Profile = () => {
 		e.preventDefault();
 		try {
 			const response = await axios.put(
-				// "http://localhost:5000/api/profile/me",
 				"https://alumportal-iiitkotaofficial.onrender.com/api/profile/me",
 				user,
 				{ headers: { Authorization: `Bearer ${token}` } }
@@ -134,212 +136,220 @@ const Profile = () => {
 	}
 
 	return (
-		<Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+		<Container maxWidth="lg">
 			<Navbar />
-			<Container maxWidth="lg" sx={{ flex: 1, mt: 4 }}>
-				<Dialog open={isModalOpen} onClose={closeModal}>
-					<DialogTitle>Edit Profile</DialogTitle>
-					<DialogContent>
-						<form onSubmit={handleSubmit}>
-							<TextField
-								margin="dense"
-								label="Name"
-								name="name"
-								value={user.name}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="Branch"
-								name="branch"
-								value={user.branch}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="City"
-								name="city"
-								value={user.city}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="State"
-								name="state"
-								value={user.state}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="Country"
-								name="country"
-								value={user.country}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="Past Companies"
-								name="pastCompanies"
-								value={user.pastCompanies}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="Current Company"
-								name="currentCompany"
-								value={user.currentCompany}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="Email ID"
-								name="personalEmail"
-								value={user.personalEmail}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="Graduation Year"
-								name="graduationYear"
-								value={user.graduationYear}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="LinkedIn"
-								name="linkedin"
-								value={user.linkedin}
-								onChange={handleChange}
-								fullWidth
-							/>
-							<TextField
-								margin="dense"
-								label="Achievements"
-								name="achievements"
-								value={user.achievements}
-								onChange={handleChange}
-								fullWidth
-								multiline
-								rows={4}
-							/>
-						</form>
-					</DialogContent>
-					<DialogActions>
-						<Button onClick={closeModal} color="primary">
-							Cancel
-						</Button>
-						<Button onClick={handleSubmit} color="primary">
-							Save Changes
-						</Button>
-					</DialogActions>
-				</Dialog>
+			<Dialog open={isModalOpen} onClose={closeModal}>
+				<DialogTitle>Edit Profile</DialogTitle>
+				<DialogContent>
+					<form onSubmit={handleSubmit}>
+						<TextField
+							margin="dense"
+							label="Name"
+							name="name"
+							value={user.name}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="Branch"
+							name="branch"
+							value={user.branch}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="City"
+							name="city"
+							value={user.city}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="State"
+							name="state"
+							value={user.state}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="Country"
+							name="country"
+							value={user.country}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="Past Companies"
+							name="pastCompanies"
+							value={user.pastCompanies}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="Current Company"
+							name="currentCompany"
+							value={user.currentCompany}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="Email ID"
+							name="personalEmail"
+							value={user.personalEmail}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="Graduation Year"
+							name="graduationYear"
+							value={user.graduationYear}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="LinkedIn"
+							name="linkedin"
+							value={user.linkedin}
+							onChange={handleChange}
+							fullWidth
+						/>
+						<TextField
+							margin="dense"
+							label="Achievements"
+							name="achievements"
+							value={user.achievements}
+							onChange={handleChange}
+							fullWidth
+							multiline
+							rows={4}
+						/>
+					</form>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={closeModal} color="primary">
+						Cancel
+					</Button>
+					<Button onClick={handleSubmit} color="primary">
+						Save Changes
+					</Button>
+				</DialogActions>
+			</Dialog>
+			<Box mt={4}>
 				<Grid container spacing={3}>
 					<Grid item xs={12} md={4}>
-						<Paper elevation={3} sx={{ p: 2, position: 'relative' }}>
-							{id === "me" && (
-								<IconButton
-									color="primary"
-									onClick={openModal}
-									sx={{ position: "absolute", top: 8, right: 8 }}
-								>
-									<SettingsIcon />
-								</IconButton>
-							)}
-							<Box display="flex" flexDirection="column" alignItems="center">
-								<Avatar
-									src={user.profilePicture}
-									sx={{ width: 128, height: 128, mb: 2 }}
-								/>
-								<Typography variant="h6" noWrap>{user.name}</Typography>
-								<Typography variant="body1" noWrap>{user.instituteId}</Typography>
-								<Typography variant="body2" noWrap>
-									Batch of {user.graduationYear} • {user.branch}
+						<Card>
+							<CardHeader
+								avatar={
+									<Avatar
+										src={user.profilePicture}
+										sx={{ width: 64, height: 64 }}
+									/>
+								}
+								action={
+									id === "me" && (
+										<IconButton color="primary" onClick={openModal}>
+											<SettingsIcon />
+										</IconButton>
+									)
+								}
+								title={user.name}
+								subheader={`Batch of ${user.graduationYear} • ${user.branch}`}
+							/>
+							<CardContent>
+								<Typography variant="body2" color="textSecondary">
+									{user.instituteId}
 								</Typography>
-							</Box>
-						</Paper>
+							</CardContent>
+						</Card>
 					</Grid>
 					<Grid item xs={12} md={8}>
-						<Paper elevation={3} sx={{ p: 2 }}>
-							<Typography variant="h6" gutterBottom>
-								<PersonIcon /> IIIT Kota Related Experience
-							</Typography>
-							<Typography variant="body1" noWrap>{user.instituteId}</Typography>
-							<Typography variant="body1" noWrap>
-								Bachelor's in Technology, Computer Science and Engineering
-							</Typography>
-							<Typography variant="body1" noWrap>
-								{user.graduationYear - 4} - {user.graduationYear}
-							</Typography>
-						</Paper>
+						<Card>
+							<CardHeader
+								title="IIIT Kota Related Experience"
+								avatar={<PersonIcon />}
+							/>
+							<CardContent>
+								<Typography variant="body2" color="textSecondary">
+									{user.instituteId}
+								</Typography>
+								<Typography variant="body2" color="textSecondary">
+									Bachelor's in Technology, Computer Science and Engineering
+								</Typography>
+								<Typography variant="body2" color="textSecondary">
+									{user.graduationYear - 4} - {user.graduationYear}
+								</Typography>
+							</CardContent>
+						</Card>
 					</Grid>
 					<Grid item xs={12} md={4}>
-						<Paper elevation={3} sx={{ p: 2 }}>
-							<Typography variant="h6" gutterBottom>
-								<ContactsIcon /> Contact Information
-							</Typography>
-							<Typography variant="body1" noWrap>
-								<EmailIcon />{" "}
-								<Link href={`mailto:${user.personalEmail}`}>
-									{user.personalEmail}
-								</Link>
-							</Typography>
-							<Typography variant="body1" noWrap>
-								<PhoneIcon /> {user.phoneNumber}
-							</Typography>
-							<Typography variant="body1" noWrap>
-								<HomeIcon /> {user.city}, {user.state}, {user.country}
-							</Typography>
-							<Typography variant="body1" noWrap>
-								<LinkedInIcon />{" "}
-								<Link href={user.linkedin} target="_blank">
-									{user.linkedin}
-								</Link>
-							</Typography>
-						</Paper>
+						<Card>
+							<CardHeader title="Contact Information" avatar={<ContactsIcon />} />
+							<CardContent>
+								<Typography variant="body2" color="textSecondary">
+									<EmailIcon />{" "}
+									<Link href={`mailto:${user.personalEmail}`}>
+										{user.personalEmail}
+									</Link>
+								</Typography>
+								<Typography variant="body2" color="textSecondary">
+									<PhoneIcon /> {user.phoneNumber}
+								</Typography>
+								<Typography variant="body2" color="textSecondary">
+									<HomeIcon /> {user.city}, {user.state}, {user.country}
+								</Typography>
+								<Typography variant="body2" color="textSecondary">
+									<LinkedInIcon />{" "}
+									<Link href={user.linkedin} target="_blank">
+										{user.linkedin}
+									</Link>
+								</Typography>
+							</CardContent>
+						</Card>
 					</Grid>
 					<Grid item xs={12} md={4}>
-						<Paper elevation={3} sx={{ p: 2 }}>
-							<Typography variant="h6" gutterBottom>
-								<WorkIcon /> Work Information
-							</Typography>
-							<Typography variant="body1" noWrap>
-								<BusinessIcon /> Currently a{" "}
-								<span className="font-semibold">{user.role}</span> at{" "}
-								<span className="font-semibold">{user.currentCompany}</span>
-							</Typography>
-							<Typography variant="body1" sx={{ mt: 2 }} noWrap>
-								<span className="underline font-semibold">
-									Past Companies / Institutes
-								</span>
-							</Typography>
-							<Typography variant="body1" noWrap>
-								<BusinessIcon /> {user.pastCompanies}
-							</Typography>
-						</Paper>
+						<Card>
+							<CardHeader title="Work Information" avatar={<WorkIcon />} />
+							<CardContent>
+								<Typography variant="body2" color="textSecondary">
+									<BusinessIcon /> Currently a{" "}
+									<span className="font-semibold">{user.role}</span> at{" "}
+									<span className="font-semibold">{user.currentCompany}</span>
+								</Typography>
+								<Divider sx={{ my: 2 }} />
+								<Typography variant="body2" color="textSecondary">
+									<span className="underline font-semibold">
+										Past Companies / Institutes
+									</span>
+								</Typography>
+								<Typography variant="body2" color="textSecondary">
+									<BusinessIcon /> {user.pastCompanies}
+								</Typography>
+							</CardContent>
+						</Card>
 					</Grid>
 					<Grid item xs={12} md={4}>
-						<Paper elevation={3} sx={{ p: 2 }}>
-							<Typography variant="h6" gutterBottom>
-								<EmojiEventsIcon /> Achievements
-							</Typography>
-							<Typography variant="body1" noWrap>{user.achievements}</Typography>
-						</Paper>
+						<Card>
+							<CardHeader title="Achievements" avatar={<EmojiEventsIcon />} />
+							<CardContent>
+								<Typography variant="body2" color="textSecondary">
+									{user.achievements}
+								</Typography>
+							</CardContent>
+						</Card>
 					</Grid>
 				</Grid>
-			</Container>
-			<Box mt={4}>
-				<Footer />
 			</Box>
-		</Box>
+			<Footer />
+		</Container>
 	);
 };
 
