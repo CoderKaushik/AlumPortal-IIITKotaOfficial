@@ -20,8 +20,6 @@ import {
 	CircularProgress,
 	Alert,
 	Link,
-	Grid,
-	Paper,
 	Card,
 	CardContent,
 	CardHeader,
@@ -136,7 +134,7 @@ const Profile = () => {
 	}
 
 	return (
-		<Container maxWidth="lg">
+		<Container maxWidth="sm">
 			<Navbar />
 			<Dialog open={isModalOpen} onClose={closeModal}>
 				<DialogTitle>Edit Profile</DialogTitle>
@@ -244,109 +242,97 @@ const Profile = () => {
 				</DialogActions>
 			</Dialog>
 			<Box mt={4}>
-				<Grid container spacing={3}>
-					<Grid item xs={12} md={4}>
-						<Card>
-							<CardHeader
-								avatar={
-									<Avatar
-										src={user.profilePicture}
-										sx={{ width: 64, height: 64 }}
-									/>
-								}
-								action={
-									id === "me" && (
-										<IconButton color="primary" onClick={openModal}>
-											<SettingsIcon />
-										</IconButton>
-									)
-								}
-								title={user.name}
-								subheader={`Batch of ${user.graduationYear} • ${user.branch}`}
+				<Card>
+					<CardHeader
+						avatar={
+							<Avatar
+								src={user.profilePicture}
+								sx={{ width: 64, height: 64 }}
 							/>
-							<CardContent>
-								<Typography variant="body2" color="textSecondary">
-									{user.instituteId}
-								</Typography>
-							</CardContent>
-						</Card>
-					</Grid>
-					<Grid item xs={12} md={8}>
-						<Card>
-							<CardHeader
-								title="IIIT Kota Related Experience"
-								avatar={<PersonIcon />}
-							/>
-							<CardContent>
-								<Typography variant="body2" color="textSecondary">
-									{user.instituteId}
-								</Typography>
-								<Typography variant="body2" color="textSecondary">
-									Bachelor's in Technology, Computer Science and Engineering
-								</Typography>
-								<Typography variant="body2" color="textSecondary">
-									{user.graduationYear - 4} - {user.graduationYear}
-								</Typography>
-							</CardContent>
-						</Card>
-					</Grid>
-					<Grid item xs={12} md={4}>
-						<Card>
-							<CardHeader title="Contact Information" avatar={<ContactsIcon />} />
-							<CardContent>
-								<Typography variant="body2" color="textSecondary">
-									<EmailIcon />{" "}
-									<Link href={`mailto:${user.personalEmail}`}>
-										{user.personalEmail}
-									</Link>
-								</Typography>
-								<Typography variant="body2" color="textSecondary">
-									<PhoneIcon /> {user.phoneNumber}
-								</Typography>
-								<Typography variant="body2" color="textSecondary">
-									<HomeIcon /> {user.city}, {user.state}, {user.country}
-								</Typography>
-								<Typography variant="body2" color="textSecondary">
-									<LinkedInIcon />{" "}
-									<Link href={user.linkedin} target="_blank">
-										{user.linkedin}
-									</Link>
-								</Typography>
-							</CardContent>
-						</Card>
-					</Grid>
-					<Grid item xs={12} md={4}>
-						<Card>
-							<CardHeader title="Work Information" avatar={<WorkIcon />} />
-							<CardContent>
-								<Typography variant="body2" color="textSecondary">
-									<BusinessIcon /> Currently a{" "}
-									<span className="font-semibold">{user.role}</span> at{" "}
-									<span className="font-semibold">{user.currentCompany}</span>
-								</Typography>
-								<Divider sx={{ my: 2 }} />
-								<Typography variant="body2" color="textSecondary">
-									<span className="underline font-semibold">
-										Past Companies / Institutes
-									</span>
-								</Typography>
-								<Typography variant="body2" color="textSecondary">
-									<BusinessIcon /> {user.pastCompanies}
-								</Typography>
-							</CardContent>
-						</Card>
-					</Grid>
-					<Grid item xs={12} md={4}>
-						<Card>
-							<CardHeader title="Achievements" avatar={<EmojiEventsIcon />} />
-							<CardContent>
-								<Typography variant="body2" color="textSecondary">
-									{user.achievements}
-								</Typography>
-							</CardContent>
-						</Card>
-					</Grid>
-				</Grid>
+						}
+						action={
+							id === "me" && (
+								<IconButton color="primary" onClick={openModal}>
+									<SettingsIcon />
+								</IconButton>
+							)
+						}
+						title={user.name}
+						subheader={`Batch of ${user.graduationYear} • ${user.branch}`}
+					/>
+					<CardContent>
+						<Typography variant="body2" color="textSecondary">
+							{user.instituteId}
+						</Typography>
+					</CardContent>
+				</Card>
+				<Card sx={{ mt: 2 }}>
+					<CardHeader
+						title="IIIT Kota Related Experience"
+						avatar={<PersonIcon />}
+					/>
+					<CardContent>
+						<Typography variant="body2" color="textSecondary">
+							{user.instituteId}
+						</Typography>
+						<Typography variant="body2" color="textSecondary">
+							Bachelor's in Technology, Computer Science and Engineering
+						</Typography>
+						<Typography variant="body2" color="textSecondary">
+							{user.graduationYear - 4} - {user.graduationYear}
+						</Typography>
+					</CardContent>
+				</Card>
+				<Card sx={{ mt: 2 }}>
+					<CardHeader title="Contact Information" avatar={<ContactsIcon />} />
+					<CardContent>
+						<Typography variant="body2" color="textSecondary">
+							<EmailIcon />{" "}
+							<Link href={`mailto:${user.personalEmail}`}>
+								{user.personalEmail}
+							</Link>
+						</Typography>
+						<Typography variant="body2" color="textSecondary">
+							<PhoneIcon /> {user.phoneNumber}
+						</Typography>
+						<Typography variant="body2" color="textSecondary">
+							<HomeIcon /> {user.city}, {user.state}, {user.country}
+						</Typography>
+						<Typography variant="body2" color="textSecondary">
+							<LinkedInIcon />{" "}
+							<Link href={user.linkedin} target="_blank">
+								{user.linkedin}
+							</Link>
+						</Typography>
+					</CardContent>
+				</Card>
+				<Card sx={{ mt: 2 }}>
+					<CardHeader title="Work Information" avatar={<WorkIcon />} />
+					<CardContent>
+						<Typography variant="body2" color="textSecondary">
+							<BusinessIcon /> Currently a{" "}
+							<span className="font-semibold">{user.role}</span> at{" "}
+							<span className="font-semibold">{user.currentCompany}</span>
+						</Typography>
+						<Divider sx={{ my: 2 }} />
+						<Typography variant="body2" color="textSecondary">
+							<span className="underline font-semibold">
+								Past Companies / Institutes
+							</span>
+						</Typography>
+						<Typography variant="body2" color="textSecondary">
+							<BusinessIcon /> {user.pastCompanies}
+						</Typography>
+					</CardContent>
+				</Card>
+				<Card sx={{ mt: 2 }}>
+					<CardHeader title="Achievements" avatar={<EmojiEventsIcon />} />
+					<CardContent>
+						<Typography variant="body2" color="textSecondary">
+							{user.achievements}
+						</Typography>
+					</CardContent>
+				</Card>
 			</Box>
 			<Footer />
 		</Container>
