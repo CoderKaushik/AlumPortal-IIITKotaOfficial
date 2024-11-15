@@ -199,7 +199,7 @@ const Events = () => {
 								</p>
 							</div>
 							<div
-								className={`md:w-[30%] md:min-h-[20rem] w-full h-auto bg-gray-300 hover:cursor-pointer relative ${
+								className={`md:w-[30%] md:min-h-[20rem] w-full h-auto bg-gray-300 hover:cursor-pointer object-cover relative ${
 									index % 2 === 0 ? "md:rounded-tl-none md:rounded-bl-none md:rounded-tr-lg md:rounded-br-lg rounded-tl-lg rounded-tr-lg" : "md:order-1 order-2 md:rounded-tr-none md:rounded-br-none md:rounded-tl-lg md:rounded-bl-lg rounded-tl-lg rounded-tr-lg"
 								}`}
 								onClick={() => openCarousel(index)}
