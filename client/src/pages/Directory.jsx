@@ -204,7 +204,7 @@ const Directory = () => {
 						</form>
 					</div>
 					<div className="xl:w-[80%] w-full flex flex-col gap-2 h-full pb-1">
-						<div className="w-full h-auto bg-white p-4 shadow-md rounded-lg flex justify-between items-center">
+						<div className="w-full h-auto bg-white shadow-md rounded-lg flex justify-between items-center">
 							<p className="text-lg font-semibold text-gray-800">
 								Found {filteredAlumni.length} alumni
 							</p>
@@ -222,7 +222,7 @@ const Directory = () => {
 									className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
 									onClick={toggleFilterModal}
 								></div>
-								<div className="bg-white p-6 rounded-lg shadow-lg z-10 w-11/12 max-w-md relative">
+								<div className="bg-white rounded-lg shadow-lg z-10 w-11/12 max-w-md relative">
 									<button
 										onClick={toggleFilterModal}
 										className="absolute top-2 right-2 text-4xl text-gray-600 hover:text-gray-800"
