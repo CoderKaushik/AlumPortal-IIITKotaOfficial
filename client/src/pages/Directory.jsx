@@ -313,7 +313,7 @@ const Directory = () => {
 								</div>
 							</div>
 						)}
-						<div className="w-full h-full overflow-y-scroll scrollbar-hide flex flex-wrap gap-4 justify-center">
+						<div className="w-full h-full overflow-y-scroll scrollbar-hide flex flex-wrap gap-4 justify-center px-4">
 							{loading ? (
 								<div className="h-full w-full flex justify-center items-center bg-white rounded-tr-md rounded-tl-md">
 									<div className="flex flex-col items-center">
@@ -326,7 +326,7 @@ const Directory = () => {
 									<p>No alumni found</p>
 								</div>
 							) : (
-								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
 									{filteredAlumni.map((alumnus) => (
 										<AlumniCard key={alumnus._id} alumniData={alumnus} />
 									))}
