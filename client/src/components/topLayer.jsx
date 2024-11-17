@@ -9,11 +9,13 @@ import YoutubeIcon from "@mui/icons-material/YouTube";
 import LogoutIcon from "@mui/icons-material/Logout"; // Import LogoutIcon
 import Headroom from "react-headroom";
 import axios from "axios";
+import { Modal, Box, Button, Typography } from "@mui/material";
 
 const TopLayer = () => {
 	const [user, setUser] = useState(null);
 	const [error, setError] = useState(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [open, setOpen] = useState(false);
 
 	const token = localStorage.getItem("token");
 
@@ -40,13 +42,15 @@ const TopLayer = () => {
 		}
 	}, [token]);
 
-	const handleLogout = (e) => {
-		e.preventDefault();
+	const handleLogout = () => {
 		localStorage.removeItem("token");
 		setIsLoggedIn(false);
 		setUser(null);
 		window.location.reload();
 	};
+
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 
 	return (
 		<Headroom>
@@ -100,8 +104,8 @@ const TopLayer = () => {
 								</a>
 							</p>
 							<a
-								href="/signin"
-								onClick={handleLogout}
+								href="#"
+								onClick={handleOpen}
 								className="text-white text-xs cursor-pointer"
 								aria-label="Logout"
 							>
@@ -131,6 +135,41 @@ const TopLayer = () => {
 					)}
 				</div>
 			</div>
+			<Modal
+				open={open}
+				onClose={handleClose}
+				aria-labelledby="modal-title"
+				aria-describedby="modal-description"
+			>
+				<Box
+					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						width: 300,
+						bgcolor: "background.paper",
+						border: "2px solid #000",
+						boxShadow: 24,
+						p: 4,
+					}}
+				>
+					<Typography id="modal-title" variant="h6" component="h2">
+						Logout Confirmation
+					</Typography>
+					<Typography id="modal-description" sx={{ mt: 2 }}>
+						Are you sure you want to logout?
+					</Typography>
+					<Box sx={{ mt: 2, display: "flex", justifyContent: "space-between" }}>
+						<Button variant="contained" color="primary" onClick={handleLogout}>
+							Yes
+						</Button>
+						<Button variant="outlined" color="secondary" onClick={handleClose}>
+							No
+						</Button>
+					</Box>
+				</Box>
+			</Modal>
 		</Headroom>
 	);
 };
