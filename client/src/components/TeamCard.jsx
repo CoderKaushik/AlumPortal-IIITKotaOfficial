@@ -18,15 +18,11 @@ export default function ProfileCard({ name, occupation, image, linkedin, github 
         boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.15)",
         transition: "transform 0.3s ease-in-out",
         backgroundColor: "#f5f5f5",
-        "&:hover": {
-          transform: "scale(1.05)",
-          boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.3)",
-        },
       }}
     >
       <CardMedia
         sx={{
-          height: 300,
+          height: { xs: 250, md: 300 },
           width: "100%",
           position: "relative",
           backgroundSize: "cover",

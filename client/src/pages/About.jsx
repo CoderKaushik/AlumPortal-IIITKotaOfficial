@@ -62,12 +62,12 @@ const About = () => {
         </div>
 
         {/* What We Do Section */}
-        <div className="w-full bg-[#19194D] flex justify-center items-center px-[1rem] md:px-[5rem] py-16">
-          <section className="flex flex-col items-center text-center space-y-10 w-full px-4 md:px-8 py-12 shadow-lg rounded-lg my-12 bg-white">
-            <h2 className="text-4xl font-extrabold text-gray-800">
+        <div className="w-full bg-[#19194D] flex justify-center items-center px-2 md:px-[5rem] md:py-16 py-3">
+          <section className="flex flex-col items-center text-center space-y-10 w-full px-4 md:px-8 py-12 shadow-lg rounded-lg md:my-12 bg-white">
+            <h2 className="md:text-4xl text-2xl font-extrabold text-gray-800">
               What We Do
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
+            <p className="md:text-xl text-md text-gray-600 leading-relaxed max-w-3xl">
               The Alumni Cell of IIIT Kota is dedicated to fostering a lifelong
               connection between the institute's alumni and its students. We
               organize initiatives that bridge the gap between academia and the
@@ -77,34 +77,34 @@ const About = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
               <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <h3 className="md:text-2xl text-xl font-bold text-gray-800 mb-4">
                   Mentorship Programs
                 </h3>
-                <p className="text-lg text-gray-700">
+                <p className="md:text-lg text-sm text-gray-700">
                   Our mentorship programs connect current students with IIIT Kota alumni, allowing students to receive one-on-one guidance, advice, and industry-specific insights. Alumni mentors share their experiences, offering advice on academic pursuits, project ideas, skill-building, and navigating early career challenges.
                 </p>
               </div>
               <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <h3 className="md:text-2xl text-xl font-bold text-gray-800 mb-4">
                   Networking Opportunities
                 </h3>
-                <p className="text-lg text-gray-700">
+                <p className="md:text-lg text-sm text-gray-700">
                   We host networking events where students can interact with alumni from diverse industries and backgrounds. These events are designed to provide a platform for knowledge exchange, foster professional connections, and give students a chance to understand industry expectations and trends directly from those already established in their fields.
                 </p>
               </div>
               <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <h3 className="md:text-2xl text-xl font-bold text-gray-800 mb-4">
                   Career Talks & Workshops
                 </h3>
-                <p className="text-lg text-gray-700">
+                <p className="md:text-lg text-sm text-gray-700">
                   Our Alumni Cell organizes regular career talks and workshops led by alumni who have excelled in various domains. These sessions provide students with an in-depth understanding of industry landscapes, emerging fields, and valuable insights into different career paths. Alumni share their journeys, challenges, and tips, helping students make informed career choices.
                 </p>
               </div>
               <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <h3 className="md:text-2xl text-xl font-bold text-gray-800 mb-4">
                   Alumni Portal
                 </h3>
-                <p className="text-lg text-gray-700">
+                <p className="md:text-lg text-sm text-gray-700">
                   We are developing a comprehensive online alumni portal to facilitate communication and resource sharing between alumni and current students. The portal allows alumni to stay connected with their alma mater, view job postings, offer guidance, and engage with students through forums, articles, and scheduled interactions.
                 </p>
               </div>
