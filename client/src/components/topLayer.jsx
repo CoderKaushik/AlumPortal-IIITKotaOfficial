@@ -150,6 +150,7 @@ const TopLayer = () => {
 						width: 300,
 						bgcolor: "background.paper",
 						border: "2px solid #000",
+						borderRadius: 8,
 						boxShadow: 24,
 						p: 4,
 					}}
@@ -164,7 +165,7 @@ const TopLayer = () => {
 						<Button variant="contained" color="primary" onClick={handleLogout}>
 							Yes
 						</Button>
-						<Button variant="outlined" color="secondary" onClick={handleClose}>
+						<Button variant="contained" color="secondary" onClick={handleClose}>
 							No
 						</Button>
 					</Box>
@@ -175,3 +176,4 @@ const TopLayer = () => {
 };
 
 export default TopLayer;
+ 
