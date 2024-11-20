@@ -8,10 +8,10 @@ import eventImages from "../GalleryAssets/EventImages.json";
 
 const eventsData = [
 	{
-		heading: "Innovative Tech Symposium 2024",
-		description: "Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. oin us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. oin us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. oin us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. oin us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future.",
-		images: eventImages["Innovative Tech Symposium 2024"]
-	},
+		"heading": "Innovative Tech Symposium 2025",
+		"description": "Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. The 'Alumni Insights' event, organized by the Alumni Cell of IIIT Kota in collaboration with IIIT Kernel, took place on November 9th at the IIIT Kota Auditorium. The event focused on the theme 'Navigating the Placement Pathways' and provided students with crucial insights into preparing for their professional careers. The speaker, Vibhor Rawal, an alumnus of IIIT Kota and a Software Development Engineer at Google, shared his career journey and provided advice on building a diverse skill set, creating strong resumes, and practicing for interviews. He emphasized the importance of coding, problem-solving, teamwork, and system design. The event also featured a Q&A session where students had the opportunity to ask questions on topics like competitive programming, robotics, and internship opportunities. The session concluded with Dr. Chetna Sharma, Associate Dean of the Alumni Cell, honoring Vibhor Rawal with a memento. The event equipped students with the tools and knowledge needed to succeed in their future careers.",
+		"images": eventImages["Innovative Tech Symposium 2024"]
+	},	
 	{
 		heading: "Annual Developer Summit",
 		description: "Meet fellow developers and industry experts at the Annual Developer Summit, featuring hands-on coding sessions, tech talks, and opportunities for skill enhancement.",
@@ -54,6 +54,12 @@ const EventDetails = () => {
 		setIsCarouselOpen(false);
 	};
 
+	const isSquareImage = (imageUrl) => {
+		const img = new Image();
+		img.src = imageUrl;
+		return img.width === img.height;
+	};
+
 	if (!event) {
 		return <Typography variant="h6">Event not found</Typography>;
 	}
@@ -63,15 +69,28 @@ const EventDetails = () => {
 			<Navbar />
 			<Box sx={{ maxWidth: '1000px', mx: 'auto', mb: '3rem', mt: { lg: '9rem', md: '100px', sm: '75px', xs: '100px' } }} >
 				<Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
-					<Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2 }}>
+					{event.images && event.images.length > 0 && (
+						<Box sx={{ mb: 2, display: 'flex', justifyContent: 'center' }}>
+							<img
+								src={event.images[0]}
+								alt="Event"
+								style={{
+									width: isSquareImage(event.images[0]) ? '50%' : '100%',
+									borderRadius: '8px',
+									objectFit: 'contain'
+								}}
+							/>
+						</Box>
+					)}
+					<Typography sx={{ fontWeight: 'bold', mb: 2, textAlign: 'center', fontSize: {xs: '1.5rem', md: '2.5rem'} }}>
 						{event.heading}
 					</Typography>
 					<Divider sx={{ my: 2 }} />
-					<Typography variant="body1" sx={{ mb: 2 }}>
+					<Typography variant="body1" sx={{ mb: 2, textAlign: { xs: 'center', sm: 'left' } }}>
 						{event.description}
 					</Typography>
 					<Divider sx={{ my: 2 }} />
-					<Box sx={{ flexGrow: 1 }}>
+					<Box sx={{ flexGrow: 1, display: 'flex', justifyContent: { xs: 'center', sm: 'flex-start' } }}>
 						<Button variant="contained" color="primary" onClick={openCarousel}>
 							View Images
 						</Button>

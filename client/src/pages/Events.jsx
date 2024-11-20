@@ -29,13 +29,22 @@ const Events = () => {
 	]; // Array of event headings
 
 	const eventDescriptions = [
-		"Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. Join us for an insightful symposium exploring the lateslogy. Netwus for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. ",
+		"Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. The 'Alumni Insights' event, organized by the Alumni Cell of IIIT Kota in collaboration with IIIT Kernel, took place on November 9th at the IIIT Kota Auditorium. The event focused on the theme 'Navigating the Placement Pathways' and provided students with crucial insights into preparing for their professional careers. The speaker, Vibhor Rawal, an alumnus of IIIT Kota and a Software Development Engineer at Google, shared his career journey and provided advice on building a diverse skill set, creating strong resumes, and practicing for interviews. He emphasized the importance of coding, problem-solving, teamwork, and system design. The event also featured a Q&A session where students had the opportunity to ask questions on topics like competitive programming, robotics, and internship opportunities. The session concluded with Dr. Chetna Sharma, Associate Dean of the Alumni Cell, honoring Vibhor Rawal with a memento. The event equipped students with the tools and knowledge needed to succeed in their future careers. ",
 		"Meet fellow developers and industry experts at the Annual Developer Summit, featuring hands-on coding sessions, tech talks, and opportunities for skill enhancement.",
 		"An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
 		"Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
 		"An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
 		"Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
 	]; // Array of event descriptions
+
+	const eventDates = [
+		"2024-01-15",
+		"2024-02-20",
+		"2024-03-10",
+		"2024-04-05",
+		"2024-05-18",
+		"2024-06-22",
+	]; // Array of event dates
 
 	useEffect(() => {
 		const initialEventsData = eventHeadings.map((heading, index) => ({
@@ -183,7 +192,6 @@ const Events = () => {
 							}`}
 							ref={(el) => (rowRefs.current[index] = el)}
 							data-index={index}
-							onClick={() => handleEventCardClick(event)}
 						>
 							{/* Alternating text and image layout */}
 							<div
@@ -197,9 +205,22 @@ const Events = () => {
 								<p className="mt-3 md:text-lg text-sm text-[#19194D] leading-loose  overflow-y-scroll scrollbar-hide mb-4">
 									{event.description}
 								</p>
+								<div className="w-full flex justify-between items-center mt-auto md:mb-3 -mb-4">
+									<p className="md:text-sm text-xs text-gray-500">
+										Posted on {eventDates[index]}
+									</p>
+									<Button
+										variant="contained"
+										color="primary"
+										onClick={() => handleEventCardClick(event)}
+										sx={{ ml: 2, backgroundColor: "#38B2AC" }}
+									>
+										Details
+									</Button>
+								</div>
 							</div>
 							<div
-								className={`md:w-[30%] md:min-h-[20rem] w-full h-auto bg-gray-300 hover:cursor-pointer object-cover relative ${
+								className={`md:w-[30%] md:min-h-[20rem] w-full h-auto bg-gray-100 hover:cursor-pointer object-cover relative ${
 									index % 2 === 0 ? "md:rounded-tl-none md:rounded-bl-none md:rounded-tr-lg md:rounded-br-lg rounded-tl-lg rounded-tr-lg" : "md:order-1 order-2 md:rounded-tr-none md:rounded-br-none md:rounded-tl-lg md:rounded-bl-lg rounded-tl-lg rounded-tr-lg"
 								}`}
 								onClick={() => openCarousel(index)}
@@ -216,8 +237,8 @@ const Events = () => {
 										<span style={{ color: "#4A5568", fontSize: "12px" }}>Click</span>
 									</div>
 								) : (
-									<div className="absolute inset-0 bg-black bg-opacity-80 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-										<span className="text-white text-center px-4">Tap for details</span>
+									<div className="absolute inset-0 bg-black bg-opacity-80 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-lg">
+										<span className="text-white text-center px-4">View More</span>
 									</div>
 								)}
 							</div>
