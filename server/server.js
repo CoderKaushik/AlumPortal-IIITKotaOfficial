@@ -14,8 +14,8 @@ const MONGODB_URI = process.env.MONGODB_URI; // MongoDB URI from .env
 
 app.use(express.json());
 const corsOptions = {
-	// origin: "https://alum-portal-iiit-kota-official.vercel.app", // Frontend URL
-	origin: "http://localhost:5173",
+	origin: "https://alum-portal-iiit-kota-official.vercel.app", // Frontend URL
+	// origin: "http://localhost:5173",
 	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 	credentials: true,
 };
