@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/Footer";
@@ -326,7 +326,7 @@ const Directory = () => {
 									<p>No alumni found</p>
 								</div>
 							) : (
-								<div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+								<div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-min">
 									{filteredAlumni.map((alumnus) => (
 										<AlumniCard key={alumnus._id} alumniData={alumnus} />
 									))}

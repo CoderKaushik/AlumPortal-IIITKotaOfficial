@@ -1,31 +1,36 @@
+const express = require("express");
+const router = express.Router();
 const User = require("../models/User");
-const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../config/config");
-const cloudinary = require("../config/cloudinary.js");
+const multer = require("multer");
+const cloudinary = require("../config/cloudinary");
 const streamifier = require("streamifier");
-const { sendEmail } = require('../utils/emailUtil');
+const { sendEmail } = require('../utils/emailUtil'); // Import the email utility
 
-exports.signUp = async (req, res) => {
-  const {
-    name,
-    instituteId,
-    branch,
-    personalEmail,
-    phoneNumber,
-    city,
-    state,
-    country,
-    graduationYear,
-    pastCompanies,
-    currentCompany,
-    role,
-    linkedin,
-    achievements,
-    password
-  } = req.body;
+// Setting up Multer storage
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
+router.post("/", upload.single("profilePicture"), async (req, res) => {
   try {
-    // Initialize profilePictureUrl variable
+    const {
+      name,
+      instituteId,
+      branch,
+      personalEmail,
+      phoneNumber,
+      city,
+      state,
+      country,
+      graduationYear,
+      pastCompanies,
+      currentCompany,
+      role,
+      linkedin,
+      achievements,
+      password
+    } = req.body;
+
+    // Initialising the profilePictureUrl variable
     let profilePictureUrl = null;
 
     // Upload profile picture to Cloudinary if provided
@@ -75,36 +80,11 @@ exports.signUp = async (req, res) => {
     console.error(error.message);
 
     if (error.code === 11000 && error.keyValue && error.keyValue.instituteId) {
-      res.status(400).json({ message: "A user has already registered using this institute ID. If you think this is an error, contact alumni cell at alumnicell@iiitkota.ac.in." });
+      res.status(400).json({ message: "A user has already registered using this institute ID. If you think this is an error, contact alumni cell at alumnicell@iiitkota.ac.in ." });
     } else {
       res.status(500).json({ message: "Server error" });
     }
   }
-};
+});
 
-exports.signIn = async (req, res) => {
-  const { instituteId, password } = req.body;
-
-  try {
-    const user = await User.findOne({ instituteId });
-
-    if (!user || user.password !== password) {
-      return res.status(400).json({ message: 'Invalid institute ID or password' });
-    }
-
-    const token = jwt.sign(
-      { id: user._id, instituteId: user.instituteId },
-      JWT_SECRET,
-      { expiresIn: '1d' } // Token expires in 1 day
-    );
-
-    res.json({ token });
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
-  }
-};
-
-exports.signOut = (req, res) => {
-  // Handle sign-out logic (e.g., invalidating tokens, etc.)
-  res.json({ message: 'Signed out successfully' });
-};
+module.exports = router;

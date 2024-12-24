@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Box, Typography, Button, Paper, Divider } from "@mui/material";
 import Navbar from "../components/navbar";

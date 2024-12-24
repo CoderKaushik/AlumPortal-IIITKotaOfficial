@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../components/navbar.jsx";
 import iiitkotalogo from "../assets/iiitkotalogo.png"; // Update path as needed
 import Footer from "../components/Footer.jsx";

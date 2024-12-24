@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import XIcon from "@mui/icons-material/X";
@@ -125,7 +125,7 @@ const TopLayer = () => {
 									</span>
 								</a>{" "}
 								/{" "}
-								<a href="https://alumni-form-one.vercel.app/">
+								<a href="/signup">
 									<span className="hover:underline hover:cursor-pointer">
 										Register
 									</span>

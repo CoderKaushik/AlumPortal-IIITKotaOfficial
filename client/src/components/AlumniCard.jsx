@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate } from 'react-router-dom';
+import Avatar from "../assets/avatar.png"
 
 // Modal Component
 const Modal = ({ isOpen, onClose, imageSrc }) => {
@@ -56,6 +57,8 @@ const AlumniCard = ({ alumniData }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
 
+  const navigate = useNavigate();
+
   const handleProfileClick = () => {
     navigate(`/profile/${alumniData._id}`); // Navigate to the profile page
   };
@@ -74,12 +77,18 @@ const AlumniCard = ({ alumniData }) => {
     setSelectedImage('');
   };
 
+  const getLowQualityImageUrl = (url) => {
+    if (!url) return Avatar; // Use Avatar as the default image
+    const parts = url.split('/upload/');
+    return `${parts[0]}/upload/q_auto:low/${parts[1]}`;
+  };
+
   return (
     <>
       <div className="bg-white h-48 p-4 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out flex gap-4">
         <div className='w-1/3 flex flex-col items-center justify-center'>
-          <div className='w-24 h-24 border border-teal-500 rounded-full overflow-hidden flex items-center justify-center cursor-pointer shadow-md' onClick={() => openModal(alumniData.profilePicture)}>
-            <img src={alumniData.profilePicture} alt="Profile" className='w-full h-full object-cover' />
+          <div className='w-24 h-24 border border-teal-500 rounded-full overflow-hidden flex items-center justify-center cursor-pointer shadow-md' onClick={() => openModal(alumniData.profilePicture || Avatar)}>
+            <img src={getLowQualityImageUrl(alumniData.profilePicture)} alt="Profile" className='w-full h-full object-cover' />
           </div>
           <div className='mt-4 flex w-full gap-1'>
             <a href={alumniData.linkedin} target="_blank" rel="noopener noreferrer" className='w-1/2 flex justify-center'>

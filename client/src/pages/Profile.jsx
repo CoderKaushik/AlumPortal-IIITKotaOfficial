@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode"; // Ensure jwtDecode is installed
@@ -35,6 +35,7 @@ import {
 	Work as WorkIcon,
 	Business as BusinessIcon,
 	EmojiEvents as EmojiEventsIcon,
+	Share as Share,
 } from "@mui/icons-material";
 
 
@@ -54,10 +55,12 @@ const Profile = () => {
 		graduationYear: "",
 		linkedin: "",
 		achievements: "",
+		profilePicture: "",
 	});
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
 	const token = localStorage.getItem("token");
 
@@ -75,8 +78,8 @@ const Profile = () => {
 				try {
 					const endpoint = id === "me" ? `/profile/me` : `/profile/${id}`;
 					const response = await axios.get(
-						// `http://localhost:5000/api${endpoint}`,
-						`https://alumportal-iiitkotaofficial.onrender.com/api${endpoint}`,
+						`http://localhost:5000/api${endpoint}`,
+						// `https://alumportal-iiitkotaofficial.onrender.com/api${endpoint}`,
 						{
 							headers: { Authorization: `Bearer ${token}` },
 						}
@@ -97,6 +100,11 @@ const Profile = () => {
 
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
+
+	const openShareModal = () => setIsShareModalOpen(true);
+	const closeShareModal = () => setIsShareModalOpen(false);
+
+	const profileUrl = `${window.location.origin}/profile/${user._id}`;
 
 	const handleChange = (e) => {
 		setUser({ ...user, [e.target.name]: e.target.value });
@@ -241,26 +249,78 @@ const Profile = () => {
 								fullWidth
 								multiline
 								rows={4}
-							/>
+								/>
+							<div className="mt-4">
+								<label htmlFor="profilePictureUpload">Upload Profile Picture</label>
+								<input
+									type="file"
+									id="profilePictureUpload"
+									name="profilePictureUpload"
+									accept="image/*"
+									onChange={(e) => {
+										// Handle file upload here
+									}}
+									style={{ display: "block", marginTop: "8px" }}
+								/>
+							</div>
 						</form>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={closeModal} color="primary">
+						<Button onClick={closeModal} color="primary" style={{ backgroundColor: "#9e9e9e", color: "#fff" }}>
 							Cancel
 						</Button>
-						<Button onClick={handleSubmit} color="primary">
+						<Button onClick={handleSubmit} color="primary" style={{ backgroundColor: "#2196f3", color: "#fff" }}>
 							Save Changes
 						</Button>
 					</DialogActions>
 				</Dialog>
+
+				<Dialog open={isShareModalOpen} onClose={closeShareModal}>
+					<DialogTitle>Share Profile</DialogTitle>
+					<DialogContent>
+						<TextField
+							margin="dense"
+							label="Profile URL"
+							value={profileUrl}
+							fullWidth
+							InputProps={{
+								readOnly: true,
+							}}
+						/>
+					</DialogContent>
+					<DialogActions>
+						<Button onClick={closeShareModal} color="primary" style={{ backgroundColor: "#9e9e9e", color: "#fff" }}>
+							Close
+						</Button>
+						<Button
+							onClick={() => {
+								navigator.clipboard.writeText(profileUrl);
+								closeShareModal();
+							}}
+							color="primary"
+							style={{ backgroundColor: "#2196f3", color: "#fff" }}
+						>
+							Copy URL
+						</Button>
+					</DialogActions>
+				</Dialog>
+
 			<div className="w-full h-[35rem] md:h-72 mt-28 md:mt-36 lg:mt-36 px-6 md:px-20 flex flex-col md:flex-row gap-4">
 				<div className="md:w-1/3 md:h-full h-1/2 w-full rounded-lg shadow-xl bg-white flex flex-col gap-2 relative">
 					{id === "me" && (
-						<div
-							className="w-8 h-8 rounded-full shadow-xl absolute top-2 left-2 hover:cursor-pointer hover:rotate-90 transition-transform duration-300 ease-in-out flex justify-center items-center text-white bg-blue-900"
-							onClick={openModal}
-						>
-							<SettingsIcon />
+						<div className="absolute top-2 right-2 flex gap-2">
+							<div
+								className="w-8 h-8 rounded-full shadow-xl hover:cursor-pointer hover:rotate-90 transition-transform duration-300 ease-in-out flex justify-center items-center text-white bg-blue-900"
+								onClick={openModal}
+							>
+								<SettingsIcon />
+							</div>
+							<div
+								className="w-8 h-8 rounded-full shadow-xl hover:cursor-pointer transition-transform duration-300 ease-in-out flex justify-center items-center text-white bg-blue-900"
+								onClick={openShareModal}
+							>
+								<Share />
+							</div>
 						</div>
 					)}
 					<div className="w-full h-[70%] flex justify-center items-center">

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 import { Search as SearchIcon } from "@mui/icons-material";
@@ -29,7 +29,7 @@ const Events = () => {
 	]; // Array of event headings
 
 	const eventDescriptions = [
-		"Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. The 'Alumni Insights' event, organized by the Alumni Cell of IIIT Kota in collaboration with IIIT Kernel, took place on November 9th at the IIIT Kota Auditorium. The event focused on the theme 'Navigating the Placement Pathways' and provided students with crucial insights into preparing for their professional careers. The speaker, Vibhor Rawal, an alumnus of IIIT Kota and a Software Development Engineer at Google, shared his career journey and provided advice on building a diverse skill set, creating strong resumes, and practicing for interviews. He emphasized the importance of coding, problem-solving, teamwork, and system design. The event also featured a Q&A session where students had the opportunity to ask questions on topics like competitive programming, robotics, and internship opportunities. The session concluded with Dr. Chetna Sharma, Associate Dean of the Alumni Cell, honoring Vibhor Rawal with a memento. The event equipped students with the tools and knowledge needed to succeed in their future careers. ",
+		"<p>Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future.</p><br /><p>The 'Alumni Insights' event, organized by the Alumni Cell of IIIT Kota in collaboration with IIIT Kernel, took place on November 9th at the IIIT Kota Auditorium. The event focused on the theme 'Navigating the Placement Pathways' and provided students with crucial insights into preparing for their professional careers.</p><br /><p>The speaker, Vibhor Rawal, an alumnus of IIIT Kota and a Software Development Engineer at Google, shared his career journey and provided advice on building a diverse skill set, creating strong resumes, and practicing for interviews. He emphasized the importance of coding, problem-solving, teamwork, and system design.</p><br /><p>The event also featured a Q&A session where students had the opportunity to ask questions on topics like competitive programming, robotics, and internship opportunities. The session concluded with Dr. Chetna Sharma, Associate Dean of the Alumni Cell, honoring Vibhor Rawal with a memento. The event equipped students with the tools and knowledge needed to succeed in their future careers.</p><br />",
 		"Meet fellow developers and industry experts at the Annual Developer Summit, featuring hands-on coding sessions, tech talks, and opportunities for skill enhancement.",
 		"An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
 		"Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
@@ -149,7 +149,7 @@ const Events = () => {
 										backgroundColor: "white",
 										boxShadow: "0 3px 6px rgba(0, 0, 0, 0.1)",
 										"&:hover .MuiOutlinedInput-notchedOutline": {
-											borderColor: "transparent",
+											borderColor: "gray",
 										},
 										"&.Mui-focused .MuiOutlinedInput-notchedOutline": {
 											borderColor: "#CBD5E0",
@@ -179,7 +179,7 @@ const Events = () => {
 				{/* Event Cards */}
 				{filteredEvents.length === 0 ? (
 					<div className="w-full h-[20rem] flex justify-center items-center">
-						<p className="text-xl text-gray-500">No events found</p>
+						<p className="text-xl text-gray-500">No events found</p><br />
 					</div>
 				) : (
 					filteredEvents.map((event, index) => (
@@ -202,13 +202,11 @@ const Events = () => {
 								<h1 className="w-full py-2 font-bold md:text-xl text-lg text-[#19194D]">
 									{event.heading}
 								</h1>
-								<p className="mt-3 md:text-lg text-sm text-[#19194D] leading-loose  overflow-y-scroll scrollbar-hide mb-4">
-									{event.description}
-								</p>
+								<p className="mt-3 md:text-lg text-sm text-[#19194D] leading-loose overflow-y-scroll scrollbar-hide mb-4" dangerouslySetInnerHTML={{ __html: event.description }} />
 								<div className="w-full flex justify-between items-center mt-auto md:mb-3 -mb-4">
 									<p className="md:text-sm text-xs text-gray-500">
 										Posted on {eventDates[index]}
-									</p>
+									</p><br />
 									<Button
 										variant="contained"
 										color="primary"

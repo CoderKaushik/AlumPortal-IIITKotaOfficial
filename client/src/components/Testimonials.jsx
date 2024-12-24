@@ -1,7 +1,15 @@
-import React from 'react';
+import { useState } from 'react';
 import Marquee from 'react-fast-marquee';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
 
 const Testimonials = () => {
+  const [isPaused, setIsPaused] = useState(false);
+
+  const handlePausePlay = () => {
+    setIsPaused(!isPaused);
+  };
+
   const testimonials = [
     {
       name: "John Doe",
@@ -27,9 +35,14 @@ const Testimonials = () => {
 
   return (
     <div className="w-full bg-[#19194D] py-10">
-      <h2 className="text-3xl font-bold text-white text-center mb-6">Alumni Testimonials</h2>
+      <div className="flex justify-center items-center mb-6">
+        <h2 className="text-3xl font-bold text-white text-center">Alumni Testimonials</h2>
+        <button onClick={handlePausePlay} className="ml-4 text-white bg-blue-500 hover:bg-blue-600 transition rounded-md p-1" info="Pause/Play Testimonials">
+          {isPaused ? <PlayArrowIcon /> : <PauseIcon />}
+        </button>
+      </div>
       <div className="h-[50vh] flex items-center">
-        <Marquee pauseOnHover={true} speed={50} gradient={false}>
+        <Marquee pauseOnHover={false} speed={50} gradient={false} play={!isPaused}>
           {testimonials.map((testimonial, index) => (
             <div
               key={index}

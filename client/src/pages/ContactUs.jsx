@@ -1,5 +1,5 @@
 // src/pages/ContactUs.jsx
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -61,7 +61,7 @@ const ContactUs = () => {
 							</div>
 							<div className="flex items-center text-xl mb-3">
 								<EmailIcon fontSize="large" />{" "}
-								<span className="ml-3">alumnicell@iiitkota.ac.in</span>
+								<span className="ml-3">alumni@iiitkota.ac.in</span>
 							</div>
 							<div className="flex items-center text-xl">
 								<LocationOnIcon fontSize="large" />{" "}

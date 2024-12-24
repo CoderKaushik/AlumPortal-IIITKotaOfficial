@@ -1,8 +1,9 @@
 // src/App.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp'
 import Directory from './pages/Directory';
 import Profile from './pages/Profile';
 import ForgotPassword from './pages/ForgotPassword';
@@ -17,6 +18,7 @@ import Loading from './pages/Loading';
 import NotFound from './pages/NotFound';
 import JobDetails from './pages/JobDetails';
 import EventDetails from './pages/EventDetails';
+import News from './pages/News';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,10 +39,11 @@ function App() {
   return (
     <Router>
       {/* <AuthProvider> */}
-        <div className="w-screen h-screen">
+        <div className="w-screen h-screen bg-[#19194D]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/directory" element={<Directory />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -51,7 +54,8 @@ function App() {
             <Route path="/alumni/job-postings" element={<JobsPosting />} />
             <Route path="/alumni/contact" element={<ContactUs />} />
             <Route path="/events" element={<Events />} />
-            {/* <Route path="/job/:title" element={<JobDetails />} /> */}
+            <Route path="/news" element={<News />} />
+            <Route path="/news/:newsId" element={<News />} />
             <Route path="/alumni/job-postings/:id" element={<JobDetails />} />
             <Route path="/events/:title" element={<EventDetails />} />
             <Route path="*" element={<NotFound />} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
@@ -9,7 +9,7 @@ import eventImages from "../GalleryAssets/EventImages.json";
 const eventsData = [
 	{
 		"heading": "Innovative Tech Symposium 2025",
-		"description": "Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future. The 'Alumni Insights' event, organized by the Alumni Cell of IIIT Kota in collaboration with IIIT Kernel, took place on November 9th at the IIIT Kota Auditorium. The event focused on the theme 'Navigating the Placement Pathways' and provided students with crucial insights into preparing for their professional careers. The speaker, Vibhor Rawal, an alumnus of IIIT Kota and a Software Development Engineer at Google, shared his career journey and provided advice on building a diverse skill set, creating strong resumes, and practicing for interviews. He emphasized the importance of coding, problem-solving, teamwork, and system design. The event also featured a Q&A session where students had the opportunity to ask questions on topics like competitive programming, robotics, and internship opportunities. The session concluded with Dr. Chetna Sharma, Associate Dean of the Alumni Cell, honoring Vibhor Rawal with a memento. The event equipped students with the tools and knowledge needed to succeed in their future careers.",
+		"description": "<p>Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future.</p><br /><p>The 'Alumni Insights' event, organized by the Alumni Cell of IIIT Kota in collaboration with IIIT Kernel, took place on November 9th at the IIIT Kota Auditorium. The event focused on the theme 'Navigating the Placement Pathways' and provided students with crucial insights into preparing for their professional careers.</p><br /><p>The speaker, Vibhor Rawal, an alumnus of IIIT Kota and a Software Development Engineer at Google, shared his career journey and provided advice on building a diverse skill set, creating strong resumes, and practicing for interviews. He emphasized the importance of coding, problem-solving, teamwork, and system design.</p><br /><p>The event also featured a Q&A session where students had the opportunity to ask questions on topics like competitive programming, robotics, and internship opportunities. The session concluded with Dr. Chetna Sharma, Associate Dean of the Alumni Cell, honoring Vibhor Rawal with a memento. The event equipped students with the tools and knowledge needed to succeed in their future careers.</p><br />",
 		"images": eventImages["Innovative Tech Symposium 2024"]
 	},	
 	{
@@ -86,8 +86,8 @@ const EventDetails = () => {
 						{event.heading}
 					</Typography>
 					<Divider sx={{ my: 2 }} />
-					<Typography variant="body1" sx={{ mb: 2, textAlign: { xs: 'center', sm: 'left' } }}>
-						{event.description}
+					<Typography variant="body1" sx={{ mb: 2, textAlign: { xs: 'center', sm: 'left' } }} component="div">
+						<div dangerouslySetInnerHTML={{ __html: event.description }} />
 					</Typography>
 					<Divider sx={{ my: 2 }} />
 					<Box sx={{ flexGrow: 1, display: 'flex', justifyContent: { xs: 'center', sm: 'flex-start' } }}>

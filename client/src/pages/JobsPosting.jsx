@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import {
@@ -439,7 +439,15 @@ const JobsPosting = () => {
 							value={searchInput}
 							onChange={handleSearchInputChange}
 							onKeyPress={handleSearchKeyPress}
-							sx={{ flexGrow: 1, mx: 1 }}
+							sx={{
+								flexGrow: 1,
+								mx: 1,
+								'& .MuiOutlinedInput-root': {
+									'& fieldset': {
+										borderColor: 'gray',
+									}
+								},
+							}}
 							InputProps={{
 								startAdornment: (
 									<InputAdornment position="start">
@@ -663,18 +671,19 @@ const JobsPosting = () => {
 				>
 					{isLoggedIn ? (
 						<>
-							<h1 id="modal-title" className="text-3xl mt-10 font-bold">
+							<Typography variant="h4" component="h1" sx={{ mb: 2, fontWeight: 'bold', color: '#007BFF' }}>
 								Post a Job
-							</h1>
-							<p id="modal-description">Fill in the details to post a job.</p>
-								<form onSubmit={handleSubmit}>
+							</Typography>
+							<Typography variant="body1" sx={{ mb: 4, color: '#4A5568' }}>
+								Fill in the details to post a job.
+							</Typography>
+							<form onSubmit={handleSubmit} style={{ width: '100%' }}>
 								<TextField
 									fullWidth
 									margin="normal"
 									label="Company Name"
 									name="companyName"
 									variant="outlined"
-									sx={{ mt: { xs: 8, sm: 0 } }}
 									required
 								/>
 								<TextField
@@ -696,7 +705,7 @@ const JobsPosting = () => {
 								<TextField
 									fullWidth
 									margin="normal"
-									label="Position Type (Full Time, Intern, etc.) "
+									label="Position Type (Full Time, Intern, etc.)"
 									name="positionType"
 									variant="outlined"
 									required
@@ -747,9 +756,7 @@ const JobsPosting = () => {
 									variant="outlined"
 									required
 								/>
-								<Box
-									sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}
-								>
+								<Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
 									<Button onClick={handleCloseModal} sx={{ mr: 2 }}>
 										Cancel
 									</Button>
