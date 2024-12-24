@@ -78,8 +78,8 @@ const Profile = () => {
 				try {
 					const endpoint = id === "me" ? `/profile/me` : `/profile/${id}`;
 					const response = await axios.get(
-						`http://localhost:5000/api${endpoint}`,
-						// `https://alumportal-iiitkotaofficial.onrender.com/api${endpoint}`,
+						// `http://localhost:5000/api${endpoint}`,
+						`https://alumportal-iiitkotaofficial.onrender.com/api${endpoint}`,
 						{
 							headers: { Authorization: `Bearer ${token}` },
 						}
