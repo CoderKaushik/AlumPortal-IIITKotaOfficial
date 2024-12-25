@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode"; // Ensure jwtDecode is installed
 import SignInPrompt from "./SignInPrompt.jsx";
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/Footer.jsx";
-import Avatar from "../asssets/avatar.png";
+import Avatar from "../assets/avatar.png";
 // import SettingsIcon from "@mui/icons-material/Settings";
 // import PersonIcon from "@mui/icons-material/Person";
 // import ContactsIcon from "@mui/icons-material/Contacts";
