@@ -95,15 +95,6 @@ const Home = () => {
           Alumni Cell ensures that the legacy of IIIT Kota continues to thrive,
           empowering individuals to contribute meaningfully to society and their
           fields.
-          <br /> <br /> The Alumni Cell of IIIT Kota works tirelessly to create
-          a platform for alumni to connect, collaborate, and give back to the
-          institute. By organizing events and offering mentorship, we provide
-          current students with opportunities to learn from the experiences of
-          our successful alumni. Our goal is to ensure that IIIT Kota’s legacy
-          continues to thrive by fostering relationships that contribute to both
-          personal and professional growth. The Alumni Cell is committed to
-          guiding students toward their future careers, while celebrating the
-          accomplishments of those who have walked the path before them.
         </p>
         <div className="lg:w-[80%] w-[90%] h-auto flex justify-start">
           <a

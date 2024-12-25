@@ -6,7 +6,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { TextField, InputAdornment, IconButton, Button, useMediaQuery } from "@mui/material";
 import Carousel from "../components/CarouselEvents.jsx"; // Import the Carousel component
 import { useNavigate } from "react-router-dom";
-import eventImages from "../GalleryAssets/EventImages.json";
+import eventsData from "../GalleryAssets/EventData.json"; // Import the JSON data
 
 const Events = () => {
 	const rowRefs = useRef([]);
@@ -19,41 +19,9 @@ const Events = () => {
 
 	const isMobile = useMediaQuery("(max-width: 768px)"); // Check if the view is mobile
 
-	const eventHeadings = [
-		"Innovative Tech Symposium 2024",
-		"Annual Developer Summit",
-		"AI & Machine Learning Workshop",
-		"Digital Transformation Expo",
-		"AI & Machine Learning Workshop",
-		"Digital Transformation Expo",
-	]; // Array of event headings
-
-	const eventDescriptions = [
-		"<p>Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future.</p><br /><p>The 'Alumni Insights' event, organized by the Alumni Cell of IIIT Kota in collaboration with IIIT Kernel, took place on November 9th at the IIIT Kota Auditorium. The event focused on the theme 'Navigating the Placement Pathways' and provided students with crucial insights into preparing for their professional careers.</p><br /><p>The speaker, Vibhor Rawal, an alumnus of IIIT Kota and a Software Development Engineer at Google, shared his career journey and provided advice on building a diverse skill set, creating strong resumes, and practicing for interviews. He emphasized the importance of coding, problem-solving, teamwork, and system design.</p><br /><p>The event also featured a Q&A session where students had the opportunity to ask questions on topics like competitive programming, robotics, and internship opportunities. The session concluded with Dr. Chetna Sharma, Associate Dean of the Alumni Cell, honoring Vibhor Rawal with a memento. The event equipped students with the tools and knowledge needed to succeed in their future careers.</p><br />",
-		"Meet fellow developers and industry experts at the Annual Developer Summit, featuring hands-on coding sessions, tech talks, and opportunities for skill enhancement.",
-		"An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
-		"Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
-		"An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
-		"Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
-	]; // Array of event descriptions
-
-	const eventDates = [
-		"2024-01-15",
-		"2024-02-20",
-		"2024-03-10",
-		"2024-04-05",
-		"2024-05-18",
-		"2024-06-22",
-	]; // Array of event dates
-
 	useEffect(() => {
-		const initialEventsData = eventHeadings.map((heading, index) => ({
-			heading,
-			description: eventDescriptions[index],
-			images: eventImages[heading],
-		}));
-		setFilteredEvents(initialEventsData);
-		setInitialEvents(initialEventsData);
+		setFilteredEvents(eventsData);
+		setInitialEvents(eventsData);
 	}, []);
 
 	useEffect(() => {
@@ -74,7 +42,7 @@ const Events = () => {
 	}, [filteredEvents]);
 
 	const openCarousel = (index) => {
-		setCurrentImages(filteredEvents[index].images);
+		setCurrentImages(filteredEvents[index].eventImages);
 		setIsCarouselOpen(true);
 	};
 
@@ -108,8 +76,7 @@ const Events = () => {
 	const navigate = useNavigate();
 
 	const handleEventCardClick = (event) => {
-		const eventTitle = event.heading.toLowerCase().replace(/ /g, "-");
-		navigate(`/events/${eventTitle}`, { state: { event } });
+		navigate(`/events/${event.code}`, { state: { event } });
 	};
 
 	return (
@@ -205,7 +172,7 @@ const Events = () => {
 								<p className="mt-3 md:text-lg text-sm text-[#19194D] leading-loose overflow-y-scroll scrollbar-hide mb-4" dangerouslySetInnerHTML={{ __html: event.description }} />
 								<div className="w-full flex justify-between items-center mt-auto md:mb-3 -mb-4">
 									<p className="md:text-sm text-xs text-gray-500">
-										Posted on {eventDates[index]}
+										Posted on {event.date}
 									</p><br />
 									<Button
 										variant="contained"
@@ -224,7 +191,7 @@ const Events = () => {
 								onClick={() => openCarousel(index)}
 							>
 								<img
-									src={event.images[0]}
+									src={event.eventImages[0]}
 									alt="img__"
 									className={`w-full h-full object-cover ${
 										index % 2 === 0 ? "md:rounded-bl-none md:rounded-tl-none md:rounded-tr-lg md:rounded-br-lg rounded-tl-lg rounded-tr-lg" : "md:rounded-br-none md:rounded-tr-none md:rounded-tl-lg md:rounded-bl-lg rounded-tl-lg rounded-tr-lg"

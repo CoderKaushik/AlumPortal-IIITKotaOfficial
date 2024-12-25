@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import "keen-slider/keen-slider.min.css";
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import C2 from "../assets/2.webp";
 import C3 from "../assets/3.webp";
 import C1 from "../assets/1.webp";
@@ -35,7 +33,6 @@ const carouselHome = () => {
 
   return (
     <div className="relative">
-      {/* <div ref={sliderRef} className="keen-slider h-[35.5rem] max-w-980:h-[22rem] max-w-492:h-[16.1rem] mt-[8.375rem] max-w-980:mt-[90px] max-w-492:mt-[58px]"> */}
       <div
         ref={sliderRef}
         className="keen-slider lg:h-[78vh] md:h-[65vh] sm:h-[55vh] h-[40vh] mt-[8.375rem] max-w-980:mt-[90px] max-w-492:mt-[58px]"
@@ -50,26 +47,6 @@ const carouselHome = () => {
           <img src={C3} alt="" className="object-fill w-full h-full" />
         </div>
       </div>
-
-      {/* Navigation Arrows */}
-      <button
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-transparent text-8xl flex justify-center items-center text-blue-600 px-3 py-1"
-        onClick={() => {
-          instanceRef.current?.prev();
-          resetTimer();
-        }}
-      >
-        <ArrowLeftIcon style={{ fontSize: "4rem" }} />
-      </button>
-      <button
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent text-8xl flex justify-center items-center text-blue-600 px-3 py-1"
-        onClick={() => {
-          instanceRef.current?.next();
-          resetTimer();
-        }}
-      >
-        <ArrowRightIcon style={{ fontSize: "4rem" }} />
-      </button>
     </div>
   );
 };

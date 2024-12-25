@@ -163,38 +163,22 @@ const Navbar = () => {
 					</div>
 
 					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-						<p
+						<a href="/events"
 							className="text-[0.9rem] font-sans hover:cursor-pointer"
 							style={{ fontWeight: "400" }}
 						>
 							EVENTS
-						</p>
-						<div className="rounded-md absolute top-12 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 bg-white drop-shadow-2xl py-2 mt-2 w-[12rem] transition-all duration-300 ease-in-out transform translate-y-2">
-							<ul className="w-full">
-								<li className="hover:bg-gray-100 p-2">
-									<a href="/events">Events</a>
-								</li>
-								<li className="hover:bg-gray-100 p-2">
-									<a href="/newsletters">Newsletters</a>
-								</li>
-							</ul>
-						</div>
+						</a>
 					</div>
 
 					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-						<p
+						<a href="/news"
 							className="text-[0.9rem] font-sans hover:cursor-pointer"
 							style={{ fontWeight: "400" }}
 						>
-							NEWSLETTERS
-						</p>
-						<div className="rounded-md absolute top-12 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 bg-white drop-shadow-2xl py-2 mt-2 w-[12rem] transition-all duration-300 ease-in-out transform translate-y-2">
-							<ul className="w-full">
-								<li className="hover:bg-gray-100 p-2">
-									<a href="/newsletters">Newsletters</a>
-								</li>
-							</ul>
-						</div>
+							NEWS
+						</a>
+						
 					</div>
 
 					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
