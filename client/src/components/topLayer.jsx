@@ -8,6 +8,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import YoutubeIcon from "@mui/icons-material/YouTube";
 import LogoutIcon from "@mui/icons-material/Logout"; // Import LogoutIcon
 import Headroom from "react-headroom";
+import Avatar from "../assets/avatar.png"
 import axios from "axios";
 import { Modal, Box, Button, Typography } from "@mui/material";
 
@@ -92,7 +93,9 @@ const TopLayer = () => {
 										className="w-full h-full object-cover"
 									/>
 								) : (
-									<div className="bg-gray-400 w-full h-full"></div>
+									<div className="bg-gray-400 w-full h-full">
+										<img src={Avatar} alt="" className="w-full h-full object-fill" />
+									</div>
 								)}
 							</div>
 							<p className="text-white text-sm">
@@ -150,7 +153,7 @@ const TopLayer = () => {
 						width: 300,
 						bgcolor: "background.paper",
 						border: "2px solid #000",
-						borderRadius: 8,
+						borderRadius: 2,
 						boxShadow: 24,
 						p: 4,
 					}}
@@ -162,10 +165,10 @@ const TopLayer = () => {
 						Are you sure you want to logout?
 					</Typography>
 					<Box sx={{ mt: 2, display: "flex", justifyContent: "space-between" }}>
-						<Button variant="contained" color="primary" onClick={handleLogout}>
+						<Button variant="contained" color="error" onClick={handleLogout}>
 							Yes
 						</Button>
-						<Button variant="contained" sx={{ backgroundColor: 'teal' }} onClick={handleClose}>
+						<Button variant="contained" sx={{ backgroundColor: '#1E40AF', color: '#fff' }} onClick={handleClose}>
 							No
 						</Button>
 					</Box>

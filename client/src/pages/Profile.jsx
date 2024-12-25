@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode"; // Ensure jwtDecode is installed
 import SignInPrompt from "./SignInPrompt.jsx";
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/Footer.jsx";
+import Avatar from "../asssets/avatar.png";
 // import SettingsIcon from "@mui/icons-material/Settings";
 // import PersonIcon from "@mui/icons-material/Person";
 // import ContactsIcon from "@mui/icons-material/Contacts";
@@ -326,7 +327,7 @@ const Profile = () => {
 					<div className="w-full h-[70%] flex justify-center items-center">
 						<div className="md:w-40 md:h-40 w-32 h-32 rounded-full border border-gray-100 shadow-2xl overflow-hidden">
 							<img
-								src={user.profilePicture}
+								src={user.profilePicture ? user.profilePicture : Avatar}
 								className="w-full h-full object-cover"
 								alt="profile picture"
 							/>

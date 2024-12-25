@@ -53,22 +53,22 @@ const carouselHome = () => {
 
       {/* Navigation Arrows */}
       <button
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-transparent text-8xl flex justify-center items-center text-gray-100 px-3 py-1"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-transparent text-8xl flex justify-center items-center text-blue-600 px-3 py-1"
         onClick={() => {
           instanceRef.current?.prev();
           resetTimer();
         }}
       >
-        <ArrowLeftIcon style={{ fontSize: "3rem" }} />
+        <ArrowLeftIcon style={{ fontSize: "4rem" }} />
       </button>
       <button
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent text-8xl flex justify-center items-center text-gray-100 px-3 py-1"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent text-8xl flex justify-center items-center text-blue-600 px-3 py-1"
         onClick={() => {
           instanceRef.current?.next();
           resetTimer();
         }}
       >
-        <ArrowRightIcon style={{ fontSize: "3rem" }} />
+        <ArrowRightIcon style={{ fontSize: "4rem" }} />
       </button>
     </div>
   );
