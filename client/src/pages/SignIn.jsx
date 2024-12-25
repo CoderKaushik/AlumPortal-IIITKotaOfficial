@@ -73,7 +73,12 @@ function SignIn() {
       <div><Toaster position="top-right"/></div>
       <div className="md:w-[85%] md:h-[95%] w-[95%] h-auto max-w-md bg-white rounded-2xl shadow-2xl p-8">
         <div className="flex justify-center mb-6">
-          <img src={Logo} className="w-3/5" alt="Logo" />
+          <img 
+            src={Logo} 
+            className="w-3/5 cursor-pointer" 
+            alt="Logo" 
+            onClick={() => navigate('/')} // Navigate to home page on click
+          />
         </div>
         <h2 className="text-3xl font-semibold text-center text-[#32325D] mb-6">
           Sign In

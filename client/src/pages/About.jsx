@@ -2,27 +2,30 @@ import Navbar from "../components/navbar.jsx";
 import iiitkotalogo from "../assets/iiitkotalogo.png"; // Update path as needed
 import Footer from "../components/Footer.jsx";
 import ProfileCard from "../components/TeamCard.jsx";
+import Hiteshwar from "../assets/hiteshwar_kk.jpeg";
+import Kratin from "../assets/kratin_agarwal.jpeg";
+import Chetna from "../assets/chetna_ma'am.jpeg";
+import Partik from "../assets/partik_malasi.jpeg";
 
 const profiles = [
   {
     name: "Hiteshwar Kaushik",
     occupation: "3rd Year CSE",
-    image: "https://via.placeholder.com/200",
+    image: Hiteshwar,
     linkedin: "https://www.linkedin.com/in/hiteshwarkaushik/",
     github: "https://www.github.com/coderkaushik",
   },
   {
     name: "Partik Malasi",
     occupation: "3rd Year CSE",
-    image: "https://via.placeholder.com/200",
+    image: Partik,
     linkedin: "https://www.linkedin.com/in/partik-malasi-736686249/",
     github: "https://www.github.com/coderkaushik",
   },
   {
     name: "Kratin Aggrawal",
     occupation: "3rd Year CSE",
-    image: "https://via.placeholder.com/200",
-
+    image: Kratin,
     linkedin: "https://www.linkedin.com/in/kratin-aggarwal-691157257/",
     github: "https://www.github.com/coderkaushik",
   },
@@ -130,7 +133,7 @@ const About = () => {
               <ProfileCard
                 name="Dr. Chetna Sharma"
                 occupation="Assistant Professor,ECE"
-                image="https://via.placeholder.com/200" // Update with the actual image path
+                image={Chetna} // Update with the actual image path
                 linkedin="https://www.linkedin.com/in/chetna-sharma-phd-8ba8a337/" // Update with the actual LinkedIn URL
               />
             </div>
