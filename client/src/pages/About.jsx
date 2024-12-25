@@ -14,6 +14,7 @@ const profiles = [
     image: Hiteshwar,
     linkedin: "https://www.linkedin.com/in/hiteshwarkaushik/",
     github: "https://www.github.com/coderkaushik",
+    email: "hiteshwarkaushik@gmail.com",
   },
   {
     name: "Partik Malasi",
@@ -21,6 +22,7 @@ const profiles = [
     image: Partik,
     linkedin: "https://www.linkedin.com/in/partik-malasi-736686249/",
     github: "https://www.github.com/coderkaushik",
+    email: "partikmalasi@gmail.com",
   },
   {
     name: "Kratin Aggrawal",
@@ -28,6 +30,7 @@ const profiles = [
     image: Kratin,
     linkedin: "https://www.linkedin.com/in/kratin-aggarwal-691157257/",
     github: "https://www.github.com/coderkaushik",
+    email: "kratin@example.com",
   },
 ];
 
@@ -135,6 +138,7 @@ const About = () => {
                 occupation="Assistant Professor,ECE"
                 image={Chetna} // Update with the actual image path
                 linkedin="https://www.linkedin.com/in/chetna-sharma-phd-8ba8a337/" // Update with the actual LinkedIn URL
+                email="chetna.ece@iiitkota.ac.in"
               />
             </div>
 
