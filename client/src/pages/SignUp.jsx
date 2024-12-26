@@ -144,7 +144,7 @@ const SignUp = () => {
 		} catch (error) {
 			console.error("There was an error registering the user:", error);
 
-			// Handle specific error for duplicate instituteId
+			// Handle specific error for duplicate instituteId or email
 			if (
 				error.response &&
 				error.response.status === 400 &&

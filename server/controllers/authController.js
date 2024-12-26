@@ -25,6 +25,12 @@ exports.signUp = async (req, res) => {
   } = req.body;
 
   try {
+    // Check if a user with the same email exists
+    const existingUser = await User.findOne({ personalEmail });
+    if (existingUser) {
+      return res.status(400).json({ message: "A user with this email already exists." });
+    }
+
     // Initialize profilePictureUrl variable
     let profilePictureUrl = null;
 
@@ -105,6 +111,6 @@ exports.signIn = async (req, res) => {
 };
 
 exports.signOut = (req, res) => {
-  // Handle sign-out logic (e.g., invalidating tokens, etc.)
-  res.json({ message: 'Signed out successfully' });
+  // Remove token logic
+  localStorage.removeItem("token");
 };
