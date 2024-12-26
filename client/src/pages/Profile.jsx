@@ -349,7 +349,7 @@ const Profile = () => {
 							</p>
 							<p className="w-full">{user.instituteId}</p>
 							<p className="w-full">
-								Bachelor's in Technology, Computer Science and Engineering
+								Bachelor's in Technology, {user.branch === 'CSE' ? 'Computer Science and Engineering' : 'Electronics and Communication Engineering'}
 							</p>
 							<p className="w-full">
 								{user.graduationYear - 4} - {user.graduationYear}
