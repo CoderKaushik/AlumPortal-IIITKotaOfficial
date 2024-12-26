@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import NewsCard from '../components/NewsCard';
-import Footer from '../components/footer.jsx';
+import Footer from '../components/Footer.jsx';
 import { TextField, InputAdornment, IconButton, Button } from "@mui/material";
 import { Search, ArrowForward } from "@mui/icons-material";
 import newsData from '../data/newsData.json';

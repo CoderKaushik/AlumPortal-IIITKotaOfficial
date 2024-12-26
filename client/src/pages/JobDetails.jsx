@@ -1,7 +1,7 @@
 import { useLocation, useParams } from "react-router-dom";
 import { Box, Typography, Button, Paper, Divider } from "@mui/material";
 import Navbar from "../components/navbar";
-import Footer from "../components/footer.jsx";
+import Footer from "../components/Footer.jsx";
 import jobsData from "../data/jobsData.json"; // Import the JSON data
 
 const JobDetails = () => {

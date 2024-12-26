@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import Navbar from "../components/navbar";
-import Footer from "../components/footer.jsx";
+import Footer from "../components/Footer.jsx";
 import { Search as SearchIcon } from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { TextField, InputAdornment, IconButton, Button, useMediaQuery } from "@mui/material";

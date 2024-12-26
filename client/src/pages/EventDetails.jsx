@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Navbar from "../components/navbar";
-import Footer from "../components/footer.jsx";
+import Footer from "../components/Footer.jsx";
 import { Box, Typography, Paper, Divider, Button } from "@mui/material";
 import CarouselEvents from "../components/CarouselEvents";
 import eventsData from "../data/EventData.json"; // Import the JSON data

@@ -25,7 +25,7 @@ import {
 	Link as LinkIcon,
 } from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Footer from "../components/footer.jsx";
+import Footer from "../components/Footer.jsx";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
 import { toast, Toaster } from "react-hot-toast"; 

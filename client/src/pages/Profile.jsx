@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode"; // Ensure jwtDecode is installed
 import SignInPrompt from "./SignInPrompt.jsx";
 import Navbar from "../components/navbar.jsx";
-import Footer from "../components/footer.jsx";
+import Footer from "../components/Footer.jsx";
 import Avatar from "../assets/avatar.png";
 
 import {
