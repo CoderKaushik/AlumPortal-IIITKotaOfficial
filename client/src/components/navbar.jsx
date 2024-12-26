@@ -290,48 +290,26 @@ const Navbar = () => {
 								</a>
 							</li>
 							<li>
-								<button
-									onClick={() => handleSubMenuToggle("events")}
+								<a
+									href="/events"
+									onClick={toggleMobileMenu}
 									className="w-full text-left text-[#172B4D]"
 								>
-									<div className="flex gap-3 items-center text-base font-medium">
+									<div  className="flex gap-3 items-center text-base font-medium">
 										<EventIcon />
 										Events
-										<span className="ml-auto">
-											{activeSubMenu === "events" ? "-" : "+"}
-										</span>
 									</div>
-								</button>
-								<div
-									className={`pl-6 overflow-hidden transition-max-height duration-300 ease-in-out ${
-										activeSubMenu === "events" ? "max-h-40" : "max-h-0"
-									}`}
-								>
-									<ul className="space-y-2 mt-2 text-sm font-normal border-l border-gray-200">
-										<li
-											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-											onClick={toggleMobileMenu}
-										>
-											<a href="/events">Events</a>
-										</li>
-										<li
-											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-											onClick={toggleMobileMenu}
-										>
-											<a href="/newsletters">Newsletters</a>
-										</li>
-									</ul>
-								</div>
+								</a>
 							</li>
 							<li>
 								<a
-									href="/newsletters"
+									href="/news"
 									onClick={toggleMobileMenu}
 									className="w-full text-left text-[#172B4D]"
 								>
 									<div className="flex gap-3 items-center text-base font-medium">
 										<FeedIcon />
-										Newsletters
+										News
 									</div>
 								</a>
 							</li>
