@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { Box, Typography, Button, Paper, Divider } from "@mui/material";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer.jsx";
@@ -7,6 +7,7 @@ import jobsData from "../data/jobsData.json"; // Import the JSON data
 const JobDetails = () => {
 	const location = useLocation();
 	const { id } = useParams();
+	const navigate = useNavigate();
 	const job = location.state?.job || jobsData.jobCards.find(job => job.id === id) || jobsData.internCards.find(intern => intern.id === id);
 
 	if (!job) {
@@ -57,8 +58,11 @@ const JobDetails = () => {
 							</Typography>
 						</Box>
 					</Box>
-					<Button variant="contained" color="primary" sx={{ mt: 2 }}>
+					<Button variant="contained" color="primary" sx={{ mt: 2, mr: 2 }}>
 						Apply
+					</Button>
+					<Button variant="outlined" color="primary" sx={{ mt: 2 }} onClick={() => navigate('/alumni/job-postings')}>
+						View All Jobs
 					</Button>
 				</Paper>
 			</Box>

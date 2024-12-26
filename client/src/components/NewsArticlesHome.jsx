@@ -24,13 +24,13 @@ const NewsArticlesHome = () => {
       {/* Events Section */}
       <div className="lg:h-full lg:w-[70%] h-auto w-full rounded-md shadow-2xl hover:mb-5 transition-all duration-500 ease-in-out md:px-3 md:py-2 flex lg:flex-row flex-col gap-3">
         <div className="lg:w-1/2 w-full lg:h-full h-auto flex flex-col justify-between">
-          <h1 className="w-full h-auto py-1 px-3 rounded-md text-white bg-[#19194D] font-semibold text-3xl text-start mb-1">Events</h1>
+          <h1 className="w-full h-auto py-1 px-3 rounded-md text-white bg-[#19194D] font-semibold md:text-2xl text-lg  text-start mb-1">Events</h1>
           <div className="w-full flex-grow">
             <img src={eventData[0].eventImages[0]} alt="1st Event's image" className="mb-2 rounded-tr-lg rounded-tl-lg px1" />
             <h3 className="text-xl font-bold text-[#19194D] mb-2 px-1">{eventData[0].heading}</h3>
             <p className="text-gray-600 px-1">{eventData[0].description}</p>
           </div>
-          <button onClick={() => handleEventClick("/events")} className="bg-[#19194D] text-white px-4 py-2 hover:bg-black transition-all duration-800 ease-in-out rounded-lg flex justify-center items-center mt-2 self-end">View All Events</button>
+          <button onClick={() => handleEventClick("/events")} className="bg-[#19194D] md:text-md text-sm text-white px-4 py-2 hover:bg-black transition-all duration-800 ease-in-out rounded-lg flex justify-center items-center mt-2 self-end">View All Events</button>
         </div>
         <div className="lg:w-1/2 w-full lg:h-full h-auto flex flex-col justify-between">
           {eventData.slice(1, 4).map((event, index) => (
@@ -56,17 +56,12 @@ const NewsArticlesHome = () => {
       </div>
 
       {/* News Articles Section */}
-      <div className="lg:h-full lg:w-[30%] h-1/3 w-full rounded-md shadow-2xl hover:mb-5 transition-all duration-500 ease-in-out px-4 py-2 flex flex-col justify-between group">
-        <div className="w-full h-[3rem] flex border-b pb-1">
-          <h3 className="text-2xl font-bold text-center flex justify-center items-center text-[#19194D]">
-            News Articles
+      <div className="lg:h-full lg:w-[30%] h-1/3 w-full rounded-md shadow-2xl hover:mb-5 transition-all duration-500 ease-in-out px-1 py-2 flex flex-col justify-between group">
+        <div className="w-full h-[3rem] flex border-b gap-2 pb-1">
+          <h3 className="w-[80%] md:text-2xl text-lg font-semibold px-3 py-1 rounded-lg text-white bg-[#19194D]">
+            News
           </h3>
-          <a
-            href="/news"
-            className="ml-auto bg-[#19194D] text-white px-4 hover:bg-black transition-all duration-800 ease-in-out rounded-lg flex justify-center items-center my-1"
-          >
-            See All
-          </a>
+          <button onClick={() => handleEventClick("/news")} className="w-[20%] bg-[#19194D] hover:bg-black transition text-white rounded-lg flex justify-center items-center md:text-md text-sm">View All</button>
         </div>
 
         <div className="w-full h-full overflow-hidden relative">

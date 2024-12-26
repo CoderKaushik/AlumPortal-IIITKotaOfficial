@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer.jsx";
 import { Box, Typography, Paper, Divider, Button } from "@mui/material";
@@ -10,6 +10,7 @@ const EventDetails = () => {
 	const { title } = useParams();
 	const [event, setEvent] = useState(null);
 	const [isCarouselOpen, setIsCarouselOpen] = useState(false);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchEvent = () => {
@@ -67,9 +68,12 @@ const EventDetails = () => {
 						Posted on {event.date}
 					</Typography>
 					<Divider sx={{ my: 2 }} />
-					<Box sx={{ flexGrow: 1, display: 'flex', justifyContent: { xs: 'center', sm: 'flex-start' } }}>
+					<Box sx={{ flexGrow: 1, display: 'flex', justifyContent: { xs: 'center', sm: 'flex-start' }, gap: 2 }}>
 						<Button variant="contained" color="primary" onClick={openCarousel}>
 							View Images
+						</Button>
+						<Button variant="outlined" onClick={() => navigate('/events')}>
+							View All Events
 						</Button>
 					</Box>
 				</Paper>

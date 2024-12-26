@@ -35,31 +35,31 @@ const Footer = () => {
 						</a>
 					</div>
 					<div className="w-full h-[27px] max-w-492:h-[150px] mt-12 text-sm flex max-w-492:flex-col gap-16 max-w-492:gap-2 border-b border-slate-700 pb-[3rem]">
-						<a href="" className="text-[#38B6FF]">
+						<a href="/about" className="text-[#38B6FF]">
 							ABOUT <ArrowRightAltIcon />
 						</a>
-						<a href="" className="text-[#38B6FF]">
-							TEAM <ArrowRightAltIcon />
+						<a href="/alumni/job-postings" className="text-[#38B6FF]">
+							JOBS <ArrowRightAltIcon />
 						</a>
-						<a href="" className="text-[#38B6FF]">
-							ANNOUNCEMENTS <ArrowRightAltIcon />
+						<a href="/news" className="text-[#38B6FF]">
+							NEWS <ArrowRightAltIcon />
 						</a>
-						<a href="" className="text-[#38B6FF]">
+						<a href="/events" className="text-[#38B6FF]">
 							EVENTS <ArrowRightAltIcon />
 						</a>
 					</div>
 					<div className="w-full h-[27px] max-w-492:h-[150px] mt-8 max-w-980:mb-8 text-sm flex max-w-492:flex-col gap-16 max-w-492:gap-2 border-b border-slate-700 pb-[3rem]">
-						<a href="" className="text-[#38B6FF]">
-							ABOUT <ArrowRightAltIcon />
+						<a href="/gallery" className="text-[#38B6FF]">
+							GALLERY <ArrowRightAltIcon />
 						</a>
-						<a href="" className="text-[#38B6FF]">
-							TEAM <ArrowRightAltIcon />
+						<a href="/contact" className="text-[#38B6FF]">
+							CONTACT US <ArrowRightAltIcon />
 						</a>
-						<a href="" className="text-[#38B6FF]">
-							ANNOUNCEMENTS <ArrowRightAltIcon />
+						<a href="/directory" className="text-[#38B6FF]">
+							DIRECTORY <ArrowRightAltIcon />
 						</a>
-						<a href="" className="text-[#38B6FF]">
-							EVENTS <ArrowRightAltIcon />
+						<a href="/sitemap" className="text-[#38B6FF]">
+							SITEMAP <ArrowRightAltIcon />
 						</a>
 					</div>
 				</div>
@@ -85,7 +85,7 @@ const Footer = () => {
 			<div className="w-full h-[10%] bg-[#0E407C] flex justify-center items-center">
 				<div className="w-full h-1/2 max-w-492:h-full flex max-w-492:flex-col max-w-492:py-1">
 					<div className="w-1/2 h-full max-w-492:w-full max-w-492:h-1/3 flex justify-start max-w-492:justify-center items-center pl-8 max-w-492:pl-0 text-white max-w-492:text-sm">
-						© 2024 Alumni Cell, IIIT Kota
+						© 2025 Alumni Cell, IIIT Kota
 					</div>
 					<div className="w-1/2 h-full max-w-492:w-full max-w-492:h-2/3 flex justify-end max-w-492:justify-center items-center pr-4 max-w-492:pr-0 max-w-492:gap-8 gap-4">
 						<XIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 ease-in-out cursor-pointer" />

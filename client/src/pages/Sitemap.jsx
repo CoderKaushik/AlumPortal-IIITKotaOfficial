@@ -9,8 +9,6 @@ const Sitemap = () => {
     { path: "/signup", name: "Sign Up" },
     { path: "/directory", name: "Directory" },
     { path: "/profile/:id", name: "Profile" },
-    { path: "/forgot-password", name: "Forgot Password" },
-    { path: "/reset-password/:token", name: "Reset Password" },
     { path: "/about", name: "About" },
     { path: "/alumni/gallery", name: "Gallery" },
     { path: "/alumni/prominent-alumni", name: "Prominent Alumni" },

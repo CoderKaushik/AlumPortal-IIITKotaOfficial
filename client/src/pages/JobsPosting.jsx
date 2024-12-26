@@ -290,91 +290,101 @@ const JobsPosting = () => {
 							<MenuItem onClick={handlePostJobsClick}>Post Jobs</MenuItem>
 						</Menu>
 					</div>
-					<div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center mb-4">
-						{filteredJobs.map((job, index) => (
-							<Card
-								key={index}
-								onClick={() => handleJobCardClick(job)}
-								sx={{
-									width: { lg: 400, md: 300, sm: 300, xs: 325 },
-									boxShadow: 3,
-									borderRadius: 2,
-									transition: "transform 0.3s, box-shadow 0.3s",
-									"&:hover": {
-										transform: "translateY(-5px)",
-										boxShadow: 6,
-										cursor: "pointer",
-									},
-									position: "relative",
-									opacity: visibleRows[index] ? 1 : 0,
-									transform: visibleRows[index] ? "scale(1)" : "scale(0.95)",
-									transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
-								}}
-								ref={(el) => (rowRefs.current[index] = el)}
-								data-index={index}
-							>
-								<IconButton
-									sx={{
-										position: "absolute",
-										top: 8,
-										right: 8,
-										transition: "color 0.3s",
-										"&:hover": {
-											color: "#007BFF", // Professional-looking blue color
-										},
-									}}
-									aria-label="share"
-									onClick={(event) => handleShareClick(event, job)}
-								>
-									<ShareIcon />
-								</IconButton>
-								<CardContent>
-									<Typography
-										variant="h5"
-										component="div"
-										sx={{ fontWeight: "bold" }}
+					<div className="w-full flex flex-col items-center mb-4">
+						{filteredJobs.length === 0 ? (
+							<div className="w-full h-[60vh] flex items-center justify-center">
+								<Typography variant="h6" color="text.secondary">
+									No jobs found
+								</Typography>
+							</div>
+						) : (
+							<div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+								{filteredJobs.map((job, index) => (
+									<Card
+										key={index}
+										onClick={() => handleJobCardClick(job)}
+										sx={{
+											width: { lg: 400, md: 300, sm: 300, xs: 325 },
+											boxShadow: 3,
+											borderRadius: 2,
+											transition: "transform 0.3s, box-shadow 0.3s",
+											"&:hover": {
+												transform: "translateY(-5px)",
+												boxShadow: 6,
+												cursor: "pointer",
+											},
+											position: "relative",
+											opacity: visibleRows[index] ? 1 : 0,
+											transform: visibleRows[index] ? "scale(1)" : "scale(0.95)",
+											transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+										}}
+										ref={(el) => (rowRefs.current[index] = el)}
+										data-index={index}
 									>
-										{job.title}
-									</Typography>
-									<Typography sx={{ mb: 1.5 }} color="text.secondary">
-										{job.company} - {job.location}
-									</Typography>
-									<Typography variant="body2" sx={{ mb: 1.5 }}>
-										{job.description}
-									</Typography>
-									<Typography variant="body2" sx={{ mb: 1.5 }}>
-										<strong>Skills Required:</strong> {job.skills}
-									</Typography>
-									<Typography variant="body2" sx={{ mb: 1.5 }}>
-										<strong>Experience Required:</strong> {job.experience}
-									</Typography>
-									<Typography variant="body2" sx={{ mb: 1.5 }}>
-										<strong>Deadline:</strong> {job.deadline}
-									</Typography>
-									<Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-										<img
-											src={job.postedBy.picture}
-											alt={job.postedBy.name}
-											className="w-10 h-10 rounded-full object-cover mr-2"
-										/>
-										<Box>
-											<Typography variant="body2" sx={{ fontWeight: "bold" }}>
-												{job.postedBy.name}
+										<IconButton
+											sx={{
+												position: "absolute",
+												top: 8,
+												right: 8,
+												transition: "color 0.3s",
+												"&:hover": {
+													color: "#007BFF", // Professional-looking blue color
+												},
+											}}
+											aria-label="share"
+											onClick={(event) => handleShareClick(event, job)}
+										>
+											<ShareIcon />
+										</IconButton>
+										<CardContent>
+											<Typography
+												variant="h5"
+												component="div"
+												sx={{ fontWeight: "bold" }}
+											>
+												{job.title}
 											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Batch of {job.postedBy.batch}
+											<Typography sx={{ mb: 1.5 }} color="text.secondary">
+												{job.company} - {job.location}
 											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												{job.postedBy.currentPosition}
+											<Typography variant="body2" sx={{ mb: 1.5 }}>
+												{job.description}
 											</Typography>
-										</Box>
-									</Box>
-									<Button variant="contained" color="primary" sx={{ mt: 2 }}>
-										Apply
-									</Button>
-								</CardContent>
-							</Card>
-						))}
+											<Typography variant="body2" sx={{ mb: 1.5 }}>
+												<strong>Skills Required:</strong> {job.skills}
+											</Typography>
+											<Typography variant="body2" sx={{ mb: 1.5 }}>
+												<strong>Experience Required:</strong> {job.experience}
+											</Typography>
+											<Typography variant="body2" sx={{ mb: 1.5 }}>
+												<strong>Deadline:</strong> {job.deadline}
+											</Typography>
+											<Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+												<img
+													src={job.postedBy.picture}
+													alt={job.postedBy.name}
+													className="w-10 h-10 rounded-full object-cover mr-2"
+												/>
+												<Box>
+													<Typography variant="body2" sx={{ fontWeight: "bold" }}>
+														{job.postedBy.name}
+													</Typography>
+													<Typography variant="body2" color="text.secondary">
+														Batch of {job.postedBy.batch}
+													</Typography>
+													<Typography variant="body2" color="text.secondary">
+														{job.postedBy.currentPosition}
+													</Typography>
+												</Box>
+											</Box>
+											<Button variant="contained" color="primary" sx={{ mt: 2 }}>
+												Apply
+											</Button>
+										</CardContent>
+									</Card>
+								))}
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

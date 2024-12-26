@@ -258,7 +258,7 @@ const Home = () => {
       <Footer />
       {showButton && ( // Conditionally render the button
         <div
-          className={`absolute bottom-20 right-4 h-12 w-12 rounded-full bg-[#38B6FF] z-20 flex justify-center items-center hover:cursor-pointer transition-opacity duration-300 ease-in-out transform ${
+          className={`absolute bottom-14 group right-4 h-12 w-12 rounded-full bg-[#38B6FF] z-20 flex justify-center items-center hover:cursor-pointer transition-opacity duration-300 ease-in-out transform ${
             showButton ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           onClick={scrollToTop}
