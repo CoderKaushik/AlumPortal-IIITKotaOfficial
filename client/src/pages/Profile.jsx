@@ -4,18 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode"; // Ensure jwtDecode is installed
 import SignInPrompt from "./SignInPrompt.jsx";
 import Navbar from "../components/navbar.jsx";
-import Footer from "../components/Footer.jsx";
+import Footer from "../components/footer.jsx";
 import Avatar from "../assets/avatar.png";
-// import SettingsIcon from "@mui/icons-material/Settings";
-// import PersonIcon from "@mui/icons-material/Person";
-// import ContactsIcon from "@mui/icons-material/Contacts";
-// import EmailIcon from "@mui/icons-material/Email";
-// import PhoneIcon from "@mui/icons-material/Phone";
-// import HomeIcon from "@mui/icons-material/Home";
-// import LinkedInIcon from "@mui/icons-material/LinkedIn";
-// import WorkIcon from "@mui/icons-material/Work";
-// import BusinessIcon from "@mui/icons-material/Business";
-// import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 import {
 	Button,
