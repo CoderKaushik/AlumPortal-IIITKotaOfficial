@@ -12,11 +12,13 @@ import Footer from "../components/Footer.jsx";
 
 import CollectionsIcon from "@mui/icons-material/Collections";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const scrollableDivRef = useRef(null); // Create a ref for the scrollable div
 
   const [showButton, setShowButton] = useState(false); // State to track button visibility
+  const navigate = useNavigate();
 
   const scrollToTop = () => {
     if (scrollableDivRef.current) {
@@ -230,20 +232,32 @@ const Home = () => {
           </div>
           <div className="w-full h-[70%] border-t border-white flex justify-center items-center">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 p-4 max-w-5xl">
-              <div className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl">
+              <div
+                className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl"
+                onClick={() => navigate("/directory")}
+              >
                 <CollectionsIcon style={{ width: "4rem", height: "4rem" }} />
                 <p>Directory</p>
               </div>
 
-              <div className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl">
+              <div
+                className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl"
+                onClick={() => navigate("/events")}
+              >
                 <CollectionsIcon style={{ width: "4rem", height: "4rem" }} />
                 <p>Events</p>
               </div>
-              <div className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl">
+              <div
+                className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl"
+                onClick={() => navigate("/alumni/gallery")}
+              >
                 <CollectionsIcon style={{ width: "4rem", height: "4rem" }} />
                 <p>Gallery</p>
               </div>
-              <div className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-800 ease-in-out text-white shadow-2xl">
+              <div
+                className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-800 ease-in-out text-white shadow-2xl"
+                onClick={() => navigate("/alumni/prominent-alumni")}
+              >
                 <CollectionsIcon style={{ width: "4rem", height: "4rem" }} />
                 <p>Prominent Alumni</p>
               </div>

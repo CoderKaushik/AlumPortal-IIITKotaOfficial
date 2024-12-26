@@ -144,8 +144,11 @@ const SignUp = () => {
 			// Toast notification
 			toast.success("Registration Successful");
 
-			// Redirect to home page
-			navigate("/");
+				// Delay navigation by 3 seconds
+				setTimeout(() => {
+					// Redirect to home page
+					navigate("/signin");
+				}, 3000);
 		} catch (error) {
 			console.error("There was an error registering the user:", error);
 
