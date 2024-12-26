@@ -8,7 +8,7 @@ import CarouselHome from "../components/carouselHome.jsx";
 import InfiniteText from "../components/infiniteText.jsx";
 import NewsArticlesHome from "../components/NewsArticlesHome.jsx";
 import Testimonials from "../components/Testimonials.jsx";
-import Footer from "../components/Footer.jsx";
+import Footer from "../components/footer.jsx";
 
 import CollectionsIcon from "@mui/icons-material/Collections";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";

@@ -1,75 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import eventImages from "../GalleryAssets/EventImages.json";
-
-const events = [
-  {
-    title: "Innovative Tech Symposium 2024",
-    description: "Join us for an insightful symposium exploring the latest innovations in technology. Network with industry leaders and gain knowledge on emerging trends shaping the future.",
-    image: eventImages["Innovative Tech Symposium 2024"][0],
-    link: "/events/innovative-tech-symposium-2024",
-  },
-  {
-    title: "Annual Developer Summit",
-    description: "Meet fellow developers and industry experts at the Annual Developer Summit, featuring hands-on coding sessions, tech talks, and opportunities for skill enhancement.",
-    image: eventImages["Annual Developer Summit"][0],
-    link: "/events/annual-developer-summit",
-  },
-  {
-    title: "AI & Machine Learning Workshop",
-    description: "An in-depth workshop focusing on practical applications of AI and Machine Learning. Learn from experts and collaborate on real-world projects in this dynamic session.",
-    image: eventImages["AI & Machine Learning Workshop"][0],
-    link: "/events/ai-machine-learning-workshop",
-  },
-  {
-    title: "Digital Transformation Expo",
-    description: "Discover the latest advancements in digital transformation at this expo. From automation to cybersecurity, explore the tools driving change in today's business landscape.",
-    image: eventImages["Digital Transformation Expo"][0],
-    link: "/events/digital-transformation-expo",
-  },
-];
-
-const newsArticles = [
-  {
-    title: "IIIT Kota partners with leading tech companies",
-    description: "For advanced research projects.",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    title: "Student achievements",
-    description: "Our students secured top positions in national coding competitions.",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    title: "New courses on Data Science and Blockchain",
-    description: "IIIT Kota announces new courses.",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    title: "Alumni Spotlight",
-    description: "Catch up with our alumni excelling in the tech industry.",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    title: "IIIT Kota ranked among top tech institutes",
-    description: "Ranked among the top emerging tech institutes in India.",
-    image: "https://via.placeholder.com/150",
-  },
-];
+import eventData from "../data/EventData.json";
+import newsData from "../data/newsData.json";
 
 const NewsArticlesHome = () => {
   const navigate = useNavigate();
+  const [events, setEvents] = useState([]);
+  const [newsArticles, setNewsArticles] = useState([]);
 
   useEffect(() => {
-    // Check if Twitter widgets script is already loaded; otherwise, load it
-    if (!window.twttr) {
-      const script = document.createElement("script");
-      script.src = "https://platform.twitter.com/widgets.js";
-      script.async = true;
-      document.body.appendChild(script);
-    } else {
-      window.twttr.widgets.load();
-    }
+    // Fetch event data from EventData.json
+    setEvents(eventData);
+    // Fetch news data from newsData.json
+    setNewsArticles(newsData);
   }, []);
 
   const handleEventClick = (link) => {
@@ -77,53 +20,38 @@ const NewsArticlesHome = () => {
   };
 
   return (
-    <div className="w-full lg:h-[82vh] h-[100rem] flex lg:flex-row flex-col justify-between px-2 lg:px-8 py-4">
-      {/* Twitter Timeline */}
-      <div className="lg:h-fit lg:w-[30%] h-1/3 w-full rounded-md shadow-2xl hover:mb-5 hover:cursor-pointer transition-all duration-500 ease-in-out p-4 flex flex-col justify-between group">
-        <a
-          className="twitter-timeline w-full h-full"
-          href="https://twitter.com/IIITKotaOffice?ref_src=twsrc%5Etfw"
-        >
-          Tweets by IIITKotaOffice
-        </a>
-      </div>
-
+    <div className="w-full lg:h-[82vh] h-[120rem] flex lg:flex-row flex-col justify-between px-2 lg:px-4 gap-2 py-4">
       {/* Events Section */}
-      <div className="lg:h-full lg:w-[30%] h-1/3 w-full rounded-md shadow-2xl hover:mb-5 transition-all duration-500 ease-in-out px-4 py-2 flex flex-col justify-between group">
-        <div className="w-full h-[3rem] flex border-b pb-1">
-          <h3 className="text-2xl font-bold text-center flex justify-center items-center text-[#19194D]">
-            Events
-          </h3>
-          <a
-            href="/events"
-            className="ml-auto bg-[#19194D] text-white px-4 hover:bg-black transition-all duration-800 ease-in-out rounded-lg flex justify-center items-center my-1"
-          >
-            See All
-          </a>
-        </div>
-
-        <div className="w-full h-full overflow-hidden relative">
-          <div className="animate-marquee flex flex-col absolute w-full">
-            {events.concat(events).map((event, index) => (
-              <div
-                key={index}
-                className="w-full h-[25rem] my-2 border border-gray-300 rounded-lg shadow-lg overflow-hidden flex flex-col items-center bg-white transform transition-transform duration-300 hover:cursor-pointer"
-                onClick={() => handleEventClick(event.link)}
-              >
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-[50%] object-cover"
-                />
-                <div className="w-full h-[50%] flex flex-col justify-center px-4 py-2 group-hover:text-blue-500 transition-colors duration-300 ease-in-out">
-                  <h4 className="text-lg font-bold text-[#19194D]">
-                    {event.title}
-                  </h4>
-                  <p className="text-sm text-gray-600">{event.description}</p>
-                </div>
-              </div>
-            ))}
+      <div className="lg:h-full lg:w-[70%] h-auto w-full rounded-md shadow-2xl hover:mb-5 transition-all duration-500 ease-in-out md:px-3 md:py-2 flex lg:flex-row flex-col gap-3">
+        <div className="lg:w-1/2 w-full lg:h-full h-auto flex flex-col justify-between">
+          <h1 className="w-full h-auto py-1 px-3 rounded-md text-white bg-[#19194D] font-semibold text-3xl text-start mb-1">Events</h1>
+          <div className="w-full flex-grow">
+            <img src={eventData[0].eventImages[0]} alt="1st Event's image" className="mb-2 rounded-tr-lg rounded-tl-lg px1" />
+            <h3 className="text-xl font-bold text-[#19194D] mb-2 px-1">{eventData[0].heading}</h3>
+            <p className="text-gray-600 px-1">{eventData[0].description}</p>
           </div>
+          <button onClick={() => handleEventClick("/events")} className="bg-[#19194D] text-white px-4 py-2 hover:bg-black transition-all duration-800 ease-in-out rounded-lg flex justify-center items-center mt-2 self-end">View All Events</button>
+        </div>
+        <div className="lg:w-1/2 w-full lg:h-full h-auto flex flex-col justify-between">
+          {eventData.slice(1, 4).map((event, index) => (
+            <div
+              key={index}
+              className="w-full lg:h-[30%] h-auto my-2 border border-gray-300 rounded-lg shadow-lg overflow-hidden flex lg:flex-row-reverse flex-col items-center bg-white transform transition-transform duration-300 hover:cursor-pointer"
+              onClick={() => handleEventClick(event.link)}
+            >
+              <img
+                src={event.eventImages[0]}
+                alt={event.heading}
+                className="lg:w-1/2 w-full lg:h-full h-auto object-cover"
+              />
+              <div className="lg:w-1/2 w-full lg:h-full h-auto flex flex-col justify-center px-1 py-2 group-hover:text-blue-500 transition-colors duration-300 ease-in-out">
+                <h4 className="text-lg font-bold text-[#19194D]">
+                  {event.heading}
+                </h4>
+                <p className="text-sm text-gray-600">{event.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -146,18 +74,15 @@ const NewsArticlesHome = () => {
             {newsArticles.concat(newsArticles).map((article, index) => (
               <div
                 key={index}
-                className="w-full h-[25rem] my-2 border border-gray-300 rounded-lg shadow-lg overflow-hidden flex flex-col items-center bg-white transform transition-transform duration-300 hover:cursor-pointer group"
+                className="w-full h-[10rem] my-2 border border-gray-300 rounded-lg shadow-lg overflow-hidden flex flex-col items-center bg-white transform transition-transform duration-300 hover:cursor-pointer group"
               >
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-[70%] object-cover"
-                />
-                <div className="w-full h-[30%] flex flex-col justify-center px-4 py-2 group-hover:text-blue-500 transition-colors duration-300 ease-in-out">
+                <div className="w-full h-full flex flex-col justify-center px-4 py-2 group-hover:text-blue-500 transition-colors duration-300 ease-in-out">
                   <h4 className="text-lg font-bold text-[#19194D]">
                     {article.title}
                   </h4>
-                  <p className="text-sm text-gray-600">{article.description}</p>
+                  <p className="text-sm text-gray-600">
+                  <div dangerouslySetInnerHTML={{ __html: article.content.slice(0, Math.min(article.content.length, 120)) + '...' }} />
+                  </p>
                 </div>
               </div>
             ))}

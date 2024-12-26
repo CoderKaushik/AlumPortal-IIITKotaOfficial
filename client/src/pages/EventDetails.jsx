@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Navbar from "../components/navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/footer.jsx";
 import { Box, Typography, Paper, Divider, Button } from "@mui/material";
 import CarouselEvents from "../components/CarouselEvents";
-import eventsData from "../GalleryAssets/EventData.json"; // Import the JSON data
+import eventsData from "../data/EventData.json"; // Import the JSON data
 
 const EventDetails = () => {
 	const { title } = useParams();
@@ -63,7 +63,7 @@ const EventDetails = () => {
 					<Typography variant="body1" sx={{ mb: 2, textAlign: { xs: 'center', sm: 'left' } }} component="div">
 						<div dangerouslySetInnerHTML={{ __html: event.details }} />
 					</Typography>
-					<Typography sx={{ fontStyle: 'italic', mb: 2, textAlign: 'center' }}>
+					<Typography sx={{  mb: 2, textAlign: 'right', color: 'gray' }}>
 						Posted on {event.date}
 					</Typography>
 					<Divider sx={{ my: 2 }} />

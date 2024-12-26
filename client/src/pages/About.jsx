@@ -1,9 +1,9 @@
 import Navbar from "../components/navbar.jsx";
 import iiitkotalogo from "../assets/iiitkotalogo.png"; // Update path as needed
-import Footer from "../components/Footer.jsx";
+import Footer from "../components/footer.jsx";
 import ProfileCard from "../components/TeamCard.jsx";
 import Hiteshwar from "../assets/hiteshwar_kk.jpeg";
-import Kratin from "../assets/kratin_agarwal.jpeg";
+import Kratin from "../assets/kratin_agarwal_img.jpeg";
 import Chetna from "../assets/chetna_ma'am.jpeg";
 import Partik from "../assets/partik_malasi.jpeg";
 

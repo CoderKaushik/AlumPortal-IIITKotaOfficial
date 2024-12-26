@@ -9,7 +9,7 @@ const InfiniteText = () => {
         gradient={false}
         speed={50}
       >
-        <p className="text-white text-sm">
+        <p className="text-white text-sm hover:cursor-pointer">
           Research Trajectory: On October 5, 2024, Yashash Jain, a 2021 ECE
           alumnus and SAC ISRO scientist, shared insights on his GATE journey,
           PSU opportunities, and research paths.

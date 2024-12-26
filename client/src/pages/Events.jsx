@@ -1,12 +1,12 @@
 import { useRef, useEffect, useState } from "react";
 import Navbar from "../components/navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/footer.jsx";
 import { Search as SearchIcon } from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { TextField, InputAdornment, IconButton, Button, useMediaQuery } from "@mui/material";
 import Carousel from "../components/CarouselEvents.jsx"; // Import the Carousel component
 import { useNavigate } from "react-router-dom";
-import eventsData from "../GalleryAssets/EventData.json"; // Import the JSON data
+import eventsData from "../data/EventData.json"; // Import the JSON data
 
 const Events = () => {
 	const rowRefs = useRef([]);

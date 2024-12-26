@@ -1,71 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import NewsCard from '../components/NewsCard';
-import Footer from '../components/Footer';
+import Footer from '../components/footer.jsx';
 import { TextField, InputAdornment, IconButton, Button } from "@mui/material";
-import { Search as SearchIcon } from "@mui/icons-material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-
-const newsData = [
-  {
-    id: "1",
-    title: "Naval Hackathon, Swavlamban 2024",
-    content: `
-      <p>Congratulations to our Champions!</p><br />
-      <p>We are thrilled to announce that Mr.Jansty Lewis and Ms.Noorin Nasir Khot, talented students of <strong>IIIT Kota</strong>, have secured the first position in the prestigious Naval Hackathon, Swavlamban 2024.</p><br />
-      <p>Under the expert mentorship of Dr. Gyan Singh Yadav, their innovative solutions stood out among fierce competition. They were honored by the Honorable Defense Minister during the award ceremony held on October 29th, 2024, at the esteemed Bharat Mandapam, New Delhi.</p><br />
-      <p>Join us in celebrating their remarkable achievement and inspiring dedication!</p>
-    `,
-    referenceLink: "https://example.com/alumni-meet-2023",
-    postedOn: "2023-10-01",
-  },
-  {
-    id: "2",
-    title: "New Research Lab Inauguration",
-    content: `
-      <p>A new state-of-the-art research lab was inaugurated in the campus.</p>
-      <p>This lab will focus on cutting-edge research in artificial intelligence and machine learning.</p>
-    `,
-    referenceLink: "https://example.com/research-lab",
-    postedOn: "2023-09-15",
-  },
-  {
-    id: "3",
-    title: "Placement Drive 2023",
-    content: `
-      <p>The placement drive for the year 2023 saw a record number of job offers.</p>
-      <p>Top companies from various industries participated and offered lucrative packages to our students.</p>
-    `,
-    referenceLink: "https://example.com/placement-drive-2023",
-    postedOn: "2023-08-20",
-  },
-  {
-    id: "4",
-    title: "Workshop on AI and ML",
-    content: `
-      <p>A workshop on Artificial Intelligence and Machine Learning was conducted.</p>
-      <p>Experts from the industry shared their knowledge and insights with the participants.</p>
-    `,
-    referenceLink: "https://example.com/ai-ml-workshop",
-    postedOn: "2023-07-10",
-  },
-  {
-    id: "5",
-    title: "Annual Sports Meet",
-    content: `
-      <p>The annual sports meet concluded with great enthusiasm and participation.</p>
-      <p>Students showcased their athletic skills and competed in various sports events.</p>
-    `,
-    referenceLink: "https://example.com/sports-meet",
-    postedOn: "2023-06-05",
-  },
-];
+import { Search, ArrowForward } from "@mui/icons-material";
+import newsData from '../data/newsData.json';
 
 const News = () => {
   const { newsId } = useParams();
   const [searchInput, setSearchInput] = useState("");
   const [filteredNews, setFilteredNews] = useState(newsData);
+  const rowRefs = useRef([]);
+  const [visibleRows, setVisibleRows] = useState({});
 
   useEffect(() => {
     if (newsId) {
@@ -79,6 +26,23 @@ const News = () => {
       }, 0);
     }
   }, [newsId]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setVisibleRows((prev) => ({
+            ...prev,
+            [entry.target.dataset.index]: entry.isIntersecting,
+          }));
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    rowRefs.current.forEach((row) => row && observer.observe(row));
+    return () => observer.disconnect();
+  }, [filteredNews]);
 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);
@@ -123,13 +87,13 @@ const News = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchIcon style={{ color: "#4A5568" }} />
+                      <Search style={{ color: "#4A5568" }} />
                     </InputAdornment>
                   ),
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton onClick={handleSearch}>
-                        <ArrowForwardIcon style={{ color: "#4A5568" }} />
+                        <ArrowForward style={{ color: "#4A5568" }} />
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -167,18 +131,30 @@ const News = () => {
           </div>
         </div>
         <div className='flex flex-col items-center gap-6 px-4 pb-6'>
-          {filteredNews.map((news) => (
-            <NewsCard
+          {filteredNews.map((news, index) => (
+            <div
               key={news.id}
-              id={news.id}
-              title={news.title}
-              content={news.content}
-              referenceLink={news.referenceLink}
-              postedOn={news.postedOn}
-              sx={{ mb: 4 }}
-            />
+              className={`w-auto h-auto mt-6 flex flex-col rounded-lg shadow-xl transform transition-all duration-700 ease-out delay-${
+                index * 100
+              } ${visibleRows[index] ? "opacity-100" : "opacity-0"} ${
+                visibleRows[index] ? "scale-100" : "scale-95"
+              }`}
+              ref={(el) => (rowRefs.current[index] = el)}
+              data-index={index}
+              style={{ overflow: 'hidden' }} // Added this line to hide overflow
+            >
+              <NewsCard
+                id={news.id}
+                title={news.title}
+                content={news.content}
+                referenceLink={news.referenceLink}
+                postedOn={news.postedOn}
+                sx={{ mb: 4 }}
+              />
+            </div>
           ))}
         </div>
+        {/* Ensure no other divs are visible here */}
       </div>
       <Footer />
     </div>

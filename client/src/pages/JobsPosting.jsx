@@ -25,10 +25,11 @@ import {
 	Link as LinkIcon,
 } from "@mui/icons-material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Footer from "../components/Footer";
+import Footer from "../components/footer.jsx";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
 import { toast, Toaster } from "react-hot-toast"; 
+import jobsData from "../data/jobsData.json"; // Import the JSON data
 
 const JobsPosting = () => {
 	const [searchPlaceholder, setSearchPlaceholder] = useState(
@@ -73,8 +74,8 @@ const JobsPosting = () => {
 	}, [token]);
 
 	useEffect(() => {
-		setFilteredJobs(isJobView ? jobCards : internCards);
-		setInitialJobs(isJobView ? jobCards : internCards);
+		setFilteredJobs(isJobView ? jobsData.jobCards : jobsData.internCards);
+		setInitialJobs(isJobView ? jobsData.jobCards : jobsData.internCards);
 	}, [isJobView]);
 
 	useEffect(() => {
@@ -163,27 +164,27 @@ const JobsPosting = () => {
 
 	const shareOptions = [
 		{
-			icon: <EmailIcon />,
+			icon: <EmailIcon style={{ color: "#D44638", fontSize: "2rem" }} />,
 			label: "Email",
-			link: `mailto:?subject=Check out this job&body=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}`,
+			link: `mailto:?subject=Check out this Job shared on the Alumni Portal, IIIT Kota&body=Check out this Job shared on the Alumni Portal, IIIT Kota: ${window.location.origin}/alumni/job-postings/${shareJob?.id}`,
 		},
 		{
-			icon: <WhatsAppIcon />,
+			icon: <WhatsAppIcon style={{ color: "#25D366", fontSize: "2rem" }} />,
 			label: "WhatsApp",
-			link: `https://wa.me/?text=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}`,
+			link: `https://wa.me/?text=Check out this Job shared on the Alumni Portal, IIIT Kota: ${window.location.origin}/alumni/job-postings/${shareJob?.id}`,
 		},
 		{
-			icon: <TwitterIcon />,
+			icon: <TwitterIcon style={{ color: "#1DA1F2", fontSize: "2rem" }} />,
 			label: "Twitter",
-			link: `https://twitter.com/intent/tweet?text=Check out this job: ${window.location.origin}/alumni/job-postings/${shareJob?.id}`,
+			link: `https://twitter.com/intent/tweet?text=Check out this Job shared on the Alumni Portal, IIIT Kota: ${window.location.origin}/alumni/job-postings/${shareJob?.id}`,
 		},
 		{
-			icon: <TelegramIcon />,
+			icon: <TelegramIcon style={{ color: "#0088cc", fontSize: "2rem" }} />,
 			label: "Telegram",
-			link: `https://t.me/share/url?url=${window.location.origin}/alumni/job-postings/${shareJob?.id}&text=Check out this job`,
+			link: `https://t.me/share/url?url=${window.location.origin}/alumni/job-postings/${shareJob?.id}&text=Check out this Job shared on the Alumni Portal, IIIT Kota`,
 		},
 		{
-			icon: <LinkIcon />,
+			icon: <LinkIcon style={{ color: "#000000", fontSize: "2rem" }} />,
 			label: "Copy Link",
 			link: `#`,
 			onClick: () =>
@@ -191,208 +192,6 @@ const JobsPosting = () => {
 					`${window.location.origin}/alumni/job-postings/${shareJob?.id}`
 				),
 		},
-	];
-
-	const jobCards = [
-		{
-			id: "1a2b3c4d5e6f7g8h9i0j",
-			title: "Software Engineer",
-			company: "Tech Corp",
-			location: "San Francisco, CA",
-			description: "Develop and maintain web applications.",
-			about:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod iure autem nobis consectetur cumque ipsam, natus sint placeat omnis qui voluptatibus delectus aut maiores in minus ut provident dolores officia dicta odio fugiat deserunt quidem? Ex maxime omnis atque nemo doloremque, iure vitae illo impedit natus dolorum, animi, quos vel?",
-			skills: "JavaScript, React, Node.js",
-			experience: "2+ years",
-			deadline: "2023-12-31",
-			postedBy: {
-				name: "John Doe",
-				picture: "https://via.placeholder.com/40",
-				batch: "2015",
-				currentPosition: "Senior Software Engineer at Tech Corp",
-			},
-		},
-		{
-			id: "2b3c4d5e6f7g8h9i0j1a",
-			title: "Data Scientist",
-			company: "Data Inc.",
-			location: "New York, NY",
-			description: "Analyze and interpret complex data sets.",
-			skills: "Python, R, SQL",
-			experience: "3+ years",
-			deadline: "2023-11-30",
-			postedBy: {
-				name: "Jane Smith",
-				picture: "https://via.placeholder.com/40",
-				batch: "2016",
-				currentPosition: "Lead Data Scientist at Data Inc.",
-			},
-		},
-		{
-			id: "3c4d5e6f7g8h9i0j1a2b",
-			title: "Software Engineer",
-			company: "Tech Corp",
-			location: "San Francisco, CA",
-			description: "Develop and maintain web applications.",
-			skills: "JavaScript, React, Node.js",
-			experience: "2+ years",
-			deadline: "2023-12-31",
-			postedBy: {
-				name: "John Doe",
-				picture: "https://via.placeholder.com/40",
-				batch: "2015",
-				currentPosition: "Senior Software Engineer at Tech Corp",
-			},
-		},
-		{
-			id: "4d5e6f7g8h9i0j1a2b3c",
-			title: "Data Scientist",
-			company: "Data Inc.",
-			location: "New York, NY",
-			description: "Analyze and interpret complex data sets.",
-			skills: "Python, R, SQL",
-			experience: "3+ years",
-			deadline: "2023-11-30",
-			postedBy: {
-				name: "Jane Smith",
-				picture: "https://via.placeholder.com/40",
-				batch: "2016",
-				currentPosition: "Lead Data Scientist at Data Inc.",
-			},
-		},
-		{
-			id: "5e6f7g8h9i0j1a2b3c4d",
-			title: "Software Engineer",
-			company: "Tech Corp",
-			location: "San Francisco, CA",
-			description: "Develop and maintain web applications.",
-			skills: "JavaScript, React, Node.js",
-			experience: "2+ years",
-			deadline: "2023-12-31",
-			postedBy: {
-				name: "John Doe",
-				picture: "https://via.placeholder.com/40",
-				batch: "2015",
-				currentPosition: "Senior Software Engineer at Tech Corp",
-			},
-		},
-		{
-			id: "6f7g8h9i0j1a2b3c4d5e",
-			title: "Data Scientist",
-			company: "Data Inc.",
-			location: "New York, NY",
-			description: "Analyze and interpret complex data sets.",
-			skills: "Python, R, SQL",
-			experience: "3+ years",
-			deadline: "2023-11-30",
-			postedBy: {
-				name: "Jane Smith",
-				picture: "https://via.placeholder.com/40",
-				batch: "2016",
-				currentPosition: "Lead Data Scientist at Data Inc.",
-			},
-		},
-		{
-			id: "7g8h9i0j1a2b3c4d5e6f",
-			title: "Software Engineer",
-			company: "Tech Corp",
-			location: "San Francisco, CA",
-			description: "Develop and maintain web applications.",
-			skills: "JavaScript, React, Node.js",
-			experience: "2+ years",
-			deadline: "2023-12-31",
-			postedBy: {
-				name: "John Doe",
-				picture: "https://via.placeholder.com/40",
-				batch: "2015",
-				currentPosition: "Senior Software Engineer at Tech Corp",
-			},
-		},
-		{
-			id: "8h9i0j1a2b3c4d5e6f7g",
-			title: "Data Scientist",
-			company: "Data Inc.",
-			location: "New York, NY",
-			description: "Analyze and interpret complex data sets.",
-			skills: "Python, R, SQL",
-			experience: "3+ years",
-			deadline: "2023-11-30",
-			postedBy: {
-				name: "Jane Smith",
-				picture: "https://via.placeholder.com/40",
-				batch: "2016",
-				currentPosition: "Lead Data Scientist at Data Inc.",
-			},
-		},
-		{
-			id: "9i0j1a2b3c4d5e6f7g8h",
-			title: "Software Engineer",
-			company: "Tech Corp",
-			location: "San Francisco, CA",
-			description: "Develop and maintain web applications.",
-			skills: "JavaScript, React, Node.js",
-			experience: "2+ years",
-			deadline: "2023-12-31",
-			postedBy: {
-				name: "John Doe",
-				picture: "https://via.placeholder.com/40",
-				batch: "2015",
-				currentPosition: "Senior Software Engineer at Tech Corp",
-			},
-		},
-		{
-			id: "0j1a2b3c4d5e6f7g8h9i",
-			title: "Data Scientist",
-			company: "Data Inc.",
-			location: "New York, NY",
-			description: "Analyze and interpret complex data sets.",
-			skills: "Python, R, SQL",
-			experience: "3+ years",
-			deadline: "2023-11-30",
-			postedBy: {
-				name: "Jane Smith",
-				picture: "https://via.placeholder.com/40",
-				batch: "2016",
-				currentPosition: "Lead Data Scientist at Data Inc.",
-			},
-		},
-		// Add more job cards as needed
-	];
-
-	const internCards = [
-		{
-			id: "1a2b3c4d5e6f7g8h9i0j",
-			title: "Software Engineering Intern",
-			company: "Tech Corp",
-			location: "San Francisco, CA",
-			description: "Assist in developing and maintaining web applications.",
-			skills: "JavaScript, React, Node.js",
-			experience: "0-1 years",
-			deadline: "2023-12-31",
-			postedBy: {
-				name: "John Doe",
-				picture: "https://via.placeholder.com/40",
-				batch: "2015",
-				currentPosition: "Senior Software Engineer at Tech Corp",
-			},
-		},
-		{
-			id: "2b3c4d5e6f7g8h9i0j1a",
-			title: "Data Science Intern",
-			company: "Data Inc.",
-			location: "New York, NY",
-			description: "Assist in analyzing and interpreting complex data sets.",
-			skills: "Python, R, SQL",
-			experience: "0-1 years",
-			deadline: "2023-11-30",
-			postedBy: {
-				name: "Jane Smith",
-				picture: "https://via.placeholder.com/40",
-				batch: "2016",
-				currentPosition: "Lead Data Scientist at Data Inc.",
-			},
-		},
-		// Add more intern cards as needed
 	];
 
 	const handleSubmit = (event) => {
@@ -604,7 +403,7 @@ const JobsPosting = () => {
 						id="share-modal-title"
 						variant="h6"
 						component="h2"
-						sx={{ mb: 2, color: "#007BFF" }}
+						sx={{ mb: 2, color: "#19194D", fontWeight: "900" }}
 					>
 						Share Job
 					</Typography>
@@ -616,28 +415,26 @@ const JobsPosting = () => {
 					</Typography>
 					<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 						{shareOptions.map((option, index) => (
-							<Button
+							<Box
 								key={index}
-								startIcon={option.icon}
+								sx={{
+									display: "flex",
+									alignItems: "center",
+									gap: 1,
+									cursor: "pointer",
+									"&:hover": { opacity: 0.8 },
+								}}
 								onClick={() => {
 									if (option.onClick) option.onClick();
 									else window.open(option.link, "_blank");
 									handleCloseShareModal();
 								}}
-								sx={{
-									justifyContent: "flex-start",
-									color: "#FFFFFF",
-									backgroundColor: "#007BFF",
-									borderColor: "#007BFF",
-									"&:hover": {
-										backgroundColor: "#0056b3",
-										borderColor: "#0056b3",
-									},
-								}}
-								variant="contained"
 							>
-								{option.label}
-							</Button>
+								{option.icon}
+								<Typography variant="body2" sx={{ fontSize: "1rem", color: "#4A5568" }}>
+									{option.label}
+								</Typography>
+							</Box>
 						))}
 					</Box>
 				</Box>
@@ -654,19 +451,21 @@ const JobsPosting = () => {
 						top: "50%",
 						left: "50%",
 						transform: "translate(-50%, -50%)",
-						width: { xs: "90%", sm: "80%", md: "70%", lg: "60%" }, // Adjust width for mobile screen sizes
+						width: "100%", // Set width to 100% for mobile view
+						maxWidth: 600, // Set a max width for larger screens
 						maxHeight: "95vh", // Ensure the modal doesn't exceed the viewport height
 						bgcolor: "background.paper",
 						border: "2px solid #000",
 						boxShadow: 24,
 						borderRadius: 2,
-						p: 4,
+						p: 2, // Add padding for better spacing
 						overflowY: "auto", // Enable scrolling if content overflows
 						display: "flex",
 						flexDirection: "column",
 						gap: 3,
 						justifyContent: "center",
 						alignItems: "center",
+						pt: "4rem md:1rem",
 					}}
 				>
 					{isLoggedIn ? (
