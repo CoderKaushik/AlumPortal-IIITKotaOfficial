@@ -10,8 +10,7 @@ import FeedIcon from "@mui/icons-material/Feed";
 import WorkIcon from "@mui/icons-material/Work";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import LogoutIcon from "@mui/icons-material/Logout";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Avatar from "../assets/avatar.png"
 import TopLayer from "./topLayer.jsx";
 
 import axios from "axios";
@@ -345,7 +344,13 @@ const Navbar = () => {
 												/>
 											</a>
 										) : (
-											<div className="bg-gray-400 w-full h-full"></div>
+											<a href="/profile/me" onClick={toggleMobileMenu}>
+												<img
+													src={Avatar}
+													alt="Default Avatar"
+													className="w-6 h-6 rounded-full object-cover"
+												/>
+											</a>
 										)}
 										<a href="/profile/me" onClick={toggleMobileMenu}>
 											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
