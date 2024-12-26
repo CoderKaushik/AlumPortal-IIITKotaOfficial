@@ -18,6 +18,7 @@ import VisibilityIcon from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
     const [currentDiv, setCurrentDiv] = useState(0);
@@ -45,6 +46,7 @@ const SignUp = () => {
 	});
 	const [selectedFile, setSelectedFile] = useState(null); // State to manage the selected file
 	const [fileName, setFileName] = useState("No file chosen"); // State to manage the file name display
+	const history = useHistory();
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -141,6 +143,9 @@ const SignUp = () => {
 
 			// Toast notification
 			toast.success("Registration Successful");
+
+			// Redirect to home page
+			history.push("/");
 		} catch (error) {
 			console.error("There was an error registering the user:", error);
 
