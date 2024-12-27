@@ -80,6 +80,29 @@ router.put('/me', authMiddleware, upload.single('profilePicture'), async (req, r
   }
 });
 
+// Delete profile picture
+router.delete('/me/profilePicture', authMiddleware, async (req, res) => {
+  try {
+    // Find the user's profile
+    const profile = await Profile.findOne({ instituteId: req.user.instituteId });
+    if (!profile) {
+      return res.status(404).json({ message: 'Profile not found' });
+    }
+
+    // Delete the profile picture from Cloudinary if it exists
+    if (profile.profilePicturePublicId) {
+      await cloudinary.uploader.destroy(profile.profilePicturePublicId);
+      profile.profilePicture = null;
+      profile.profilePicturePublicId = null;
+      await profile.save();
+    }
+
+    res.json({ message: 'Profile picture deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 // Get a specific profile by ID
 router.get('/:id', async (req, res) => {
   try {

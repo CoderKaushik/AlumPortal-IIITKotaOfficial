@@ -144,6 +144,21 @@ const Profile = () => {
 		setSelectedFile(e.target.files[0]);
 	};
 
+	const handleDeleteProfilePicture = async () => {
+		try {
+		  await axios.delete(
+			// "http://localhost:5000/api/profile/me/profilePicture",
+			"https://alumportal-iiitkotaofficial.onrender.com/api/profile/me/profilePicture",
+			{
+			  headers: { Authorization: `Bearer ${token}` },
+			}
+		  );
+		  setUser({ ...user, profilePicture: null });
+		} catch (error) {
+		  setError(error.message);
+		}
+	  };
+
 	if (loading)
 		return (
 			<div className="h-screen w-screen flex justify-center items-center bg-gray-100">
@@ -279,6 +294,17 @@ const Profile = () => {
 									style={{ display: "block", marginTop: "8px" }}
 								/>
 							</div>
+							{user.profilePicture && (
+								<div className="mt-4">
+									<Button
+										onClick={handleDeleteProfilePicture}
+										color="secondary"
+										style={{ backgroundColor: "#f44336", color: "#fff" }}
+									>
+										Delete Profile Picture
+									</Button>
+								</div>
+							)}
 						</form>
 					</DialogContent>
 					<DialogActions>
