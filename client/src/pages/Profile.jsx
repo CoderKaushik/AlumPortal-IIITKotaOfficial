@@ -52,6 +52,7 @@ const Profile = () => {
 	const [error, setError] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+	const [selectedFile, setSelectedFile] = useState(null);
 
 	const token = localStorage.getItem("token");
 
@@ -104,17 +105,43 @@ const Profile = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			const formData = new FormData();
+			formData.append('name', user.name);
+			formData.append('branch', user.branch);
+			formData.append('city', user.city);
+			formData.append('state', user.state);
+			formData.append('country', user.country);
+			formData.append('pastCompanies', user.pastCompanies);
+			formData.append('currentCompany', user.currentCompany);
+			formData.append('personalEmail', user.personalEmail);
+			formData.append('graduationYear', user.graduationYear);
+			formData.append('linkedin', user.linkedin);
+			formData.append('achievements', user.achievements);
+
+			if (selectedFile) {
+				formData.append('profilePicture', selectedFile);
+			}
+
 			const response = await axios.put(
 				// "http://localhost:5000/api/profile/me",
 				"https://alumportal-iiitkotaofficial.onrender.com/api/profile/me",
-				user,
-				{ headers: { Authorization: `Bearer ${token}` } }
+				formData,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+						'Content-Type': 'multipart/form-data',
+					},
+				}
 			);
 			setUser(response.data);
 			closeModal();
 		} catch (error) {
 			setError(error.message);
 		}
+	};
+
+	const handleFileChange = (e) => {
+		setSelectedFile(e.target.files[0]);
 	};
 
 	if (loading)
@@ -248,16 +275,14 @@ const Profile = () => {
 									id="profilePictureUpload"
 									name="profilePictureUpload"
 									accept="image/*"
-									onChange={(e) => {
-										// Handle file upload here
-									}}
+									onChange={handleFileChange}
 									style={{ display: "block", marginTop: "8px" }}
 								/>
 							</div>
 						</form>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={closeModal} color="primary" style={{ backgroundColor: "#9e9e9e", color: "#fff" }}>
+						<Button onClick={closeModal} color="primary" style={{ backgroundColors: "#9e9e9e", color: "#fff" }}>
 							Cancel
 						</Button>
 						<Button onClick={handleSubmit} color="primary" style={{ backgroundColor: "#2196f3", color: "#fff" }}>

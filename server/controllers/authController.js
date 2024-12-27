@@ -5,6 +5,7 @@ const cloudinary = require("../config/cloudinary.js");
 const streamifier = require("streamifier");
 const { sendEmail } = require('../utils/emailUtil');
 
+
 exports.signUp = async (req, res) => {
   const {
     name,
@@ -31,23 +32,27 @@ exports.signUp = async (req, res) => {
       return res.status(400).json({ message: "A user with this email already exists." });
     }
 
-    // Initialize profilePictureUrl variable
+    // Initialize profile picture variables
     let profilePictureUrl = null;
+    let profilePicturePublicId = null;
 
     // Upload profile picture to Cloudinary if provided
     if (req.file) {
-      profilePictureUrl = await new Promise((resolve, reject) => {
+      const uploadResult = await new Promise((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
           { folder: "profile_pictures" },
           (error, result) => {
             if (error) {
               return reject(error);
             }
-            resolve(result.secure_url);
+            resolve(result);
           }
         );
         streamifier.createReadStream(req.file.buffer).pipe(uploadStream);
       });
+
+      profilePictureUrl = uploadResult.secure_url;
+      profilePicturePublicId = uploadResult.public_id;
     }
 
     // Save user data to the database
@@ -68,6 +73,7 @@ exports.signUp = async (req, res) => {
       achievements,
       password,
       profilePicture: profilePictureUrl,
+      profilePicturePublicId, // Add the public ID here
     });
 
     await user.save();

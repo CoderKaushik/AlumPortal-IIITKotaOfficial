@@ -17,6 +17,7 @@ const UserSchema = new mongoose.Schema({
   achievements: { type: String },
   password: { type: String, required: true },
   profilePicture: { type: String },
+  profilePicturePublicId: { type: String },
   resetPasswordToken: { type: String },
   resetPasswordExpires: { type: Date },
 });
