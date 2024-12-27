@@ -56,6 +56,7 @@ const Profile = () => {
 	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const [selectedFile, setSelectedFile] = useState(null);
+	const [isDeleteProfilePictureModalOpen, setIsDeleteProfilePictureModalOpen] = useState(false);
 
 	const token = localStorage.getItem("token");
 
@@ -101,6 +102,9 @@ const Profile = () => {
 
 	const openDeleteModal = () => setIsDeleteModalOpen(true);
 	const closeDeleteModal = () => setIsDeleteModalOpen(false);
+
+	const openDeleteProfilePictureModal = () => setIsDeleteProfilePictureModalOpen(true);
+	const closeDeleteProfilePictureModal = () => setIsDeleteProfilePictureModalOpen(false);
 
 	const profileUrl = `${window.location.origin}/profile/${user._id}`;
 
@@ -162,6 +166,7 @@ const Profile = () => {
 			}
 		  );
 		  setUser({ ...user, profilePicture: null });
+		  closeDeleteProfilePictureModal();
 		} catch (error) {
 		  setError(error.message);
 		}
@@ -319,18 +324,16 @@ const Profile = () => {
 									style={{ display: "block", marginTop: "8px" }}
 								/>
 							</div>
-							{user.profilePicture && (
-								<div className="mt-4">
+							<div className="mt-4 flex justify-between">
+								{user.profilePicture && (
 									<Button
-										onClick={handleDeleteProfilePicture}
+										onClick={openDeleteProfilePictureModal}
 										color="secondary"
 										style={{ backgroundColor: "#f44336", color: "#fff" }}
 									>
 										Delete Profile Picture
 									</Button>
-								</div>
 								)}
-							<div className="mt-4">
 								<Button
 									onClick={openDeleteModal}
 									color="secondary"
@@ -392,6 +395,21 @@ const Profile = () => {
 						</Button>
 						<Button onClick={handleDeleteProfile} color="secondary" style={{ backgroundColor: "#f44336", color: "#fff" }}>
 							Delete
+						</Button>
+					</DialogActions>
+				</Dialog>
+
+				<Dialog open={isDeleteProfilePictureModalOpen} onClose={closeDeleteProfilePictureModal}>
+					<DialogTitle>Delete Profile Picture</DialogTitle>
+					<DialogContent>
+						<p>Clicking OK will delete your profile picture and assign you a default profile picture.</p>
+					</DialogContent>
+					<DialogActions>
+						<Button onClick={closeDeleteProfilePictureModal} color="primary" style={{ backgroundColor: "#9e9e9e", color: "#fff" }}>
+							Cancel
+						</Button>
+						<Button onClick={handleDeleteProfilePicture} color="secondary" style={{ backgroundColor: "#f44336", color: "#fff" }}>
+							OK
 						</Button>
 					</DialogActions>
 				</Dialog>
