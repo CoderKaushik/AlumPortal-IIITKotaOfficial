@@ -71,7 +71,7 @@ const ContactUs = () => {
 
 	return (
 		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
-			<Toaster /> 
+			<Toaster position="top-right" /> 
 			<Navbar />
 			<Dialog open={open} onClose={handleClose}>
 				<DialogTitle>{"Not Signed In"}</DialogTitle>
