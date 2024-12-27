@@ -33,7 +33,7 @@ export default function ProfileCard({ name, occupation, image, linkedin, github,
             left: 0,
             width: "100%",
             height: "100%",
-            backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))",
+            background: "white",
             zIndex: 1,
           },
         }}
