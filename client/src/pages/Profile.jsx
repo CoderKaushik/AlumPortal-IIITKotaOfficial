@@ -6,6 +6,7 @@ import SignInPrompt from "./SignInPrompt.jsx";
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import Avatar from "../assets/avatar.png";
+import toast, { Toaster } from 'react-hot-toast';
 
 import {
 	Button,
@@ -140,8 +141,10 @@ const Profile = () => {
 			);
 			setUser(response.data);
 			closeModal();
+			toast.success('Profile updated successfully!');
 		} catch (error) {
 			setError(error.message);
+			toast.error('Failed to update profile.');
 		}
 	};
 
@@ -207,6 +210,7 @@ const Profile = () => {
 
 	return (
 		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
+				<Toaster position="top-rigt" />
 			<Navbar />
 
 			{/* Modal */}
