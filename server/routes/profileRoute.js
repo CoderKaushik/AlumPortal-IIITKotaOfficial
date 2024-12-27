@@ -103,6 +103,26 @@ router.delete('/me/profilePicture', authMiddleware, async (req, res) => {
   }
 });
 
+// Delete user profile
+router.delete('/me', authMiddleware, async (req, res) => {
+  try {
+    // Find and delete the user's profile
+    const profile = await Profile.findOneAndDelete({ instituteId: req.user.instituteId });
+    if (!profile) {
+      return res.status(404).json({ message: 'Profile not found' });
+    }
+
+    // Delete the profile picture from Cloudinary if it exists
+    if (profile.profilePicturePublicId) {
+      await cloudinary.uploader.destroy(profile.profilePicturePublicId);
+    }
+
+    res.json({ message: 'Profile deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 // Get a specific profile by ID
 router.get('/:id', async (req, res) => {
   try {

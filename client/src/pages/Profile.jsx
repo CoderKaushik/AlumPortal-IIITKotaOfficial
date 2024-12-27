@@ -27,6 +27,7 @@ import {
 	Business as BusinessIcon,
 	EmojiEvents as EmojiEventsIcon,
 	Share as Share,
+	Delete as DeleteIcon,
 } from "@mui/icons-material";
 
 
@@ -52,6 +53,7 @@ const Profile = () => {
 	const [error, setError] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const [selectedFile, setSelectedFile] = useState(null);
 
 	const token = localStorage.getItem("token");
@@ -95,6 +97,9 @@ const Profile = () => {
 
 	const openShareModal = () => setIsShareModalOpen(true);
 	const closeShareModal = () => setIsShareModalOpen(false);
+
+	const openDeleteModal = () => setIsDeleteModalOpen(true);
+	const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
 	const profileUrl = `${window.location.origin}/profile/${user._id}`;
 
@@ -154,6 +159,22 @@ const Profile = () => {
 			}
 		  );
 		  setUser({ ...user, profilePicture: null });
+		} catch (error) {
+		  setError(error.message);
+		}
+	  };
+
+	const handleDeleteProfile = async () => {
+		try {
+		  await axios.delete(
+			// "http://localhost:5000/api/profile/me",
+			"https://alumportal-iiitkotaofficial.onrender.com/api/profile/me",
+			{
+			  headers: { Authorization: `Bearer ${token}` },
+			}
+		  );
+		  localStorage.removeItem("token");
+		  navigate("/signin");
 		} catch (error) {
 		  setError(error.message);
 		}
@@ -347,6 +368,21 @@ const Profile = () => {
 					</DialogActions>
 				</Dialog>
 
+				<Dialog open={isDeleteModalOpen} onClose={closeDeleteModal}>
+					<DialogTitle>Delete Profile</DialogTitle>
+					<DialogContent>
+						<p>Are you sure you want to delete your profile? This action is irreversible.</p>
+					</DialogContent>
+					<DialogActions>
+						<Button onClick={closeDeleteModal} color="primary" style={{ backgroundColor: "#9e9e9e", color: "#fff" }}>
+							Cancel
+						</Button>
+						<Button onClick={handleDeleteProfile} color="secondary" style={{ backgroundColor: "#f44336", color: "#fff" }}>
+							Delete
+						</Button>
+					</DialogActions>
+				</Dialog>
+
 			<div className="w-full h-[35rem] md:h-72 mt-28 md:mt-36 lg:mt-36 px-6 md:px-20 flex flex-col md:flex-row gap-4">
 				<div className="md:w-1/3 md:h-full h-1/2 w-full rounded-lg shadow-xl bg-white flex flex-col gap-2 relative">
 					{id === "me" && (
@@ -362,6 +398,12 @@ const Profile = () => {
 								onClick={openShareModal}
 							>
 								<Share />
+							</div>
+							<div
+								className="w-8 h-8 rounded-full shadow-xl hover:cursor-pointer transition-transform duration-300 ease-in-out flex justify-center items-center text-white bg-red-600"
+								onClick={openDeleteModal}
+							>
+								<DeleteIcon />
 							</div>
 						</div>
 					)}
