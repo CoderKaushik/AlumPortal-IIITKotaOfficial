@@ -198,7 +198,7 @@ const Navbar = () => {
 
 			{/* Mobile Menu Modal */}
 			<div
-				className={`fixed top-2 right-2 md:right-8 w-[95vw] md:w-[60vw] h-auto flex items-center justify-center transition-opacity duration-300 ${
+				className={`fixed top-2 right-2 md:right-8 w-[96vw] md:w-[60vw] h-auto flex items-center justify-center transition-opacity duration-300 ${
 					isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
 				}`}
 			>
