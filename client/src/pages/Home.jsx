@@ -11,6 +11,9 @@ import Testimonials from "../components/Testimonials.jsx";
 import Footer from "../components/Footer.jsx";
 
 import CollectionsIcon from "@mui/icons-material/Collections";
+import GroupsIcon from '@mui/icons-material/Groups';
+import EventIcon from '@mui/icons-material/Event';
+import SchoolIcon from '@mui/icons-material/School';
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useNavigate } from "react-router-dom";
 
@@ -99,12 +102,12 @@ const Home = () => {
           fields.
         </p>
         <div className="lg:w-[80%] w-[90%] h-auto flex justify-start">
-          <a
-            className="lg:w-[7rem] h-[3rem] w-[6rem] bg-[#19194D] hover:bg-blue-600 transition-colors duration-300 ease-in-out rounded-md shadow-xl text-white flex justify-center items-center"
-            href="/about"
+          <button
+            className="lg:w-[7rem] h-[3rem] w-[6rem] bg-[#19194D] hover:bg-black transition-colors duration-300 ease-in-out rounded-md shadow-xl text-white flex justify-center items-center"
+            onClick={() => navigate("/about")}
           >
             Read More
-          </a>
+          </button>
         </div>
       </div>
       {/* Stats Component */}
@@ -167,7 +170,7 @@ const Home = () => {
         <div className="md:w-1/2 w-full h-full flex justify-center items-center">
           <iframe
             className="w-[90%] h-[180px] sm:w-[400px] sm:h-[250px] md:w-[500px] md:h-[300px] lg:w-[640px] lg:h-[360px] rounded-lg"
-            src="https://www.youtube.com/embed/kOySwv313q4?si=xZMrDiLw9omRI-5O"
+            src="https://www.youtube.com/embed/xTzv_dVrNVU?si=Nq06_Q68L77BIh8G"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             referrerPolicy="strict-origin-when-cross-origin"
@@ -236,7 +239,7 @@ const Home = () => {
                 className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl"
                 onClick={() => navigate("/directory")}
               >
-                <CollectionsIcon style={{ width: "4rem", height: "4rem" }} />
+                <GroupsIcon style={{ width: "4rem", height: "4rem" }} />
                 <p>Directory</p>
               </div>
 
@@ -244,7 +247,7 @@ const Home = () => {
                 className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl"
                 onClick={() => navigate("/events")}
               >
-                <CollectionsIcon style={{ width: "4rem", height: "4rem" }} />
+                <EventIcon style={{ width: "4rem", height: "4rem" }} />
                 <p>Events</p>
               </div>
               <div
@@ -255,11 +258,11 @@ const Home = () => {
                 <p>Gallery</p>
               </div>
               <div
-                className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-800 ease-in-out text-white shadow-2xl"
+                className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl"
                 onClick={() => navigate("/alumni/prominent-alumni")}
               >
-                <CollectionsIcon style={{ width: "4rem", height: "4rem" }} />
-                <p>Prominent Alumni</p>
+                <SchoolIcon style={{ width: "4rem", height: "4rem" }} />
+                <p className="text-center">Prominent <br /> Alumni</p>
               </div>
             </div>
           </div>
