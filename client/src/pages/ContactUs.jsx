@@ -1,5 +1,6 @@
 // src/pages/ContactUs.jsx
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -12,6 +13,15 @@ import { toast, Toaster } from "react-hot-toast";
 const ContactUs = () => {
 	const form = useRef();
 	const [agree, setAgree] = useState(false);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+		if (!token) {
+			alert("You must be signed in to fill out the contact form.");
+			navigate("/login");
+		}
+	}, [navigate]);
 
 	const handleChange = (e) => {
 		setAgree(e.target.checked);
