@@ -25,6 +25,10 @@ const ContactUs = () => {
 
 	const handleClose = () => {
 		setOpen(false);
+	};
+
+	const handleSignIn = () => {
+		setOpen(false);
 		navigate("/signin");
 	};
 
@@ -35,8 +39,14 @@ const ContactUs = () => {
 	const sendEmail = (e) => {
 		e.preventDefault();
 
+		const token = localStorage.getItem("token");
+		if (!token) {
+			toast.error("You must be signed in to submit the form.");
+			return;
+		}
+
 		if (!agree) {
-			toast.error("You must agree to share your information."); // Use toast for error
+			toast.error("You must agree to share your information.");
 			return;
 		}
 
@@ -49,12 +59,12 @@ const ContactUs = () => {
 			)
 			.then(
 				() => {
-					toast.success("Message Delivered!"); // Success toast
+					toast.success("Message Delivered!");
 					form.current.reset(); 
 				},
 				(error) => {
 					console.log("FAILED...", error.text);
-					toast.error("Email sending failed!"); // Error toast
+					toast.error("Email sending failed!");
 				}
 			);
 	};
@@ -71,8 +81,11 @@ const ContactUs = () => {
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose} color="primary">
+					<Button onClick={handleSignIn} color="primary">
 						Sign In
+					</Button>
+					<Button onClick={handleClose} color="secondary">
+						Close
 					</Button>
 				</DialogActions>
 			</Dialog>
