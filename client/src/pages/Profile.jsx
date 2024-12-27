@@ -210,7 +210,7 @@ const Profile = () => {
 
 	return (
 		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
-				<Toaster position="top-rigt" />
+				<Toaster position="top-right" />
 			<Navbar />
 
 			{/* Modal */}
@@ -319,16 +319,18 @@ const Profile = () => {
 									style={{ display: "block", marginTop: "8px" }}
 								/>
 							</div>
-							<div className="mt-4 flex flex-col md:flex-row justify-between gap-2">
-								{user.profilePicture && (
+							{user.profilePicture && (
+								<div className="mt-4">
 									<Button
-										onClick={openDeleteProfilePictureModal}
+										onClick={handleDeleteProfilePicture}
 										color="secondary"
 										style={{ backgroundColor: "#f44336", color: "#fff" }}
 									>
 										Delete Profile Picture
 									</Button>
+								</div>
 								)}
+							<div className="mt-4">
 								<Button
 									onClick={openDeleteModal}
 									color="secondary"
