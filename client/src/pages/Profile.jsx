@@ -325,7 +325,16 @@ const Profile = () => {
 										Delete Profile Picture
 									</Button>
 								</div>
-							)}
+								)}
+							<div className="mt-4">
+								<Button
+									onClick={openDeleteModal}
+									color="secondary"
+									style={{ backgroundColor: "#f44336", color: "#fff" }}
+								>
+									Delete Profile
+								</Button>
+							</div>
 						</form>
 					</DialogContent>
 					<DialogActions>
@@ -398,12 +407,6 @@ const Profile = () => {
 								onClick={openShareModal}
 							>
 								<Share />
-							</div>
-							<div
-								className="w-8 h-8 rounded-full shadow-xl hover:cursor-pointer transition-transform duration-300 ease-in-out flex justify-center items-center text-white bg-red-600"
-								onClick={openDeleteModal}
-							>
-								<DeleteIcon />
 							</div>
 						</div>
 					)}
