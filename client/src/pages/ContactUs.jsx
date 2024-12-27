@@ -6,22 +6,27 @@ import Footer from "../components/Footer";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { TextField, Checkbox, Button, FormControlLabel } from "@mui/material";
+import { TextField, Checkbox, Button, FormControlLabel, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import emailjs from "@emailjs/browser";
 import { toast, Toaster } from "react-hot-toast"; 
 
 const ContactUs = () => {
 	const form = useRef();
 	const [agree, setAgree] = useState(false);
+	const [open, setOpen] = useState(false);
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 		if (!token) {
-			alert("You must be signed in to fill out the contact form.");
-			navigate("/login");
+			setOpen(true);
 		}
-	}, [navigate]);
+	}, []);
+
+	const handleClose = () => {
+		setOpen(false);
+		navigate("/signin");
+	};
 
 	const handleChange = (e) => {
 		setAgree(e.target.checked);
@@ -58,6 +63,19 @@ const ContactUs = () => {
 		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
 			<Toaster /> 
 			<Navbar />
+			<Dialog open={open} onClose={handleClose}>
+				<DialogTitle>{"Not Signed In"}</DialogTitle>
+				<DialogContent>
+					<DialogContentText>
+						You must be signed in to fill out the contact form.
+					</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleClose} color="primary">
+						Sign In
+					</Button>
+				</DialogActions>
+			</Dialog>
 			<div className="flex justify-center items-center w-full h-[150vh] md:h-[80vh] mt-[4rem] md:mt-[9rem] md:px-2">
 				<div className="w-[98%] h-[98%] bg-white rounded-md shadow-lg flex md:flex-row flex-col p-2 group">
 					{/* Left dark blue section with a large ring */}
