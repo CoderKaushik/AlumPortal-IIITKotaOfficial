@@ -57,6 +57,7 @@ const Profile = () => {
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [isDeleteProfilePictureModalOpen, setIsDeleteProfilePictureModalOpen] = useState(false);
+	const [isSaving, setIsSaving] = useState(false);
 
 	const token = localStorage.getItem("token");
 
@@ -114,6 +115,7 @@ const Profile = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsSaving(true);
 		try {
 			const formData = new FormData();
 			formData.append('name', user.name);
@@ -149,6 +151,8 @@ const Profile = () => {
 		} catch (error) {
 			setError(error.message);
 			toast.error('Failed to update profile.');
+		} finally {
+			setIsSaving(false);
 		}
 	};
 
@@ -348,9 +352,9 @@ const Profile = () => {
 						<Button onClick={closeModal} color="primary" style={{ backgroundColors: "#9e9e9e", color: "#fff" }}>
 							Cancel
 						</Button>
-						<Button onClick={handleSubmit} color="primary" style={{ backgroundColor: "#2196f3", color: "#fff" }}>
-							Save Changes
-						</Button>
+							<Button type="submit" color="primary" style={{ backgroundColor: "#2196f3", color: "#fff" }} disabled={isSaving}>
+								{isSaving ? <div className="loader"></div> : 'Save Changes'}
+							</Button>
 					</DialogActions>
 				</Dialog>
 
