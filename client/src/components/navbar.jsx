@@ -12,12 +12,15 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Avatar from "../assets/avatar.png"
 import TopLayer from "./topLayer.jsx";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 
 import axios from "axios";
 
 const Navbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [activeSubMenu, setActiveSubMenu] = useState(null);
+	const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
 	const toggleMobileMenu = () => {
 		setTimeout(() => {
@@ -71,6 +74,14 @@ const Navbar = () => {
 		setUser(null);
 		toggleMobileMenu(); // Close the mobile menu
 		window.location.reload();
+	};
+
+	const openLogoutModal = () => {
+		setIsLogoutModalOpen(true);
+	};
+
+	const closeLogoutModal = () => {
+		setIsLogoutModalOpen(false);
 	};
 
 	return (
@@ -359,7 +370,7 @@ const Navbar = () => {
 										</a>
 									</li>
 									<li>
-										<a href="/signin" onClick={handleLogout}>
+										<a href="#" onClick={openLogoutModal}>
 											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
 												<LogoutIcon />
 												Log Out
@@ -381,6 +392,37 @@ const Navbar = () => {
 					</div>
 				</div>
 			</div>
+
+			{/* Logout Confirmation Modal */}
+			<Modal
+				open={isLogoutModalOpen}
+				onClose={closeLogoutModal}
+				aria-labelledby="logout-modal-title"
+				aria-describedby="logout-modal-description"
+			>
+				<Box className="bg-white p-6 rounded shadow-lg w-80 mx-auto mt-24">
+					<h2 id="logout-modal-title" className="text-lg font-semibold mb-4">
+						Confirm Logout
+					</h2>
+					<p id="logout-modal-description" className="mb-6">
+						Are you sure you want to log out?
+					</p>
+					<div className="flex justify-end gap-4">
+						<button
+							onClick={closeLogoutModal}
+							className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+						>
+							Cancel
+						</button>
+						<button
+							onClick={handleLogout}
+							className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+						>
+							Log Out
+						</button>
+					</div>
+				</Box>
+			</Modal>
 		</div>
 	);
 };
