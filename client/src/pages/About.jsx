@@ -21,8 +21,8 @@ const profiles = [
     occupation: "3rd Year CSE",
     image: Partik,
     linkedin: "https://www.linkedin.com/in/partik-malasi-736686249/",
-    github: "https://www.github.com/coderkaushik",
-    email: "partikmalasi@gmail.com",
+    github: "https://github.com/PartikMalasi",
+    email: "partik.work@gmail.com",
   },
   {
     name: "Kratin Aggrawal",
