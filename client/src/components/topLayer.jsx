@@ -141,37 +141,30 @@ const TopLayer = () => {
 			<Modal
 				open={open}
 				onClose={handleClose}
-				aria-labelledby="modal-title"
-				aria-describedby="modal-description"
+				aria-labelledby="logout-modal-title"
+				aria-describedby="logout-modal-description"
 			>
-				<Box
-					sx={{
-						position: "absolute",
-						top: "50%",
-						left: "50%",
-						transform: "translate(-50%, -50%)",
-						width: 300,
-						bgcolor: "background.paper",
-						border: "2px solid #000",
-						borderRadius: 2,
-						boxShadow: 24,
-						p: 4,
-					}}
-				>
-					<Typography id="modal-title" variant="h6" component="h2">
-						Logout Confirmation
-					</Typography>
-					<Typography id="modal-description" sx={{ mt: 2 }}>
-						Are you sure you want to logout?
-					</Typography>
-					<Box sx={{ mt: 2, display: "flex", justifyContent: "space-between" }}>
-						<Button variant="contained" color="error" onClick={handleLogout}>
-							Yes
-						</Button>
-						<Button variant="contained" sx={{ backgroundColor: '#1E40AF', color: '#fff' }} onClick={handleClose}>
-							No
-						</Button>
-					</Box>
+				<Box className="bg-white p-6 rounded shadow-lg w-80 mx-auto mt-24">
+					<h2 id="logout-modal-title" className="text-lg font-semibold mb-4">
+						Confirm Logout
+					</h2>
+					<p id="logout-modal-description" className="mb-6">
+						Are you sure you want to log out?
+					</p>
+					<div className="flex justify-end gap-4">
+						<button
+							onClick={handleClose}
+							className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+						>
+							Cancel
+						</button>
+						<button
+							onClick={handleLogout}
+							className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+						>
+							Log Out
+						</button>
+					</div>
 				</Box>
 			</Modal>
 		</Headroom>
