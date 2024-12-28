@@ -28,8 +28,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Footer from "../components/Footer.jsx";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
-import { toast, Toaster } from "react-hot-toast"; 
-import jobsData from "../data/jobsData.json"; // Import the JSON data
+import { toast, Toaster } from "react-hot-toast";
+import jobsData from "../data/jobsData.json";
 
 const JobsPosting = () => {
 	const [searchPlaceholder, setSearchPlaceholder] = useState(
@@ -47,7 +47,7 @@ const JobsPosting = () => {
 	const [visibleRows, setVisibleRows] = useState({});
 	const rowRefs = useRef([]);
 	const navigate = useNavigate();
-	const [isJobView, setIsJobView] = useState(true); // New state to toggle between jobs and interns
+	const [isJobView, setIsJobView] = useState(true);
 
 	const token = localStorage.getItem("token");
 
@@ -217,11 +217,11 @@ const JobsPosting = () => {
 
 		emailjs.send('service_wey3wx7', 'template_wzlmwv8', jobData, 'DXrpGBTFte2R1jdAq')
 			.then((response) => {
-				toast.success("Your job application has been sent to Alumni Cell!"); // Success toast
-				handleCloseModal(); // Close the modal
+				toast.success("Your job application has been sent to Alumni Cell!");
+				handleCloseModal();
 			}, (error) => {
 				console.log("FAILED...", error.text);
-				toast.error("Email sending failed!"); // Error toast
+				toast.error("Email sending failed!");
 			});
 	};
 
@@ -244,8 +244,11 @@ const JobsPosting = () => {
 								mx: 1,
 								'& .MuiOutlinedInput-root': {
 									'& fieldset': {
-										borderColor: 'gray',
-									}
+										borderColor: '#CBD5E0',
+									},
+									'&:hover fieldset': {
+										borderColor: '#007BFF',
+									},
 								},
 							}}
 							InputProps={{
@@ -257,7 +260,7 @@ const JobsPosting = () => {
 								endAdornment: (
 									<InputAdornment position="end">
 										<IconButton onClick={handleSearch}>
-											<ArrowForwardIcon style={{ color: "#4A5568" }} />
+											<ArrowForwardIcon style={{ color: "#007BFF" }} />
 										</IconButton>
 									</InputAdornment>
 								),
@@ -303,7 +306,6 @@ const JobsPosting = () => {
 								{filteredJobs.map((job, index) => (
 									<Card
 										key={index}
-										onClick={() => handleJobCardClick(job)}
 										sx={{
 											width: { lg: 400, md: 300, sm: 300, xs: 325 },
 											boxShadow: 3,
@@ -329,7 +331,7 @@ const JobsPosting = () => {
 												right: 8,
 												transition: "color 0.3s",
 												"&:hover": {
-													color: "#007BFF", // Professional-looking blue color
+													color: "#007BFF",
 												},
 											}}
 											aria-label="share"
@@ -341,23 +343,23 @@ const JobsPosting = () => {
 											<Typography
 												variant="h5"
 												component="div"
-												sx={{ fontWeight: "bold" }}
+												sx={{ fontWeight: "bold", color: "#1A202C" }}
 											>
 												{job.title}
 											</Typography>
 											<Typography sx={{ mb: 1.5 }} color="text.secondary">
 												{job.company} - {job.location}
 											</Typography>
-											<Typography variant="body2" sx={{ mb: 1.5 }}>
+											<Typography variant="body2" sx={{ mb: 1.5, color: "#4A5568" }}>
 												{job.description}
 											</Typography>
-											<Typography variant="body2" sx={{ mb: 1.5 }}>
+											<Typography variant="body2" sx={{ mb: 1.5, color: "#4A5568" }}>
 												<strong>Skills Required:</strong> {job.skills}
 											</Typography>
-											<Typography variant="body2" sx={{ mb: 1.5 }}>
+											<Typography variant="body2" sx={{ mb: 1.5, color: "#4A5568" }}>
 												<strong>Experience Required:</strong> {job.experience}
 											</Typography>
-											<Typography variant="body2" sx={{ mb: 1.5 }}>
+											<Typography variant="body2" sx={{ mb: 1.5, color: "#4A5568" }}>
 												<strong>Deadline:</strong> {job.deadline}
 											</Typography>
 											<Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
@@ -367,7 +369,7 @@ const JobsPosting = () => {
 													className="w-10 h-10 rounded-full object-cover mr-2"
 												/>
 												<Box>
-													<Typography variant="body2" sx={{ fontWeight: "bold" }}>
+													<Typography variant="body2" sx={{ fontWeight: "bold", color: "#1A202C" }}>
 														{job.postedBy.name}
 													</Typography>
 													<Typography variant="body2" color="text.secondary">
@@ -378,7 +380,7 @@ const JobsPosting = () => {
 													</Typography>
 												</Box>
 											</Box>
-											<Button variant="contained" color="primary" sx={{ mt: 2 }}>
+											<Button variant="contained" onClick={() => handleJobCardClick(job)} color="primary" sx={{ mt: 2 }}>
 												Apply
 											</Button>
 										</CardContent>
@@ -404,7 +406,7 @@ const JobsPosting = () => {
 						transform: "translate(-50%, -50%)",
 						width: { xs: 300, sm: 400 },
 						bgcolor: "background.paper",
-						border: "2px solid #000",
+						border: "none",
 						boxShadow: 24,
 						borderRadius: 2,
 						p: 4,
@@ -414,7 +416,7 @@ const JobsPosting = () => {
 						id="share-modal-title"
 						variant="h6"
 						component="h2"
-						sx={{ mb: 2, color: "#19194D", fontWeight: "900" }}
+						sx={{ mb: 2, color: "#1A202C", fontWeight: "bold" }}
 					>
 						Share Job
 					</Typography>
@@ -462,15 +464,15 @@ const JobsPosting = () => {
 						top: "50%",
 						left: "50%",
 						transform: "translate(-50%, -50%)",
-						width: "90%", // Set width to 90% for mobile view
-						maxWidth: 600, // Set a max width for larger screens
-						maxHeight: "90vh", // Ensure the modal doesn't exceed the viewport height
+						width: "90%",
+						maxWidth: 600,
+						maxHeight: "90vh",
 						bgcolor: "background.paper",
-						border: "1px solid #ccc", // Use a lighter border color
+						border: "none",
 						boxShadow: 24,
 						borderRadius: 2,
-						p: 3, // Add padding for better spacing
-						overflowY: "auto", // Enable scrolling if content overflows
+						p: 3,
+						overflowY: "auto",
 						display: "flex",
 						flexDirection: "column",
 						gap: 2,

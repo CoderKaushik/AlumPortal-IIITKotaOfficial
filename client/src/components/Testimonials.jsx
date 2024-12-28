@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import Marquee from 'react-fast-marquee';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
+import { useState } from "react";
+import Marquee from "react-fast-marquee";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
 
 const Testimonials = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -28,28 +28,41 @@ const Testimonials = () => {
       text: "It was wonderful to see how much everyone has grown and achieved since our graduation!",
     },
     {
-      name: "David Lee",
-      text: "I felt right at home. Great people, great stories, and an amazing atmosphere!",
+      name: "Michael Johnson",
+      text: "The event was well-organized, and I made valuable connections that will benefit my career.",
     },
   ];
 
   return (
-    <div className="w-full bg-[#19194D] py-10">
-      <div className="flex justify-center items-center mb-6">
-        <h2 className="text-3xl font-bold text-white text-center">Alumni Testimonials</h2>
-        <button onClick={handlePausePlay} className="ml-4 text-white bg-blue-500 hover:bg-blue-600 transition rounded-md p-1" info="Pause/Play Testimonials">
+    <div className="w-full bg-[#19194D] py-12">
+      {/* Heading and Pause/Play Button */}
+      <div className="flex justify-center items-center mb-8">
+        <h2 className="md:text-4xl text-2xl font-bold text-white text-center mr-4">
+          Alumni Testimonials
+        </h2>
+        <button
+          onClick={handlePausePlay}
+          className="flex items-center justify-center w-10 h-10 bg-blue-500 hover:bg-blue-600 transition rounded-full text-white"
+          aria-label={isPaused ? "Play" : "Pause"}
+        >
           {isPaused ? <PlayArrowIcon /> : <PauseIcon />}
         </button>
       </div>
+
+      {/* Testimonials Marquee */}
       <div className="h-[50vh] flex items-center">
         <Marquee pauseOnHover={false} speed={50} gradient={false} play={!isPaused}>
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="w-80 bg-white shadow-lg p-6 mx-6 rounded-lg flex-shrink-0"
+              className="w-80 bg-white shadow-lg p-6 mx-6 rounded-lg flex-shrink-0 transform transition-transform duration-300 "
             >
               <div className="flex flex-col items-center">
-                <div className="w-20 h-20 bg-gray-300 rounded-full mb-4"></div>
+                <div className="w-20 h-20 bg-gray-300 rounded-full mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-gray-600">
+                    {testimonial.name[0]}
+                  </span>
+                </div>
                 <p className="text-gray-700 italic text-center mb-4">
                   "{testimonial.text}"
                 </p>

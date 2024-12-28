@@ -1,11 +1,11 @@
-import { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import Navbar from '../components/navbar';
-import NewsCard from '../components/NewsCard';
-import Footer from '../components/Footer.jsx';
+import { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router-dom";
+import Navbar from "../components/navbar";
+import NewsCard from "../components/NewsCard";
+import Footer from "../components/Footer.jsx";
 import { TextField, InputAdornment, IconButton, Button } from "@mui/material";
 import { Search, ArrowForward } from "@mui/icons-material";
-import newsData from '../data/newsData.json';
+import newsData from "../data/newsData.json";
 
 const News = () => {
   const { newsId } = useParams();
@@ -21,7 +21,7 @@ const News = () => {
         if (element) {
           const yOffset = -180; // Adjust this value to offset the scroll position
           const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          window.scrollTo({ top: y, behavior: "smooth" });
         }
       }, 0);
     }
@@ -49,9 +49,12 @@ const News = () => {
   };
 
   const handleSearch = () => {
-    const filtered = newsData.filter(news => {
+    const filtered = newsData.filter((news) => {
       const keyword = searchInput.toLowerCase();
-      return news.title.toLowerCase().includes(keyword) || news.content.toLowerCase().includes(keyword);
+      return (
+        news.title.toLowerCase().includes(keyword) ||
+        news.content.toLowerCase().includes(keyword)
+      );
     });
     setFilteredNews(filtered);
   };
@@ -68,11 +71,12 @@ const News = () => {
   };
 
   return (
-    <div className='w-screen h-screen overflow-x-hidden custom-scrollbar bg-white'>
+    <div className="w-screen h-screen overflow-x-hidden custom-scrollbar bg-gradient-to-br from-gray-100 to-blue-50">
       <Navbar />
       <div className="h-auto mt-[8.375rem] max-w-980:mt-[90px] max-w-492:mt-[70px] overflow-scroll scrollbar-hide md:px-8 px-2 pb-6">
-        <div className="w-full h-[4rem] flex justify-center items-center mb-6"> {/* Added mb-6 for margin-bottom */}
-          <div className="w-full md:h-[5rem] h-[4.5rem] flex justify-between items-center md:px-6 px-2 bg-white rounded-lg shadow-lg text-white">
+        {/* Search Bar Section */}
+        <div className="w-full h-[4rem] flex justify-center items-center mb-8">
+          <div className="w-full md:h-[5rem] h-[4.5rem] flex justify-between items-center md:px-6 px-2 bg-white rounded-lg shadow-lg">
             <h1 className="text-2xl font-semibold md:block hidden text-[#19194D]">
               News by Alumni Cell, IIIT Kota
             </h1>
@@ -122,7 +126,13 @@ const News = () => {
                 onClick={clearSearch}
                 variant="contained"
                 color="primary"
-                sx={{ ml: 2, backgroundColor: searchInput || filteredNews.length !== newsData.length ? "#38B2AC" : "#CBD5E0" }}
+                sx={{
+                  ml: 2,
+                  backgroundColor:
+                    searchInput || filteredNews.length !== newsData.length
+                      ? "#38B2AC"
+                      : "#CBD5E0",
+                }}
                 disabled={filteredNews.length === newsData.length}
               >
                 Clear
@@ -130,31 +140,39 @@ const News = () => {
             </div>
           </div>
         </div>
-        <div className='flex flex-col items-center gap-6 px-4 pb-6'>
-          {filteredNews.map((news, index) => (
-            <div
-              key={news.id}
-              className={`w-auto h-auto mt-6 flex flex-col rounded-lg shadow-xl transform transition-all duration-700 ease-out delay-${
-                index * 100
-              } ${visibleRows[index] ? "opacity-100" : "opacity-0"} ${
-                visibleRows[index] ? "scale-100" : "scale-95"
-              }`}
-              ref={(el) => (rowRefs.current[index] = el)}
-              data-index={index}
-              style={{ overflow: 'hidden' }} // Added this line to hide overflow
-            >
-              <NewsCard
-                id={news.id}
-                title={news.title}
-                content={news.content}
-                referenceLink={news.referenceLink}
-                postedOn={news.postedOn}
-                sx={{ mb: 4 }}
-              />
+
+        {/* News Cards Section */}
+        <div className="flex flex-col items-center gap-6 px-4 pb-6">
+          {filteredNews.length === 0 ? (
+            <div className="w-full h-[20rem] flex justify-center items-center">
+              <p className="text-xl text-gray-500">No news found</p>
             </div>
-          ))}
+          ) : (
+            filteredNews.map((news, index) => (
+              <div
+                key={news.id}
+                id={news.id} // Add ID for scrolling
+                className={`w-auto h-auto mt-6 flex flex-col rounded-lg shadow-xl transform transition-all duration-700 ease-out delay-${
+                  index * 100
+                } ${visibleRows[index] ? "opacity-100" : "opacity-0"} ${
+                  visibleRows[index] ? "scale-100" : "scale-95"
+                }`}
+                ref={(el) => (rowRefs.current[index] = el)}
+                data-index={index}
+                style={{ overflow: "hidden" }}
+              >
+                <NewsCard
+                  id={news.id}
+                  title={news.title}
+                  content={news.content}
+                  referenceLink={news.referenceLink}
+                  postedOn={news.postedOn}
+                  sx={{ mb: 4 }}
+                />
+              </div>
+            ))
+          )}
         </div>
-        {/* Ensure no other divs are visible here */}
       </div>
       <Footer />
     </div>
