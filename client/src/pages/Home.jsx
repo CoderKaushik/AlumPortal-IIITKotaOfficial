@@ -14,7 +14,6 @@ import CollectionsIcon from "@mui/icons-material/Collections";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EventIcon from "@mui/icons-material/Event";
 import SchoolIcon from "@mui/icons-material/School";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -22,31 +21,6 @@ const Home = () => {
 
 	const [showButton, setShowButton] = useState(false); // State to track button visibility
 	const navigate = useNavigate();
-
-	const scrollToTop = () => {
-		if (scrollableDivRef.current) {
-			scrollableDivRef.current.scrollTo({ top: 0, behavior: "smooth" });
-		}
-	};
-
-	const handleScroll = () => {
-		if (scrollableDivRef.current) {
-			const isScrolled = scrollableDivRef.current.scrollTop > 100; // Change 100 to your desired threshold
-			setShowButton(isScrolled);
-		}
-	};
-
-	useEffect(() => {
-		const div = scrollableDivRef.current;
-		if (div) {
-			div.addEventListener("scroll", handleScroll);
-		}
-		return () => {
-			if (div) {
-				div.removeEventListener("scroll", handleScroll);
-			}
-		};
-	}, []);
 
 	useEffect(() => {
 		const counters = document.querySelectorAll(".counter");
@@ -304,18 +278,6 @@ const Home = () => {
 			{/* Footer */}
 
 			<Footer />
-			{showButton && ( // Conditionally render the button
-				<div
-					className={`absolute bottom-14 group right-4 h-12 w-12 rounded-full bg-[#38B6FF] z-20 flex justify-center items-center hover:cursor-pointer transition-opacity duration-300 ease-in-out transform ${
-						showButton ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-					}`}
-					onClick={scrollToTop}
-				>
-					<KeyboardArrowUpIcon
-						style={{ height: "40px", width: "40px", color: "white" }}
-					/>
-				</div>
-			)}
 		</div>
 	);
 };
