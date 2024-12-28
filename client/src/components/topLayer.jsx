@@ -144,7 +144,14 @@ const TopLayer = () => {
 				aria-labelledby="logout-modal-title"
 				aria-describedby="logout-modal-description"
 			>
-				<Box className="bg-white p-6 rounded shadow-lg w-80 mx-auto mt-24">
+				<Box className="bg-white p-6 rounded shadow-lg w-80 mx-auto mt-24"
+					sx={{
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: 'translate(-50%, -50%)',
+					}}
+				>
 					<h2 id="logout-modal-title" className="text-lg font-semibold mb-4">
 						Confirm Logout
 					</h2>
