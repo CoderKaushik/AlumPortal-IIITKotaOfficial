@@ -462,21 +462,20 @@ const JobsPosting = () => {
 						top: "50%",
 						left: "50%",
 						transform: "translate(-50%, -50%)",
-						width: "100%", // Set width to 100% for mobile view
+						width: "90%", // Set width to 90% for mobile view
 						maxWidth: 600, // Set a max width for larger screens
-						maxHeight: "95vh", // Ensure the modal doesn't exceed the viewport height
+						maxHeight: "90vh", // Ensure the modal doesn't exceed the viewport height
 						bgcolor: "background.paper",
-						border: "2px solid #000",
+						border: "1px solid #ccc", // Use a lighter border color
 						boxShadow: 24,
 						borderRadius: 2,
-						p: 2, // Add padding for better spacing
+						p: 3, // Add padding for better spacing
 						overflowY: "auto", // Enable scrolling if content overflows
 						display: "flex",
 						flexDirection: "column",
-						gap: 3,
+						gap: 2,
 						justifyContent: "center",
 						alignItems: "center",
-						pt: "4rem md:1rem",
 					}}
 				>
 					{isLoggedIn ? (
