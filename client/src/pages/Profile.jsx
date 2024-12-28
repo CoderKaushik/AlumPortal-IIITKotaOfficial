@@ -56,6 +56,7 @@ const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleteProfilePictureModalOpen, setIsDeleteProfilePictureModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const token = localStorage.getItem("token");
@@ -101,6 +102,9 @@ const Profile = () => {
 
   const openDeleteModal = () => setIsDeleteModalOpen(true);
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
+
+  const openDeleteProfilePictureModal = () => setIsDeleteProfilePictureModalOpen(true);
+  const closeDeleteProfilePictureModal = () => setIsDeleteProfilePictureModalOpen(false);
 
   const profileUrl = `${window.location.origin}/profile/${user._id}`;
 
@@ -160,8 +164,11 @@ const Profile = () => {
         }
       );
       setUser({ ...user, profilePicture: null });
+      closeDeleteProfilePictureModal();
+      toast.success('Profile picture deleted successfully!');
     } catch (error) {
       setError(error.message);
+      toast.error('Failed to delete profile picture.');
     }
   };
 
@@ -388,7 +395,7 @@ const Profile = () => {
             {user.profilePicture && (
               <div className="col-span-2">
                 <Button
-                  onClick={handleDeleteProfilePicture}
+                  onClick={openDeleteProfilePictureModal}
                   color="secondary"
                   style={{ backgroundColor: "#f44336", color: "#fff" }}
                   fullWidth
@@ -466,6 +473,22 @@ const Profile = () => {
             Cancel
           </Button>
           <Button onClick={handleDeleteProfile} color="secondary" style={{ backgroundColor: "#f44336", color: "#fff" }}>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Delete Profile Picture Modal */}
+      <Dialog open={isDeleteProfilePictureModalOpen} onClose={closeDeleteProfilePictureModal}>
+        <DialogTitle>Delete Profile Picture</DialogTitle>
+        <DialogContent>
+          <p>Are you sure you want to delete your profile picture? This action cannot be undone.</p>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeDeleteProfilePictureModal} color="primary" style={{ backgroundColor: "#9e9e9e", color: "#fff" }}>
+            Cancel
+          </Button>
+          <Button onClick={handleDeleteProfilePicture} color="secondary" style={{ backgroundColor: "#f44336", color: "#fff" }}>
             Delete
           </Button>
         </DialogActions>
