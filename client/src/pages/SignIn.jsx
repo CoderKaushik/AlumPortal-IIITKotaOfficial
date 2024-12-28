@@ -71,7 +71,7 @@ function SignIn() {
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-[#1A1C4E]">
       <div><Toaster position="top-right"/></div>
-      <div className="md:w-[85%] md:h-[95%] w-[95%] h-auto max-w-md bg-white rounded-2xl shadow-2xl p-8">
+      <div className="md:w-[85%] md:h-auto w-[95%] h-auto max-w-md bg-white rounded-2xl shadow-2xl p-8">
         <div className="flex justify-center mb-6">
           <img 
             src={Logo} 
