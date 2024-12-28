@@ -131,7 +131,7 @@ const Directory = () => {
 								placeholder="Name"
 								value={filters.name}
 								onChange={handleFilterChange}
-								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 							/>
 							<input
 								type="text"
@@ -139,13 +139,13 @@ const Directory = () => {
 								placeholder="Institute ID"
 								value={filters.instituteId}
 								onChange={handleFilterChange}
-								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 							/>
 							<select
 								name="graduationYear"
 								value={filters.graduationYear}
 								onChange={handleFilterChange}
-								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 							>
 								<option value="">Select Graduation Year</option>
 								{graduationYears.map((year) => (
@@ -160,7 +160,7 @@ const Directory = () => {
 								placeholder="Company"
 								value={filters.company}
 								onChange={handleFilterChange}
-								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 							/>
 							<input
 								type="text"
@@ -168,7 +168,7 @@ const Directory = () => {
 								placeholder="Role"
 								value={filters.role}
 								onChange={handleFilterChange}
-								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 							/>
 							<input
 								type="text"
@@ -176,7 +176,7 @@ const Directory = () => {
 								placeholder="Branch"
 								value={filters.branch}
 								onChange={handleFilterChange}
-								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 							/>
 							<input
 								type="text"
@@ -184,7 +184,7 @@ const Directory = () => {
 								placeholder="City"
 								value={filters.city}
 								onChange={handleFilterChange}
-								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+								className="h-12 3xl:h-16 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 							/>
 							<div className="flex gap-2">
 								<button
@@ -196,7 +196,7 @@ const Directory = () => {
 								</button>
 								<button
 									type="submit"
-									className="w-1/2 h-12 3xl:h-16 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-500"
+									className="w-1/2 h-12 3xl:h-16 bg-blue-950 text-white font-semibold rounded-lg hover:bg-[#19194D] transition-all duration-300 ease-in-out"
 								>
 									Submit
 								</button>
@@ -210,7 +210,7 @@ const Directory = () => {
 							</p>
 							<button
 								onClick={toggleFilterModal}
-								className="bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-500 xl:hidden"
+								className="bg-blue-950 text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#19194D] xl:hidden"
 							>
 								Toggle Filters
 							</button>
@@ -239,7 +239,7 @@ const Directory = () => {
 											placeholder="Name"
 											value={filters.name}
 											onChange={handleFilterChange}
-											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 										/>
 										<input
 											type="text"
@@ -247,13 +247,13 @@ const Directory = () => {
 											placeholder="Institute ID"
 											value={filters.instituteId}
 											onChange={handleFilterChange}
-											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 										/>
 										<select
 											name="graduationYear"
 											value={filters.graduationYear}
 											onChange={handleFilterChange}
-											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 										>
 											<option value="">Select Graduation Year</option>
 											{graduationYears.map((year) => (
@@ -268,7 +268,7 @@ const Directory = () => {
 											placeholder="Company"
 											value={filters.company}
 											onChange={handleFilterChange}
-											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 										/>
 										<input
 											type="text"
@@ -276,7 +276,7 @@ const Directory = () => {
 											placeholder="Role"
 											value={filters.role}
 											onChange={handleFilterChange}
-											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 										/>
 										<input
 											type="text"
@@ -284,7 +284,7 @@ const Directory = () => {
 											placeholder="Branch"
 											value={filters.branch}
 											onChange={handleFilterChange}
-											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 										/>
 										<input
 											type="text"
@@ -292,7 +292,7 @@ const Directory = () => {
 											placeholder="City"
 											value={filters.city}
 											onChange={handleFilterChange}
-											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-teal-300"
+											className="h-12 px-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#19194D]"
 										/>
 										<div className="flex gap-2">
 											<button
@@ -304,7 +304,7 @@ const Directory = () => {
 											</button>
 											<button
 												type="submit"
-												className="w-1/2 h-12 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-500"
+												className="w-1/2 h-12 bg-blue-950 text-white font-semibold rounded-lg hover:bg-[#19194D] transition-all duration-300 ease-in-out"
 											>
 												Submit
 											</button>

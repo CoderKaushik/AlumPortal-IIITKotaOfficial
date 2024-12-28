@@ -65,7 +65,7 @@ const Gallery = () => {
           </span>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="bg-teal-600 text-sm text-white font-semibold py-1 px-3 rounded-lg hover:bg-teal-500"
+            className="bg-blue-950 text-sm text-white font-semibold py-1 px-3 rounded-lg hover:bg-[#19194D]"
           >
             Menu
           </button>
@@ -90,7 +90,7 @@ const Gallery = () => {
                   onClick={() => handleGroupClick(group)}
                   className={`p-4 rounded-lg shadow-md cursor-pointer transition ${
                     currentGroup && currentGroup.groupName === group.groupName
-                      ? "bg-teal-100"
+                      ? "bg-blue-100"
                       : "hover:bg-gray-100"
                   }`}
                 >
@@ -107,7 +107,7 @@ const Gallery = () => {
                 className={`px-3 py-1 rounded-full ${
                   currentPage === 1
                     ? "bg-gray-300 cursor-not-allowed"
-                    : "bg-teal-500 text-white hover:bg-teal-600"
+                    : "bg-blue-950 text-white hover:bg-[#19194D]"
                 }`}
               >
                 Prev
@@ -121,7 +121,7 @@ const Gallery = () => {
                 className={`px-3 py-1 rounded-full ${
                   currentPage === Math.ceil(groups.length / groupsPerPage)
                     ? "bg-gray-300 cursor-not-allowed"
-                    : "bg-teal-500 text-white hover:bg-teal-600"
+                    : "bg-blue-950 text-white hover:bg-[#19194D]"
                 }`}
               >
                 Next
@@ -140,7 +140,7 @@ const Gallery = () => {
                 onClick={() => handleGroupClick(group)}
                 className={`p-4 rounded-lg shadow-md cursor-pointer transition transform ${
                   currentGroup && currentGroup.groupName === group.groupName
-                    ? "bg-teal-100"
+                    ? "bg-blue-100"
                     : "hover:bg-gray-100"
                 }`}
               >
@@ -157,7 +157,7 @@ const Gallery = () => {
               className={`px-3 py-1 rounded-full ${
                 currentPage === 1
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-teal-500 text-white hover:bg-teal-600"
+                  : "bg-blue-950 text-white hover:bg-[#19194D]"
               }`}
             >
               Prev
@@ -171,7 +171,7 @@ const Gallery = () => {
               className={`px-3 py-1 rounded-full ${
                 currentPage === Math.ceil(groups.length / groupsPerPage)
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-teal-500 text-white hover:bg-teal-600"
+                  : "bg-blue-950 text-white hover:bg-[#19194D]"
               }`}
             >
               Next
