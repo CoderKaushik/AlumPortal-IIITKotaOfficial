@@ -351,7 +351,7 @@ const Profile = () => {
 					</DialogActions>
 				</Dialog>
 
-				<Dialog open={isShareModalOpen} onClose={closeShareModal} sx={{width: {xs: "80%", md: "40%"}}}>
+				<Dialog open={isShareModalOpen} onClose={closeShareModal}>
 					<DialogTitle>Share Profile</DialogTitle>
 					<DialogContent>
 						<TextField
