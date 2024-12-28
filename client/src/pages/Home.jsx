@@ -229,7 +229,7 @@ const Home = () => {
 
       {/* quick access */}
       <div className="w-full h-auto lg:h-[399px] bg-[#19194D] flex justify-center items-center py-8">
-        <div className="w-3/4 h-full flex flex-col">
+        <div className="w-3/4 h-full flex flex-col items-center">
           <div className="w-full h-[30%] border-b border-white flex flex-col justify-end items-center text-white font-semibold lg:text-4xl text-3xl pb-4">
             Quick Access
           </div>
