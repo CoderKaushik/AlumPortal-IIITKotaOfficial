@@ -236,7 +236,7 @@ const Home = () => {
           <div className="w-full h-[70%] border-t border-white flex justify-center items-center">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 py-4 max-w-5xl">
               <div
-                className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl mx-auto"
+              className="lg:w-[10rem] lg:h-[10rem] w-[7.5rem] h-[7.5rem] hover:w-[8rem] hover:h-[8rem] bg-[#1761A1] rounded-xl flex flex-col justify-center items-center gap-2 hover:cursor-pointer lg:hover:w-[10.5rem] lg:hover:h-[10.5rem] transition-all duration-500 ease-in-out text-white shadow-2xl mx-auto"
                 onClick={() => navigate("/directory")}
               >
                 <GroupsIcon style={{ width: "4rem", height: "4rem" }} />

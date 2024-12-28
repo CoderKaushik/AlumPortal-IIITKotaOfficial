@@ -49,7 +49,7 @@ function SignIn() {
       setLoading(false);
 
       // Show success toast notification
-      toast.success("Sign-in Successful");
+      toast.success(response.data.message || "Sign-in Successful");
 
       // Redirect after 3 seconds
       setTimeout(() => {
@@ -59,7 +59,7 @@ function SignIn() {
     } catch (error) {
       console.error("There was an error signing in:", error);
       setLoading(false);
-      toast.error("Sign-in Failed");
+      toast.error(error.response?.data?.message || "Sign-in Failed");
     }
   };
 
