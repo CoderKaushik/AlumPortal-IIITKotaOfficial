@@ -480,7 +480,7 @@ const JobsPosting = () => {
 				>
 					{isLoggedIn ? (
 						<>
-							<Typography variant="h4" component="h1" sx={{ mb: 2, mt: {xs: 6, md: 4, lg: 3}, fontWeight: 'bold', color: '#007BFF' }}>
+							<Typography variant="h4" component="h1" sx={{ mb: 2, mt: {xs: 12, md: 8, lg: 6}, fontWeight: 'bold', color: '#007BFF' }}>
 								Post a Job
 							</Typography>
 							<Typography variant="body1" sx={{ mb: 4, color: '#4A5568' }}>
