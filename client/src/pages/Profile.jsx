@@ -16,7 +16,7 @@ import {
   DialogContent,
   DialogTitle,
   Select,
-  MenuItem
+  MenuItem,
 } from "@mui/material";
 import {
   Settings as SettingsIcon,
@@ -210,11 +210,11 @@ const Profile = () => {
       <Toaster position="top-right" />
       <Navbar />
 
-      {/* Modal */}
+      {/* Edit Profile Modal */}
       <Dialog open={isModalOpen} onClose={closeModal}>
         <DialogTitle>Edit Profile</DialogTitle>
         <DialogContent>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <TextField
               margin="dense"
               label="Name"
@@ -222,6 +222,13 @@ const Profile = () => {
               value={user.name}
               onChange={handleChange}
               fullWidth
+              InputProps={{
+                style: {
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+              }}
             />
             <Select
               margin="dense"
@@ -241,6 +248,13 @@ const Profile = () => {
               value={user.city}
               onChange={handleChange}
               fullWidth
+              InputProps={{
+                style: {
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+              }}
             />
             <TextField
               margin="dense"
@@ -249,6 +263,13 @@ const Profile = () => {
               value={user.state}
               onChange={handleChange}
               fullWidth
+              InputProps={{
+                style: {
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+              }}
             />
             <TextField
               margin="dense"
@@ -257,6 +278,13 @@ const Profile = () => {
               value={user.country}
               onChange={handleChange}
               fullWidth
+              InputProps={{
+                style: {
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+              }}
             />
             <TextField
               margin="dense"
@@ -265,6 +293,13 @@ const Profile = () => {
               value={user.pastCompanies}
               onChange={handleChange}
               fullWidth
+              InputProps={{
+                style: {
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+              }}
             />
             <TextField
               margin="dense"
@@ -273,6 +308,13 @@ const Profile = () => {
               value={user.currentCompany}
               onChange={handleChange}
               fullWidth
+              InputProps={{
+                style: {
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+              }}
             />
             <TextField
               margin="dense"
@@ -281,6 +323,13 @@ const Profile = () => {
               value={user.personalEmail}
               onChange={handleChange}
               fullWidth
+              InputProps={{
+                style: {
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+              }}
             />
             <TextField
               margin="dense"
@@ -289,6 +338,13 @@ const Profile = () => {
               value={user.graduationYear}
               onChange={handleChange}
               fullWidth
+              InputProps={{
+                style: {
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+              }}
             />
             <TextField
               margin="dense"
@@ -297,6 +353,13 @@ const Profile = () => {
               value={user.linkedin}
               onChange={handleChange}
               fullWidth
+              InputProps={{
+                style: {
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+              }}
             />
             <TextField
               margin="dense"
@@ -307,41 +370,46 @@ const Profile = () => {
               fullWidth
               multiline
               rows={4}
+              className="col-span-2"
             />
-            <div className="mt-4">
-              <label htmlFor="profilePictureUpload">Upload Profile Picture</label>
+            <div className="col-span-2">
+              <label htmlFor="profilePictureUpload" className="block text-sm font-medium text-gray-700">
+                Upload Profile Picture
+              </label>
               <input
                 type="file"
                 id="profilePictureUpload"
                 name="profilePictureUpload"
                 accept="image/*"
                 onChange={handleFileChange}
-                style={{ display: "block", marginTop: "8px" }}
+                className="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none"
               />
             </div>
             {user.profilePicture && (
-              <div className="mt-4">
+              <div className="col-span-2">
                 <Button
                   onClick={handleDeleteProfilePicture}
                   color="secondary"
                   style={{ backgroundColor: "#f44336", color: "#fff" }}
+                  fullWidth
                 >
                   Delete Profile Picture
                 </Button>
               </div>
             )}
-            <div className="mt-4">
+            <div className="col-span-2">
               <Button
                 onClick={openDeleteModal}
                 color="secondary"
                 style={{ backgroundColor: "#f44336", color: "#fff" }}
+                fullWidth
               >
                 Delete Profile
               </Button>
             </div>
           </form>
         </DialogContent>
-        <DialogActions>
+        <DialogActions className="p-4">
           <Button onClick={closeModal} color="primary" style={{ backgroundColor: "#9e9e9e", color: "#fff" }}>
             Cancel
           </Button>
@@ -351,6 +419,7 @@ const Profile = () => {
         </DialogActions>
       </Dialog>
 
+      {/* Share Profile Modal */}
       <Dialog open={isShareModalOpen} onClose={closeShareModal}>
         <DialogTitle>Share Profile</DialogTitle>
         <DialogContent>
@@ -361,6 +430,11 @@ const Profile = () => {
             fullWidth
             InputProps={{
               readOnly: true,
+              style: {
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              },
             }}
           />
         </DialogContent>
@@ -381,6 +455,7 @@ const Profile = () => {
         </DialogActions>
       </Dialog>
 
+      {/* Delete Profile Modal */}
       <Dialog open={isDeleteModalOpen} onClose={closeDeleteModal}>
         <DialogTitle>Delete Profile</DialogTitle>
         <DialogContent>
@@ -396,6 +471,7 @@ const Profile = () => {
         </DialogActions>
       </Dialog>
 
+      {/* Profile Content */}
       <div className="w-full h-[35rem] md:h-72 mt-28 md:mt-36 lg:mt-36 px-6 md:px-20 flex flex-col md:flex-row gap-4">
         <div className="md:w-1/3 md:h-full h-1/2 w-full rounded-lg shadow-xl bg-white flex flex-col gap-2 relative">
           {id === "me" && (
@@ -465,7 +541,7 @@ const Profile = () => {
           <div className="w-full h-[80%] md:p-4 p-2 flex flex-col justify-center gap-4 text-blue-950 overflow-scroll scrollbar-hide">
             <div className="h-[2rem] w-full flex gap-2">
               <EmailIcon />
-              <a href={`mailto:${user.personalEmail}`}>{user.personalEmail}</a>
+              <a href={`mailto:${user.personalEmail}`} className="truncate">{user.personalEmail}</a>
             </div>
             <div className="h-[2rem] w-full flex gap-2">
               <PhoneIcon />
@@ -473,13 +549,13 @@ const Profile = () => {
             </div>
             <div className="h-[2rem] w-full flex gap-2">
               <HomeIcon />
-              <p>
+              <p className="truncate">
                 {user.city}, {user.state}, {user.country}
               </p>
             </div>
             <div className="h-[2rem] w-full flex gap-2">
               <LinkedInIcon />
-              <a href={user.linkedin} target="_blank">
+              <a href={user.linkedin} target="_blank" className="truncate">
                 {user.linkedin}
               </a>
             </div>
