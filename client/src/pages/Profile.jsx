@@ -14,7 +14,9 @@ import {
 	Dialog,
 	DialogActions,
 	DialogContent,
-	DialogTitle
+	DialogTitle,
+	Select,
+	MenuItem
 } from "@mui/material";
 import {
 	Settings as SettingsIcon,
@@ -226,14 +228,17 @@ const Profile = () => {
 								onChange={handleChange}
 								fullWidth
 							/>
-							<TextField
+							<Select
 								margin="dense"
 								label="Branch"
 								name="branch"
 								value={user.branch}
 								onChange={handleChange}
 								fullWidth
-							/>
+							>
+								<MenuItem value="CSE">CSE</MenuItem>
+								<MenuItem value="ECE">ECE</MenuItem>
+							</Select>
 							<TextField
 								margin="dense"
 								label="City"
