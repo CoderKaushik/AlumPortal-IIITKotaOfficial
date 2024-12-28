@@ -26,7 +26,7 @@ const NewsArticlesHome = () => {
       {/* Events Section */}
       <div className="lg:h-full lg:w-[70%] h-auto w-full rounded-lg shadow-md bg-white transition-transform duration-300 hover:shadow-lg flex lg:flex-row flex-col gap-6 p-6">
         <div className="lg:w-1/2 w-full lg:h-full h-auto flex flex-col justify-between">
-          <h1 className="w-full h-auto py-2 px-4 rounded-md text-white bg-[#19194D] font-semibold text-2xl text-start mb-4">
+          <h1 className="w-full h-auto py-2 px-4 rounded-md text-white bg-blue-950 font-semibold text-2xl text-start mb-4">
             Events
           </h1>
           <div className="w-full flex-grow">
@@ -42,7 +42,7 @@ const NewsArticlesHome = () => {
           </div>
           <button
             onClick={() => handleEventClick("/events")}
-            className="bg-[#19194D] text-white px-6 py-2 rounded-lg hover:bg-black transition-all duration-300 mt-4 self-end"
+            className="bg-blue-950 text-white px-6 py-2 rounded-lg hover:bg-[#19194D] transition-all duration-300 mt-4 self-end"
           >
             View All Events
           </button>
@@ -78,7 +78,7 @@ const NewsArticlesHome = () => {
           <h3 className="text-2xl font-semibold text-[#1A202C]">News</h3>
           <button
             onClick={() => handleEventClick("/news")}
-            className="bg-[#19194D] text-white px-4 py-2 rounded-lg hover:bg-black transition-all duration-300"
+            className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-[#19194D] transition-all duration-300"
           >
             View All
           </button>
