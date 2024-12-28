@@ -147,7 +147,7 @@ const TopLayer = () => {
 				<Box className="bg-white p-6 rounded shadow-lg w-80 mx-auto mt-24"
 					sx={{
 						position: 'absolute',
-						top: '50%',
+						top: '35%', // Adjusted from 50% to 45%
 						left: '50%',
 						transform: 'translate(-50%, -50%)',
 					}}
