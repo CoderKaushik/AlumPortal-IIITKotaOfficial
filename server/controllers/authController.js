@@ -5,7 +5,6 @@ const cloudinary = require("../config/cloudinary.js");
 const streamifier = require("streamifier");
 const { sendEmail } = require('../utils/emailUtil');
 
-
 exports.signUp = async (req, res) => {
   const {
     name,
@@ -27,9 +26,15 @@ exports.signUp = async (req, res) => {
 
   try {
     // Check if a user with the same email exists
-    const existingUser = await User.findOne({ personalEmail });
-    if (existingUser) {
+    const existingUserByEmail = await User.findOne({ personalEmail });
+    if (existingUserByEmail) {
       return res.status(400).json({ message: "A user with this email already exists." });
+    }
+
+    // Check if a user with the same instituteId exists
+    const existingUserByInstituteId = await User.findOne({ instituteId });
+    if (existingUserByInstituteId) {
+      return res.status(400).json({ message: "A user with this institute ID already exists. If you think this is an error, contact the alumni cell at alumnicell@iiitkota.ac.in." });
     }
 
     // Initialize profile picture variables
@@ -87,7 +92,7 @@ exports.signUp = async (req, res) => {
     console.error(error.message);
 
     if (error.code === 11000 && error.keyValue && error.keyValue.instituteId) {
-      res.status(400).json({ message: "A user has already registered using this institute ID. If you think this is an error, contact alumni cell at alumnicell@iiitkota.ac.in." });
+      res.status(400).json({ message: "A user has already registered using this institute ID. If you think this is an error, contact the alumni cell at alumnicell@iiitkota.ac.in." });
     } else {
       res.status(500).json({ message: "Server error" });
     }
