@@ -12,12 +12,12 @@ const Testimonials = () => {
 
   const testimonials = [
     {
-      name: "John Doe",
-      text: "The alumni event was an unforgettable experience, reconnecting with peers and meeting inspiring professionals.",
+      name: "Gaurav Luhariwala",
+      text: "Returning to the college was a delightful experience. Seeing the campus for the first time brought back fond memories. The alumni team members, Hiteshwar and Partik, along with faculty head - Chetna ma'am, were exceptionally gracious, ensuring our stay was comfortable and memorable. Their dedication made our visit as alumni truly special.",
     },
     {
-      name: "Jane Smith",
-      text: "An excellent networking opportunity, and the talks were both informative and motivating.",
+      name: "Shreyansh",
+      text: "The arrangements for the ‘Startup 101’ talk were top-notch, providing insightful discussions on entrepreneurship fundamentals. Our travel arrangements were exceptionally smooth, allowing us to focus entirely on reconnecting with the college community. We are grateful for the meticulous planning and warm hospitality extended to us during our visit",
     },
     {
       name: "David Lee",
