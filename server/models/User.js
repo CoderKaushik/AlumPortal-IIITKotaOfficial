@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
   state: { type: String, required: true },
   country: { type: String, required: true },
   graduationYear: { type: String, required: true },
-  pastCompanies: { type: String, required: true },
+  pastCompanies: { type: String },
   currentCompany: { type: String, required: true },
   role: { type: String, required: true },
   linkedin: { type: String },

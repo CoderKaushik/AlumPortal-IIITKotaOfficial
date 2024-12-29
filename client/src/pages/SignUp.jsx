@@ -299,7 +299,6 @@ const SignUp = () => {
           value={formData.pastCompanies}
           onChange={handleChange}
           placeholder="Past Companies / Institutes*"
-          required
           className="w-full md:w-4/5 px-4 py-3 border border-[#0E407C] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0E407C]"
         />
       </div>
