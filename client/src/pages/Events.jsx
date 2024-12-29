@@ -191,7 +191,7 @@ const Events = () => {
                     variant="contained"
                     color="primary"
                     onClick={() => handleEventCardClick(event)}
-                    sx={{ ml: 2, backgroundColor: "#38B2AC" }}
+                    sx={{ ml: 2 }}
                   >
                     Details
                   </Button>

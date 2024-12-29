@@ -82,17 +82,16 @@ const Footer = () => {
 					</a>
 				</div>
 			</div>
-			<div className="w-full h-[10%] bg-[#0E407C] flex justify-center items-center">
-				<div className="w-full h-1/2 max-w-492:h-full flex max-w-492:flex-col max-w-492:py-1">
-					<div className="w-1/2 h-full max-w-492:w-full max-w-492:h-1/3 flex justify-start max-w-492:justify-center items-center pl-8 max-w-492:pl-0 text-white max-w-492:text-sm">
-						© 2025 Alumni Cell, IIIT Kota
-					</div>
-					<div className="w-1/2 h-full max-w-492:w-full max-w-492:h-2/3 flex justify-end max-w-492:justify-center items-center pr-4 max-w-492:pr-0 max-w-492:gap-8 gap-4">
-						<XIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 ease-in-out cursor-pointer" />
-						<FacebookIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 ease-in-out cursor-pointer" />
-						<InstagramIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 ease-in-out cursor-pointer" />
-						<LinkedInIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 ease-in-out cursor-pointer" />
-						<YoutubeIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 ease-in-out cursor-pointer" />
+			{/* Footer Bottom */}
+			<div className="bg-[#0E407C] py-4">
+				<div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+					<div className="text-sm text-white/90">© 2025 Alumni Cell, IIIT Kota</div>
+					<div className="flex space-x-6">
+						<XIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 cursor-pointer" />
+						<FacebookIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 cursor-pointer" />
+						<InstagramIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 cursor-pointer" />
+						<LinkedInIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 cursor-pointer" />
+						<YoutubeIcon className="text-white hover:text-[#38B6FF] transition-colors duration-300 cursor-pointer" />
 					</div>
 				</div>
 			</div>

@@ -239,7 +239,7 @@ const JobsPosting = () => {
 	return (
 		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gradient-to-br from-gray-100 to-blue-50">
 			<Navbar />
-			<Toaster />
+			<Toaster position="top-right" />
 			<div className="flex-grow overflow-y-scroll scrollbar-hide mt-[9rem] max-w-980:mt-[100px] max-w-492:mt-[75px]">
 				<div className="w-full h-auto flex flex-col gap-4">
 					<div className="w-full h-auto bg-white py-4 px-2 shadow-md rounded-lg flex justify-between items-center">

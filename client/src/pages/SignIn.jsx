@@ -92,7 +92,7 @@ function SignIn() {
               onChange={handleChange}
               placeholder="Institute ID"
               required
-              className="w-full px-4 py-3 border border-[#0E407C] rounded-md focus:outline-none focus:border-blue-600"
+              className="w-full px-4 py-3 border border-[#0E407C] rounded-md focus:outline-none focus:ring-1 focus:ring-[#0E407C]"
             />
           </div>
           <div className="mb-6 flex items-center">
@@ -103,7 +103,7 @@ function SignIn() {
               onChange={handleChange}
               placeholder="Password"
               required
-              className="w-full px-4 py-3 border border-[#0E407C] rounded-md focus:outline-none focus:border-blue-600"
+              className="w-full px-4 py-3 border border-[#0E407C] rounded-md focus:outline-none focus:ring-1 focus:ring-[#0E407C]"
             />
           </div>
           <div className="text-right mb-4">
@@ -117,7 +117,7 @@ function SignIn() {
           <div className="w-full h-auto flex justify-center items-center">
           <button
             type="submit"
-            className="px-4 py-3 bg-[#0E407C] hover:bg-blue-600 text-white rounded-md shadow-xl w-full flex items-center justify-center"
+            className="px-4 py-3 bg-[#0E407C] hover:bg-[#19194D] text-white rounded-md shadow-xl w-full flex items-center justify-center transition-colors"
             disabled={loading}
           >
             {loading ? (

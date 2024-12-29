@@ -36,7 +36,7 @@ function ForgotPassword() {
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-[#1A1C4E]">
       <div><Toaster position="top-right"/></div>
-      <div className="md:w-[85%] md:h-[85%] w-[95%] h-auto max-w-md bg-white rounded-2xl shadow-2xl p-8">
+      <div className="md:w-[85%] md:h-auto w-[95%] h-auto max-w-md bg-white rounded-2xl shadow-2xl p-8">
         <h2 className="text-3xl font-semibold text-center text-[#32325D] mb-6">
           Forgot Password
         </h2>
@@ -49,13 +49,13 @@ function ForgotPassword() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your registered email"
               required
-              className="w-full px-4 py-3 border border-[#0E407C] rounded-md focus:outline-none focus:border-blue-600"
+              className="w-full px-4 py-3 border border-[#0E407C] rounded-md focus:outline-none focus:ring-1 focus:ring-[#0E407C]"
             />
           </div>
           <div className="w-full h-auto flex justify-center items-center">
           <button
             type="submit"
-            className="px-4 py-3 bg-[#0E407C] hover:bg-blue-600 text-white rounded-md shadow-xl w-full flex items-center justify-center"
+            className="px-4 py-3 bg-[#0E407C] hover:bg-[#19194D] text-white rounded-md shadow-xl w-full flex items-center justify-center transition-colors"
             disabled={loading}
           >
             {loading ? (

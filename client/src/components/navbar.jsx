@@ -10,421 +10,412 @@ import FeedIcon from "@mui/icons-material/Feed";
 import WorkIcon from "@mui/icons-material/Work";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Avatar from "../assets/avatar.png"
+import Avatar from "../assets/avatar.png";
 import TopLayer from "./topLayer.jsx";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-
 import axios from "axios";
 
 const Navbar = () => {
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [activeSubMenu, setActiveSubMenu] = useState(null);
-	const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSubMenu, setActiveSubMenu] = useState(null);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-	const toggleMobileMenu = () => {
-		setTimeout(() => {
-			setIsMobileMenuOpen((prev) => {
-				// Reset active submenu when closing the modal
-				if (prev) {
-					setActiveSubMenu(null);
-				}
-				return !prev;
-			});
-		}, 200);
-	};
+  const toggleMobileMenu = () => {
+    setTimeout(() => {
+      setIsMobileMenuOpen((prev) => {
+        // Reset active submenu when closing the modal
+        if (prev) {
+          setActiveSubMenu(null);
+        }
+        return !prev;
+      });
+    }, 200);
+  };
 
-	const handleSubMenuToggle = (menu) => {
-		setActiveSubMenu(activeSubMenu === menu ? null : menu);
-	};
+  const handleSubMenuToggle = (menu) => {
+    setActiveSubMenu(activeSubMenu === menu ? null : menu);
+  };
 
-	const [user, setUser] = useState(null);
-	const [error, setError] = useState(null);
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-	const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-	useEffect(() => {
-		if (token) {
-			setIsLoggedIn(true);
-			const fetchUser = async () => {
-				try {
-					const response = await axios.get(
-						"https://alumportal-iiitkotaofficial.onrender.com/api/profile/me",
-						// "http://localhost:5000/api/profile/me",
-						{
-							headers: { Authorization: `Bearer ${token}` },
-						}
-					);
-					setUser(response.data);
-				} catch (error) {
-					setError(error.message);
-				}
-			};
-			fetchUser();
-		} else {
-			setIsLoggedIn(false);
-		}
-	}, [token]);
+  useEffect(() => {
+    if (token) {
+      setIsLoggedIn(true);
+      const fetchUser = async () => {
+        try {
+          const response = await axios.get(
+            "https://alumportal-iiitkotaofficial.onrender.com/api/profile/me",
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          setUser(response.data);
+        } catch (error) {
+          setError(error.message);
+        }
+      };
+      fetchUser();
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [token]);
 
-	const handleLogout = (e) => {
-		e.preventDefault();
-		localStorage.removeItem("token");
-		setIsLoggedIn(false);
-		setUser(null);
-		toggleMobileMenu(); // Close the mobile menu
-		window.location.reload();
-	};
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setUser(null);
+    toggleMobileMenu(); // Close the mobile menu
+    window.location.reload();
+  };
 
-	const openLogoutModal = () => {
-		setIsLogoutModalOpen(true);
-	};
+  const openLogoutModal = () => {
+    setIsLogoutModalOpen(true);
+  };
 
-	const closeLogoutModal = () => {
-		setIsLogoutModalOpen(false);
-	};
+  const closeLogoutModal = () => {
+    setIsLogoutModalOpen(false);
+  };
 
-	return (
-		<div className="w-full h-auto fixed top-0 left-0 z-[20] shadow-md">
-			<TopLayer />
-			<div className="w-full h-[6.875rem] max-w-980:h-[90px] max-w-492:h-[70px] bg-white flex py-4">
-				<div className="w-1/3 max-w-1464:w-[10%] max-w-980:w-[80%] h-full flex gap-2 items-center pl-2">
-					<div className="w-auto h-full flex justify-center items-center">
-						<a href="/">
-							<img
-								src={Logo}
-								alt="iiit kota logo"
-								className="w-[4.5rem] h-[4.5rem] max-w-980:w-[58px] max-w-980:h-[58px] max-w-492:h-[40px] max-w-492:w-[40px]"
-							/>
-						</a>
-					</div>
-					<div className="w-auto h-full flex flex-col justify-center">
-						<h6
-							className="text-[12px] max-w-980:text-[9px] max-w-492:text-[7px] text-[#19194D] max-w-1464:hidden max-w-980:block"
-							style={{ fontWeight: "700" }}
-						>
-							Alumni Cell
-						</h6>
-						<h6
-							className="text-[12px] max-w-980:text-[9px] max-w-492:text-[7px] font-bold text-[#19194D] max-w-1464:hidden max-w-980:block"
-							style={{ fontWeight: "1000" }}
-						>
-							Indian Institute of Information Technology, Kota
-						</h6>
-						<h6
-							className="text-[12px] max-w-980:text-[9px] max-w-492:text-[7px] font-bold text-[#19194D] font-sans max-w-1464:hidden max-w-980:block"
-							style={{ fontWeight: "1000" }}
-						>
-							(An Institute of National Importance under an Act of Parliament)
-						</h6>
-					</div>
-				</div>
-				<div
-					className={`w-2/3 max-w-1464:w-[90%] max-w-980:w-[20%] h-full flex ${
-						window.innerWidth <= 980
-							? "justify-center items-center"
-							: "justify-end items-center pr-4"
-					}`}
-				>
-					<div className="w-auto px-6 h-full flex relative group items-center text-[#19194D] max-w-980:hidden max-w-1464:ml-44">
-						<a
-							className="text-[0.9rem] font-sans hover:cursor-pointer"
-							style={{ fontWeight: "400" }}
-							href="/about"
-						>
-							ABOUT US
-						</a>
-					</div>
+  return (
+    <div className="w-full h-auto fixed top-0 left-0 z-[20] shadow-md">
+      <TopLayer />
+      <div className="w-full h-[6.875rem] max-w-980:h-[90px] max-w-492:h-[70px] bg-white flex py-4">
+        <div className="w-1/3 max-w-1464:w-[10%] max-w-980:w-[80%] h-full flex gap-2 items-center pl-2">
+          <div className="w-auto h-full flex justify-center items-center">
+            <a href="/">
+              <img
+                src={Logo}
+                alt="iiit kota logo"
+                className="w-[4.5rem] h-[4.5rem] max-w-980:w-[58px] max-w-980:h-[58px] max-w-492:h-[40px] max-w-492:w-[40px]"
+              />
+            </a>
+          </div>
+          <div className="w-auto h-full flex flex-col justify-center">
+            <h6
+              className="text-[12px] max-w-980:text-[9px] max-w-492:text-[7px] text-[#19194D] max-w-1464:hidden max-w-980:block"
+              style={{ fontWeight: "700" }}
+            >
+              Alumni Cell
+            </h6>
+            <h6
+              className="text-[12px] max-w-980:text-[9px] max-w-492:text-[7px] font-bold text-[#19194D] max-w-1464:hidden max-w-980:block"
+              style={{ fontWeight: "1000" }}
+            >
+              Indian Institute of Information Technology, Kota
+            </h6>
+            <h6
+              className="text-[12px] max-w-980:text-[9px] max-w-492:text-[7px] font-bold text-[#19194D] font-sans max-w-1464:hidden max-w-980:block"
+              style={{ fontWeight: "1000" }}
+            >
+              (An Institute of National Importance under an Act of Parliament)
+            </h6>
+          </div>
+        </div>
+        <div
+          className={`w-2/3 max-w-1464:w-[90%] max-w-980:w-[20%] h-full flex ${
+            window.innerWidth <= 980
+              ? "justify-center items-center"
+              : "justify-end items-center pr-4"
+          }`}
+        >
+          <div className="w-auto px-6 h-full flex relative group items-center text-[#19194D] max-w-980:hidden max-w-1464:ml-44">
+            <a
+              className="text-[0.9rem] font-sans hover:cursor-pointer"
+              style={{ fontWeight: "400" }}
+              href="/about"
+            >
+              ABOUT US
+            </a>
+          </div>
 
-					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-						<p
-							className="text-[0.9rem] font-sans hover:cursor-pointer"
-							style={{ fontWeight: "400" }}
-						>
-							ALUMNI ASSIST
-						</p>
-						<div className="rounded-md absolute top-12 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 bg-white drop-shadow-2xl py-2 mt-2 w-[12rem] transition-all duration-300 ease-in-out transform translate-y-2">
-							<ul className="w-full">
-								<li className="hover:bg-gray-100 p-2">
-									<a href="/alumni/prominent-alumni">Prominent Alumni</a>
-								</li>
-								<li className="hover:bg-gray-100 p-2">
-									<a href="/alumni/gallery">Alumni Gallery</a>
-								</li>
-								<li className="hover:bg-gray-100 p-2">
-									<a href="/alumni/job-postings">Jobs via Alumni</a>
-								</li>
-								<li className="hover:bg-gray-100 p-2">
-									<a href="/alumni/contact">Contact Us</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+            <p
+              className="text-[0.9rem] font-sans hover:cursor-pointer"
+              style={{ fontWeight: "400" }}
+            >
+              ALUMNI ASSIST
+            </p>
+            <div className="rounded-md absolute top-12 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 bg-white drop-shadow-2xl py-2 mt-2 w-[12rem] transition-all duration-300 ease-in-out transform translate-y-2">
+              <ul className="w-full">
+                <li className="hover:bg-gray-100 p-2">
+                  <a href="/alumni/prominent-alumni">Prominent Alumni</a>
+                </li>
+                <li className="hover:bg-gray-100 p-2">
+                  <a href="/alumni/gallery">Alumni Gallery</a>
+                </li>
+                <li className="hover:bg-gray-100 p-2">
+                  <a href="/alumni/job-postings">Jobs via Alumni</a>
+                </li>
+                <li className="hover:bg-gray-100 p-2">
+                  <a href="/alumni/contact">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-						<a href="/directory">
-							<p
-								className="text-[0.9rem] font-sans hover:cursor-pointer"
-								style={{ fontWeight: "400" }}
-							>
-								DIRECTORY
-							</p>
-						</a>
-					</div>
+          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+            <a href="/directory">
+              <p
+                className="text-[0.9rem] font-sans hover:cursor-pointer"
+                style={{ fontWeight: "400" }}
+              >
+                DIRECTORY
+              </p>
+            </a>
+          </div>
 
-					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-						<a href="/events"
-							className="text-[0.9rem] font-sans hover:cursor-pointer"
-							style={{ fontWeight: "400" }}
-						>
-							EVENTS
-						</a>
-					</div>
+          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+            <a
+              href="/events"
+              className="text-[0.9rem] font-sans hover:cursor-pointer"
+              style={{ fontWeight: "400" }}
+            >
+              EVENTS
+            </a>
+          </div>
 
-					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-						<a href="/news"
-							className="text-[0.9rem] font-sans hover:cursor-pointer"
-							style={{ fontWeight: "400" }}
-						>
-							NEWS
-						</a>
-						
-					</div>
+          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+            <a
+              href="/news"
+              className="text-[0.9rem] font-sans hover:cursor-pointer"
+              style={{ fontWeight: "400" }}
+            >
+              NEWS
+            </a>
+          </div>
 
-					<div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-						<a
-							className="text-[0.9rem] font-sans hover:cursor-pointer"
-							style={{ fontWeight: "400" }}
-							href="https://tpcell.iiitkota.ac.in/"
-						>
-							PLACEMENTS
-						</a>
-					</div>
+          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+            <a
+              className="text-[0.9rem] font-sans hover:cursor-pointer"
+              style={{ fontWeight: "400" }}
+              href="https://tpcell.iiitkota.ac.in/"
+            >
+              PLACEMENTS
+            </a>
+          </div>
 
-					<div className="hidden w-full h-full text-[#19194D] max-w-980:flex max-w-980:justify-center max-w-980:items-center">
-						<MenuIcon onClick={toggleMobileMenu} className="cursor-pointer" />
-					</div>
-				</div>
-			</div>
+          <div className="hidden w-full h-full text-[#19194D] max-w-980:flex max-w-980:justify-center max-w-980:items-center">
+            <MenuIcon onClick={toggleMobileMenu} className="cursor-pointer" />
+          </div>
+        </div>
+      </div>
 
-			{/* Mobile Menu Modal */}
-			<div
-				className={`fixed top-2 right-2 md:right-8 w-[96vw] md:w-[60vw] h-auto flex items-center justify-center transition-opacity duration-300 ${
-					isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-				}`}
-			>
-				<div
-					className={`bg-white border-b-8 border-[#0E407C] shadow-2xl w-full h-full p-6 transition-opacity duration-300 transform ${
-						isMobileMenuOpen ? "opacity-100" : "opacity-95"
-					}`}
-				>
-					<div className="flex justify-between items-center border-b border-gray-200 text-[#172B4D] pb-4">
-						<div className="w-auto h-auto flex gap-2 justify-start items-center">
-							<a href="/">
-								<img src={Logo} alt="home_page" className="w-10 h-10" />
-							</a>
-							<h3 className="text-lg font-semibold tracking-wide">MENU</h3>
-						</div>
-						<CloseIcon onClick={toggleMobileMenu} className="cursor-pointer" />
-					</div>
-					<div className="mt-4">
-						<ul className="space-y-3">
-							<li>
-								<button className="w-full text-left text-[#172B4D]">
-									<a
-										className="flex gap-3 items-center text-base font-medium"
-										href="/about"
-										onClick={toggleMobileMenu}
-									>
-										<InfoIcon />
-										About Us
-									</a>
-								</button>
-							</li>
-							<li>
-								<button
-									onClick={() => handleSubMenuToggle("alumni")}
-									className="w-full text-left text-[#172B4D]"
-								>
-									<div className="flex gap-3 items-center text-base font-medium">
-										<HelpIcon />
-										Alumni Assist
-										<span className="ml-auto">
-											{activeSubMenu === "alumni" ? "-" : "+"}
-										</span>
-									</div>
-								</button>
-								<div
-									className={`pl-6 overflow-hidden transition-max-height duration-300 ease-in-out ${
-										activeSubMenu === "alumni" ? "max-h-48" : "max-h-0"
-									}`}
-								>
-									<ul className="space-y-2 mt-2 text-sm font-normal border-l border-gray-200">
-										<li
-											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-											onClick={toggleMobileMenu}
-										>
-											<a href="/alumni/prominent-alumni">Prominent Alumni</a>
-										</li>
-										<li
-											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-											onClick={toggleMobileMenu}
-										>
-											<a href="/alumni/gallery">Alumni Gallery</a>
-										</li>
-										<li
-											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-											onClick={toggleMobileMenu}
-										>
-											<a href="/alumni/job-postings">Jobs via Alumni</a>
-										</li>
-										<li
-											className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-											onClick={toggleMobileMenu}
-										>
-											<a href="/alumni/contact">Contact Us</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li>
-								<a
-									href="/directory"
-									onClick={toggleMobileMenu}
-									className="w-full text-left text-[#172B4D]"
-								>
-									<div className="flex gap-3 items-center text-base font-medium">
-										<FolderSharedIcon />
-										Directory
-									</div>
-								</a>
-							</li>
-							<li>
-								<a
-									href="/events"
-									onClick={toggleMobileMenu}
-									className="w-full text-left text-[#172B4D]"
-								>
-									<div  className="flex gap-3 items-center text-base font-medium">
-										<EventIcon />
-										Events
-									</div>
-								</a>
-							</li>
-							<li>
-								<a
-									href="/news"
-									onClick={toggleMobileMenu}
-									className="w-full text-left text-[#172B4D]"
-								>
-									<div className="flex gap-3 items-center text-base font-medium">
-										<FeedIcon />
-										News
-									</div>
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://tpcell.iiitkota.ac.in/"
-									onClick={toggleMobileMenu}
-									className="w-full text-left text-[#172B4D]"
-								>
-									<div className="flex gap-3 items-center text-base font-medium">
-										<WorkIcon />
-										Placements
-									</div>
-								</a>
-							</li>
-							{/* <li>
-								<a href="/signin">
-									<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
-										<LockOpenIcon />
-										Sign In
-									</div>
-								</a>
-							</li> */}
-							{isLoggedIn && user ? (
-								<>
-									<li className="w-full h-auto flex gap-3">
-										{user.profilePicture ? (
-											<a href="/profile/me" onClick={toggleMobileMenu}>
-												<img
-													src={user.profilePicture}
-													alt="Profile"
-													className="w-6 h-6 rounded-full object-cover"
-												/>
-											</a>
-										) : (
-											<a href="/profile/me" onClick={toggleMobileMenu}>
-												<img
-													src={Avatar}
-													alt="Default Avatar"
-													className="w-6 h-6 rounded-full object-cover"
-												/>
-											</a>
-										)}
-										<a href="/profile/me" onClick={toggleMobileMenu}>
-											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
-												Profile
-											</div>
-										</a>
-									</li>
-									<li>
-										<a href="#" onClick={openLogoutModal}>
-											<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
-												<LogoutIcon />
-												Log Out
-											</div>
-										</a>
-									</li>
-								</>
-							) : (
-								<li>
-									<a href="/signin" onClick={toggleMobileMenu}>
-										<div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
-											<LockOpenIcon />
-											Sign In
-										</div>
-									</a>
-								</li>
-							)}
-						</ul>
-					</div>
-				</div>
-			</div>
+      {/* Mobile Menu Modal */}
+      <div
+        className={`fixed top-2 right-2 md:right-8 w-[96vw] md:w-[60vw] h-auto flex items-center justify-center transition-opacity duration-300 ${
+          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div
+          className={`bg-white border-b-8 border-[#0E407C] shadow-2xl w-full h-full p-6 transition-opacity duration-300 transform ${
+            isMobileMenuOpen ? "opacity-100" : "opacity-95"
+          }`}
+        >
+          <div className="flex justify-between items-center border-b border-gray-200 text-[#172B4D] pb-4">
+            <div className="w-auto h-auto flex gap-2 justify-start items-center">
+              <a href="/">
+                <img src={Logo} alt="home_page" className="w-10 h-10" />
+              </a>
+              <h3 className="text-lg font-semibold tracking-wide">MENU</h3>
+            </div>
+            <CloseIcon onClick={toggleMobileMenu} className="cursor-pointer" />
+          </div>
+          <div className="mt-4">
+            <ul className="space-y-3">
+              <li>
+                <button className="w-full text-left text-[#172B4D]">
+                  <a
+                    className="flex gap-3 items-center text-base font-medium"
+                    href="/about"
+                    onClick={toggleMobileMenu}
+                  >
+                    <InfoIcon />
+                    About Us
+                  </a>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleSubMenuToggle("alumni")}
+                  className="w-full text-left text-[#172B4D]"
+                >
+                  <div className="flex gap-3 items-center text-base font-medium">
+                    <HelpIcon />
+                    Alumni Assist
+                    <span className="ml-auto">
+                      {activeSubMenu === "alumni" ? "-" : "+"}
+                    </span>
+                  </div>
+                </button>
+                <div
+                  className={`pl-6 overflow-hidden transition-max-height duration-300 ease-in-out ${
+                    activeSubMenu === "alumni" ? "max-h-48" : "max-h-0"
+                  }`}
+                >
+                  <ul className="space-y-2 mt-2 text-sm font-normal border-l border-gray-200">
+                    <li
+                      className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+                      onClick={toggleMobileMenu}
+                    >
+                      <a href="/alumni/prominent-alumni">Prominent Alumni</a>
+                    </li>
+                    <li
+                      className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+                      onClick={toggleMobileMenu}
+                    >
+                      <a href="/alumni/gallery">Alumni Gallery</a>
+                    </li>
+                    <li
+                      className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+                      onClick={toggleMobileMenu}
+                    >
+                      <a href="/alumni/job-postings">Jobs via Alumni</a>
+                    </li>
+                    <li
+                      className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
+                      onClick={toggleMobileMenu}
+                    >
+                      <a href="/alumni/contact">Contact Us</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a
+                  href="/directory"
+                  onClick={toggleMobileMenu}
+                  className="w-full text-left text-[#172B4D]"
+                >
+                  <div className="flex gap-3 items-center text-base font-medium">
+                    <FolderSharedIcon />
+                    Directory
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/events"
+                  onClick={toggleMobileMenu}
+                  className="w-full text-left text-[#172B4D]"
+                >
+                  <div className="flex gap-3 items-center text-base font-medium">
+                    <EventIcon />
+                    Events
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/news"
+                  onClick={toggleMobileMenu}
+                  className="w-full text-left text-[#172B4D]"
+                >
+                  <div className="flex gap-3 items-center text-base font-medium">
+                    <FeedIcon />
+                    News
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://tpcell.iiitkota.ac.in/"
+                  onClick={toggleMobileMenu}
+                  className="w-full text-left text-[#172B4D]"
+                >
+                  <div className="flex gap-3 items-center text-base font-medium">
+                    <WorkIcon />
+                    Placements
+                  </div>
+                </a>
+              </li>
+              {isLoggedIn && user ? (
+                <>
+                  <li className="w-full h-auto flex gap-3">
+                    {user.profilePicture ? (
+                      <a href="/profile/me" onClick={toggleMobileMenu}>
+                        <img
+                          src={user.profilePicture}
+                          alt="Profile"
+                          className="w-6 h-6 rounded-full object-cover"
+                        />
+                      </a>
+                    ) : (
+                      <a href="/profile/me" onClick={toggleMobileMenu}>
+                        <img
+                          src={Avatar}
+                          alt="Default Avatar"
+                          className="w-6 h-6 rounded-full object-cover"
+                        />
+                      </a>
+                    )}
+                    <a href="/profile/me" onClick={toggleMobileMenu}>
+                      <div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
+                        Profile
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" onClick={openLogoutModal}>
+                      <div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
+                        <LogoutIcon />
+                        Log Out
+                      </div>
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <a href="/signin" onClick={toggleMobileMenu}>
+                    <div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
+                      <LockOpenIcon />
+                      Sign In
+                    </div>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      </div>
 
-			{/* Logout Confirmation Modal */}
-			<Modal
-				open={isLogoutModalOpen}
-				onClose={closeLogoutModal}
-				aria-labelledby="logout-modal-title"
-				aria-describedby="logout-modal-description"
-			>
-				<Box className="bg-white p-6 rounded shadow-lg w-80 mx-auto mt-24">
-					<h2 id="logout-modal-title" className="text-lg font-semibold mb-4">
-						Confirm Logout
-					</h2>
-					<p id="logout-modal-description" className="mb-6">
-						Are you sure you want to log out?
-					</p>
-					<div className="flex justify-end gap-4">
-						<button
-							onClick={closeLogoutModal}
-							className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-						>
-							Cancel
-						</button>
-						<button
-							onClick={handleLogout}
-							className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-						>
-							Log Out
-						</button>
-					</div>
-				</Box>
-			</Modal>
-		</div>
-	);
+      {/* Logout Confirmation Modal */}
+      <Modal
+        open={isLogoutModalOpen}
+        onClose={closeLogoutModal}
+        aria-labelledby="logout-modal-title"
+        aria-describedby="logout-modal-description"
+      >
+        <Box className="bg-white p-6 rounded shadow-lg w-80 mx-auto mt-24">
+          <h2 id="logout-modal-title" className="text-lg font-semibold mb-4">
+            Confirm Logout
+          </h2>
+          <p id="logout-modal-description" className="mb-6">
+            Are you sure you want to log out?
+          </p>
+          <div className="flex justify-end gap-4">
+            <button
+              onClick={closeLogoutModal}
+              className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Log Out
+            </button>
+          </div>
+        </Box>
+      </Modal>
+    </div>
+  );
 };
 
 export default Navbar;
