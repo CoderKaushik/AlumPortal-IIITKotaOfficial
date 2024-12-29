@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config/config");
@@ -60,6 +61,10 @@ exports.signUp = async (req, res) => {
       profilePicturePublicId = uploadResult.public_id;
     }
 
+    // Hash the password before saving
+    const salt = await bcrypt.genSalt(10); // Generate a salt
+    const hashedPassword = await bcrypt.hash(password, salt); // Hash the password
+
     // Save user data to the database
     const user = new User({
       name,
@@ -76,7 +81,7 @@ exports.signUp = async (req, res) => {
       role,
       linkedin,
       achievements,
-      password,
+      password: hashedPassword, // Save the hashed password
       profilePicture: profilePictureUrl,
       profilePicturePublicId, // Add the public ID here
     });
@@ -105,10 +110,17 @@ exports.signIn = async (req, res) => {
   try {
     const user = await User.findOne({ instituteId });
 
-    if (!user || user.password !== password) {
+    if (!user) {
       return res.status(400).json({ message: 'Invalid institute ID or password' });
     }
 
+    // Compare the provided password with the hashed password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: 'Invalid institute ID or password' });
+    }
+
+    // Generate a JWT token
     const token = jwt.sign(
       { id: user._id, instituteId: user.instituteId },
       JWT_SECRET,
