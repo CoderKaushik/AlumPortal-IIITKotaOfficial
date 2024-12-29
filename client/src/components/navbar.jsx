@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Logo from "../assets/iiitkotalogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -17,6 +18,7 @@ import Box from "@mui/material/Box";
 import axios from "axios";
 
 const Navbar = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
@@ -24,7 +26,6 @@ const Navbar = () => {
   const toggleMobileMenu = () => {
     setTimeout(() => {
       setIsMobileMenuOpen((prev) => {
-        // Reset active submenu when closing the modal
         if (prev) {
           setActiveSubMenu(null);
         }
@@ -70,7 +71,7 @@ const Navbar = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     setUser(null);
-    toggleMobileMenu(); // Close the mobile menu
+    toggleMobileMenu();
     window.location.reload();
   };
 
@@ -88,13 +89,13 @@ const Navbar = () => {
       <div className="w-full h-[6.875rem] max-w-980:h-[90px] max-w-492:h-[70px] bg-white flex py-4">
         <div className="w-1/3 max-w-1464:w-[10%] max-w-980:w-[80%] h-full flex gap-2 items-center pl-2">
           <div className="w-auto h-full flex justify-center items-center">
-            <a href="/">
+            <button onClick={() => navigate("/")}>
               <img
                 src={Logo}
                 alt="iiit kota logo"
                 className="w-[4.5rem] h-[4.5rem] max-w-980:w-[58px] max-w-980:h-[58px] max-w-492:h-[40px] max-w-492:w-[40px]"
               />
-            </a>
+            </button>
           </div>
           <div className="w-auto h-full flex flex-col justify-center">
             <h6
@@ -125,16 +126,16 @@ const Navbar = () => {
           }`}
         >
           <div className="w-auto px-6 h-full flex relative group items-center text-[#19194D] max-w-980:hidden max-w-1464:ml-44">
-            <a
+            <button
               className="text-[0.9rem] font-sans hover:cursor-pointer"
               style={{ fontWeight: "400" }}
-              href="/about"
+              onClick={() => navigate("/about")}
             >
               ABOUT US
-            </a>
+            </button>
           </div>
 
-          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+          <div className="w-auto px-6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
             <p
               className="text-[0.9rem] font-sans hover:cursor-pointer"
               style={{ fontWeight: "400" }}
@@ -144,60 +145,67 @@ const Navbar = () => {
             <div className="rounded-md absolute top-12 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 bg-white drop-shadow-2xl py-2 mt-2 w-[12rem] transition-all duration-300 ease-in-out transform translate-y-2">
               <ul className="w-full">
                 <li className="hover:bg-gray-100 p-2">
-                  <a href="/alumni/prominent-alumni">Prominent Alumni</a>
+                  <button onClick={() => navigate("/alumni/prominent-alumni")}>
+                    Prominent Alumni
+                  </button>
                 </li>
                 <li className="hover:bg-gray-100 p-2">
-                  <a href="/alumni/gallery">Alumni Gallery</a>
+                  <button onClick={() => navigate("/alumni/gallery")}>
+                    Alumni Gallery
+                  </button>
                 </li>
                 <li className="hover:bg-gray-100 p-2">
-                  <a href="/alumni/job-postings">Jobs via Alumni</a>
+                  <button onClick={() => navigate("/alumni/job-postings")}>
+                    Jobs via Alumni
+                  </button>
                 </li>
                 <li className="hover:bg-gray-100 p-2">
-                  <a href="/alumni/contact">Contact Us</a>
+                  <button onClick={() => navigate("/alumni/contact")}>
+                    Contact Us
+                  </button>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-            <a href="/directory">
-              <p
-                className="text-[0.9rem] font-sans hover:cursor-pointer"
-                style={{ fontWeight: "400" }}
-              >
-                DIRECTORY
-              </p>
-            </a>
-          </div>
-
-          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-            <a
-              href="/events"
+          <div className="w-auto px-6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+            <button
               className="text-[0.9rem] font-sans hover:cursor-pointer"
               style={{ fontWeight: "400" }}
+              onClick={() => navigate("/directory")}
+            >
+              DIRECTORY
+            </button>
+          </div>
+
+          <div className="w-auto px-6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+            <button
+              className="text-[0.9rem] font-sans hover:cursor-pointer"
+              style={{ fontWeight: "400" }}
+              onClick={() => navigate("/events")}
             >
               EVENTS
-            </a>
+            </button>
           </div>
 
-          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-            <a
-              href="/news"
+          <div className="w-auto px-6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+            <button
               className="text-[0.9rem] font-sans hover:cursor-pointer"
               style={{ fontWeight: "400" }}
+              onClick={() => navigate("/news")}
             >
               NEWS
-            </a>
+            </button>
           </div>
 
-          <div className="w-auto px-6  h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
-            <a
+          <div className="w-auto px-6 h-full relative group flex items-center text-[#19194D] max-w-980:hidden">
+            <button
               className="text-[0.9rem] font-sans hover:cursor-pointer"
               style={{ fontWeight: "400" }}
-              href="https://tpcell.iiitkota.ac.in/"
+              onClick={() => window.open("https://tpcell.iiitkota.ac.in/", "_blank")}
             >
               PLACEMENTS
-            </a>
+            </button>
           </div>
 
           <div className="hidden w-full h-full text-[#19194D] max-w-980:flex max-w-980:justify-center max-w-980:items-center">
@@ -219,9 +227,9 @@ const Navbar = () => {
         >
           <div className="flex justify-between items-center border-b border-gray-200 text-[#172B4D] pb-4">
             <div className="w-auto h-auto flex gap-2 justify-start items-center">
-              <a href="/">
+              <button onClick={() => navigate("/")}>
                 <img src={Logo} alt="home_page" className="w-10 h-10" />
-              </a>
+              </button>
               <h3 className="text-lg font-semibold tracking-wide">MENU</h3>
             </div>
             <CloseIcon onClick={toggleMobileMenu} className="cursor-pointer" />
@@ -229,15 +237,17 @@ const Navbar = () => {
           <div className="mt-4">
             <ul className="space-y-3">
               <li>
-                <button className="w-full text-left text-[#172B4D]">
-                  <a
-                    className="flex gap-3 items-center text-base font-medium"
-                    href="/about"
-                    onClick={toggleMobileMenu}
-                  >
+                <button
+                  className="w-full text-left text-[#172B4D]"
+                  onClick={() => {
+                    navigate("/about");
+                    toggleMobileMenu();
+                  }}
+                >
+                  <div className="flex gap-3 items-center text-base font-medium">
                     <InfoIcon />
                     About Us
-                  </a>
+                  </div>
                 </button>
               </li>
               <li>
@@ -261,122 +271,162 @@ const Navbar = () => {
                   <ul className="space-y-2 mt-2 text-sm font-normal border-l border-gray-200">
                     <li
                       className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-                      onClick={toggleMobileMenu}
+                      onClick={() => {
+                        navigate("/alumni/prominent-alumni");
+                        toggleMobileMenu();
+                      }}
                     >
-                      <a href="/alumni/prominent-alumni">Prominent Alumni</a>
+                      Prominent Alumni
                     </li>
                     <li
                       className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-                      onClick={toggleMobileMenu}
+                      onClick={() => {
+                        navigate("/alumni/gallery");
+                        toggleMobileMenu();
+                      }}
                     >
-                      <a href="/alumni/gallery">Alumni Gallery</a>
+                      Alumni Gallery
                     </li>
                     <li
                       className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-                      onClick={toggleMobileMenu}
+                      onClick={() => {
+                        navigate("/alumni/job-postings");
+                        toggleMobileMenu();
+                      }}
                     >
-                      <a href="/alumni/job-postings">Jobs via Alumni</a>
+                      Jobs via Alumni
                     </li>
                     <li
                       className="py-2 pl-4 text-[#172B4D] hover:bg-gray-100 rounded"
-                      onClick={toggleMobileMenu}
+                      onClick={() => {
+                        navigate("/alumni/contact");
+                        toggleMobileMenu();
+                      }}
                     >
-                      <a href="/alumni/contact">Contact Us</a>
+                      Contact Us
                     </li>
                   </ul>
                 </div>
               </li>
               <li>
-                <a
-                  href="/directory"
-                  onClick={toggleMobileMenu}
+                <button
                   className="w-full text-left text-[#172B4D]"
+                  onClick={() => {
+                    navigate("/directory");
+                    toggleMobileMenu();
+                  }}
                 >
                   <div className="flex gap-3 items-center text-base font-medium">
                     <FolderSharedIcon />
                     Directory
                   </div>
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="/events"
-                  onClick={toggleMobileMenu}
+                <button
                   className="w-full text-left text-[#172B4D]"
+                  onClick={() => {
+                    navigate("/events");
+                    toggleMobileMenu();
+                  }}
                 >
                   <div className="flex gap-3 items-center text-base font-medium">
                     <EventIcon />
                     Events
                   </div>
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="/news"
-                  onClick={toggleMobileMenu}
+                <button
                   className="w-full text-left text-[#172B4D]"
+                  onClick={() => {
+                    navigate("/news");
+                    toggleMobileMenu();
+                  }}
                 >
                   <div className="flex gap-3 items-center text-base font-medium">
                     <FeedIcon />
                     News
                   </div>
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="https://tpcell.iiitkota.ac.in/"
-                  onClick={toggleMobileMenu}
+                <button
                   className="w-full text-left text-[#172B4D]"
+                  onClick={() => {
+                    window.open("https://tpcell.iiitkota.ac.in/", "_blank");
+                    toggleMobileMenu();
+                  }}
                 >
                   <div className="flex gap-3 items-center text-base font-medium">
                     <WorkIcon />
                     Placements
                   </div>
-                </a>
+                </button>
               </li>
               {isLoggedIn && user ? (
                 <>
                   <li className="w-full h-auto flex gap-3">
                     {user.profilePicture ? (
-                      <a href="/profile/me" onClick={toggleMobileMenu}>
+                      <button
+                        onClick={() => {
+                          navigate("/profile/me");
+                          toggleMobileMenu();
+                        }}
+                      >
                         <img
                           src={user.profilePicture}
                           alt="Profile"
                           className="w-6 h-6 rounded-full object-cover"
                         />
-                      </a>
+                      </button>
                     ) : (
-                      <a href="/profile/me" onClick={toggleMobileMenu}>
+                      <button
+                        onClick={() => {
+                          navigate("/profile/me");
+                          toggleMobileMenu();
+                        }}
+                      >
                         <img
                           src={Avatar}
                           alt="Default Avatar"
                           className="w-6 h-6 rounded-full object-cover"
                         />
-                      </a>
+                      </button>
                     )}
-                    <a href="/profile/me" onClick={toggleMobileMenu}>
+                    <button
+                      onClick={() => {
+                        navigate("/profile/me");
+                        toggleMobileMenu();
+                      }}
+                    >
                       <div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
                         Profile
                       </div>
-                    </a>
+                    </button>
                   </li>
                   <li>
-                    <a href="#" onClick={openLogoutModal}>
+                    <button onClick={openLogoutModal}>
                       <div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
                         <LogoutIcon />
                         Log Out
                       </div>
-                    </a>
+                    </button>
                   </li>
                 </>
               ) : (
                 <li>
-                  <a href="/signin" onClick={toggleMobileMenu}>
+                  <button
+                    onClick={() => {
+                      navigate("/signin");
+                      toggleMobileMenu();
+                    }}
+                  >
                     <div className="flex gap-3 items-center text-[#172B4D] text-base font-medium">
                       <LockOpenIcon />
                       Sign In
                     </div>
-                  </a>
+                  </button>
                 </li>
               )}
             </ul>
