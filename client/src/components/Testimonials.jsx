@@ -50,7 +50,7 @@ const Testimonials = () => {
       </div>
 
       {/* Testimonials Marquee */}
-      <div className="h-[50vh] flex items-center">
+      <div className="h-auto flex items-center">
         <Marquee pauseOnHover={false} speed={50} gradient={false} play={!isPaused}>
           {testimonials.map((testimonial, index) => (
             <div
