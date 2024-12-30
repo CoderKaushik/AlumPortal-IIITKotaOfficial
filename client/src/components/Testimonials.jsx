@@ -20,8 +20,8 @@ const Testimonials = () => {
       text: "The arrangements for the ‘Startup 101’ talk were top-notch, providing insightful discussions on entrepreneurship fundamentals. Our travel arrangements were exceptionally smooth, allowing us to focus entirely on reconnecting with the college community. We are grateful for the meticulous planning and warm hospitality extended to us during our visit",
     },
     {
-      name: "David Lee",
-      text: "I felt right at home. Great people, great stories, and an amazing atmosphere!",
+      name: "Yashash Jain",
+      text: "It was my honour to visit my alma mater as a speaker. Spending four memorable years as a student was crucial. Visiting the new campus at Kota was a great experience. The alumni cell team did an amazing job with queries, travel arrangements, and hospitality. I loved talking with juniors and answering their questions.",
     },
     {
       name: "Alice Brown",
