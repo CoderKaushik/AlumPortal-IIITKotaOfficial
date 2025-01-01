@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { TextField, Checkbox, Button, FormControlLabel, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { TextField, Checkbox, Button, FormControlLabel, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal, Box, Typography } from "@mui/material";
 import emailjs from "@emailjs/browser";
 import { toast, Toaster } from "react-hot-toast"; 
 
@@ -23,10 +23,7 @@ const ContactUs = () => {
 		}
 	}, []);
 
-	const handleClose = () => {
-		setOpen(false);
-	};
-
+	const handleClose = () => setOpen(false);
 	const handleSignIn = () => {
 		setOpen(false);
 		navigate("/signin");
@@ -47,6 +44,14 @@ const ContactUs = () => {
 
 		if (!agree) {
 			toast.error("You must agree to share your information.");
+			return;
+		}
+
+		const formData = new FormData(form.current);
+		const isEmpty = Array.from(formData.values()).some(value => !value.trim());
+
+		if (isEmpty) {
+			toast.error("All fields must be filled out.");
 			return;
 		}
 
@@ -73,22 +78,36 @@ const ContactUs = () => {
 		<div className="w-full h-full overflow-x-hidden custom-scrollbar bg-gray-100">
 			<Toaster position="top-right" /> 
 			<Navbar />
-			<Dialog open={open} onClose={handleClose}>
-				<DialogTitle>{"Not Signed In"}</DialogTitle>
-				<DialogContent>
-					<DialogContentText>
-						You must be signed in to fill out the contact form.
-					</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={handleSignIn} color="primary">
-						Sign In
-					</Button>
-					<Button onClick={handleClose} color="secondary">
-						Close
-					</Button>
-				</DialogActions>
-			</Dialog>
+				<Modal
+					open={open}
+					onClose={handleClose}
+					aria-labelledby="signin-modal-title"
+					aria-describedby="signin-modal-description"
+				>
+					<Box className="bg-white p-6 rounded shadow-lg w-80 mx-auto mt-24"
+						sx={{
+							position: 'absolute',
+							top: '35%',
+							left: '50%',
+							transform: 'translate(-50%, -50%)',
+						}}
+					>
+						<Typography id="signin-modal-title" variant="h6" component="h2" className="mb-4">
+							Not Signed In
+						</Typography>
+						<Typography id="signin-modal-description" className="mb-6">
+							You must be signed in to fill out the contact form.
+						</Typography>
+						<div className="flex justify-end gap-4">
+							<Button onClick={handleClose} className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
+								Close
+							</Button>
+							<Button onClick={handleSignIn} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+								Sign In
+							</Button>
+						</div>
+					</Box>
+				</Modal>
 			<div className="flex justify-center items-center w-full h-[150vh] md:h-[80vh] mt-[4rem] md:mt-[9rem] md:px-2">
 				<div className="w-[98%] h-[98%] bg-white rounded-md shadow-lg flex md:flex-row flex-col p-2 group">
 					{/* Left dark blue section with a large ring */}
